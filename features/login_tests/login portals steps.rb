@@ -80,7 +80,6 @@ Then(/^Tap on the button About$/) do
   end
 end
 
-
 Given(/^click on Skip button$/) do
   find_element(id:"on_boarding_panel_skip_button").click
 end
