@@ -31,6 +31,5 @@ Feature: User is able to convert area units
     Then Tap on the button About
     Examples:
     |name_portal|login|password|
-    |testinfo.teamlab.info|nct.devices@gmail.com|xxxxxxxxx|
 
 
