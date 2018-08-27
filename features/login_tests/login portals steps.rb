@@ -1,74 +1,32 @@
-=begin
-Given(/^I land on help popup$/) do
-  find_element(id:"fab").click
-end
+require_relative '../../features/support/hooks.rb'
 
-When(/^I click on Got it button$/) do
-  find_element(id:"on_boarding_panel_skip_button").click
-  # sleep 100
-  find_element(id:"tab_layout").find_element(xpath:"//android.widget.TextView[@text='PERSONAL']").click
-  #sleep 100
+def searchDataPortal(domenName, attribute)
+  indexPortalData = $fileLoginConfig.index{|dataPortal| dataPortal["domen"].include? domenName}
+  file = File.open("/home/nav/RubymineProjects/cucumber/features/login_tests/file.txt","w")
+  file.write("index = #{indexPortalData}")
+  file.write("svoistvo = #{ $fileLoginConfig[indexPortalData][attribute]}")
+  $fileLoginConfig[indexPortalData][attribute]
 end
-
-Then(/^I land on Area screen$/) do
-  text("Area")
-end
-
-When(/^I click on Swap button$/) do
-  find_element(id:"fab").click
-end
-
-Then(/^I see "([^"]*)" in From header$/) do |value|
-  actual_value = find_element(id:"header_text_unit_from").text
-  puts("Expected value = #{value}")
-  puts("Actual value = #{actual_value}")
-end
-
-And(/^I see "([^"]*)" in To header$/) do |value|
-  actual_value = find_element(id:"header_value_to").text
-  puts("Expected value = #{value}")
-  puts("Actual value = #{actual_value}")
-end
-
-And(/^I click on Clear button$/) do
-  find_element(id:"login_enterprise_portal_edit").send_keys("personal.teamlab.info")
-end
-
-When(/^I enter "([^"]*)" to from field$/) do |value|
-  puts("User entered value #{value} ")
-end
-
-Then(/^I get "([^"]*)" in to field$/) do |value|
-  puts("User sees #{value} in result field")
-end
-
-And(/^I  see "([^"]*)" in To header$/) do |value|
-  puts("From header values is " + value)
-end
-=end
-#------------------------------------------------
 
 Given(/^Tap on the tab Portall$/) do
   find_element(id:"tab_layout").find_element(xpath:"//android.widget.TextView[@text='PORTAL']").click
 end
 
-When(/^Enter (.*) portal$/) do |name_portal|
-  find_element(id:"login_enterprise_portal_edit").send_keys(name_portal)
-end
-
 And(/^Tap on the button Next$/) do
- !!! find_element(id:"login_enterprise_next_button").click
+  find_element(id:"login_enterprise_next_button").click
 end
 
-And(/^Enter login (.*)$/) do |login|
+And(/^Enter login in (.*)$/) do |domen|
+  login = searchDataPortal(domen,"l")
   find_element(id:"login_enterprise_portal_email_edit").send_keys(login)
 end
 
-And(/^Enter password (.*)$/) do |password|
+And(/^Enter password (.*)$/) do |domen|
+  password =  searchDataPortal(domen, "p")
   find_element(id:"login_enterprise_portal_password_edit").send_keys(password)
 end
 
-And(/^Tap on the  button Sing In$/) do
+And(/^Tap on the  button Next$/) do
   find_element(id:"login_enterprise_signin_button").click
 end
 
@@ -80,7 +38,37 @@ Then(/^Tap on the button About$/) do
   end
 end
 
-
 Given(/^click on Skip button$/) do
   find_element(id:"on_boarding_panel_skip_button").click
+end
+
+When(/^Enter (.*) portal$/) do |domen|
+  namePortal = searchDataPortal(domen, "portal")
+  find_element(id:"login_enterprise_portal_edit").send_keys(namePortal)
+end
+
+#login personal portal
+
+Given(/^Tap on the tab Personal$/) do
+  find_element(id:"tab_layout").find_element(xpath:"//android.widget.TextView[@text='PERSONAL']").click
+end
+
+And(/^Input login in pesonal portal (.*)$/) do |domenPersonal|
+  login = searchDataPortal(domenPersonal,"l")
+  find_element(id:"login_personal_portal_email_edit").send_keys(login)
+end
+
+And(/^Input password in personal portal  (.*)$/) do |domenPersonal|
+  login = searchDataPortal(domenPersonal,"p")
+  find_element(id:"login_personal_portal_password_edit").send_keys(login)
+end
+
+And(/^Tap on the button Sing In$/) do
+  find_element(id:"login_personal_signin_button").click
+end
+
+#login personal portal through google
+
+And(/^Cick on the google butto$/) do
+  find_element(id:"login_social_google_button").click
 end

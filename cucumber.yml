@@ -1,1 +1,3 @@
-wip: -t @wip --format html --out report.html
+default: --color -f pretty --include_examples data_login.yml
+portal: -t @portal --format html --out report.html
+personal: -t @personal --format html --out personal.html
