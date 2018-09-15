@@ -3,7 +3,7 @@ require_relative'../support/login_support.rb'
 Before do
   @driver.start_driver
   flc = FileLoginConfig.instance
-  pathFileDataPotrals = "/home/nav/RubymineProjects/cucumber/PortalTypeData.yml"
+  pathFileDataPotrals = "/home/vvoronin/RubymineProjects/Documents-Android/PortalTypeData.yml"
 
   $fileLoginConfig = flc.initializeHashDataPortal(pathFileDataPotrals)
 
