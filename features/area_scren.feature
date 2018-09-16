@@ -1,5 +1,5 @@
 #noinspection CucumberUndefinedStep
-Feature:  User ia able to convert area units
+Feature:  Login in portal
 
   Background:
     Given click on Skip button
@@ -17,9 +17,9 @@ Feature:  User ia able to convert area units
      Examples: loginData
      |domen_portal|
      |info|
-     |com|
+     |eu|
      |sg|
-     #|eu|
+     |com|
 
    @personal
    Scenario Outline: User enters a personal
@@ -31,13 +31,44 @@ Feature:  User ia able to convert area units
 
       Examples: dataPersonal
       |personal|
-      |ab.info|
+      |personal.onlyoffice|
 
 
   @portalSocialNetwork
-  Scenario: User enters through google
+  Scenario Outline: User enters a potral
     Given Tap on the tab Portall
-    When Cick on the google button
-    And Tap on the button Sing In
+    When Enter <domen_portal> portal
+    And Tap on the button Next
+    And Tap on the google button
+    And Tap on the account profile google
     Then Tap on the button About
+
+    Examples: loginData
+    |domen_portal|
+    |eu|
+    |sg|
+    |com|
+    |info|
+
+  @personalSocialNetwork
+  Scenario: User enters a personal through google
+    Given Tap on the tab Personal
+    And Tap on the google button
+    And Tap on the account profile google
+    Then Tap on the button About
+
+
+  #@portalSocialNetwork
+  #Scenario Outline: User enters through facebook
+  #  Given Tap on the tab Portall
+  #  When Enter <domen_portal> portal
+  #  And Tap on the button Next
+  #  And Tap on the facebook button
+  #  And Input data facebook account
+  #  And Tap on the account profile facebook
+  #  Then Tap on the button About
+  #
+  #  Examples: loginData
+  #    |domen_portal|
+  #    |info|
 
