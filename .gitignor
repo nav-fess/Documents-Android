@@ -1,3 +1,0 @@
-*.html
-*.jpeg
-git rm --cached --ignore-unmatch *.apk
