@@ -1,3 +1,7 @@
+=begin
+Given(/^I land on help popup$/) do
+  find_element(id:"fab").click
+end
 
 Given(/^Tap on the tab Portall$/) do
   find_element(id:"tab_layout").find_element(xpath:"//android.widget.TextView[@text='PORTAL']").click
@@ -30,7 +34,6 @@ Then(/^Tap on the button About$/) do
     fail("Button About does not exist")
   end
 end
-
 
 Given(/^click on Skip button$/) do
   find_element(id:"on_boarding_panel_skip_button").click
