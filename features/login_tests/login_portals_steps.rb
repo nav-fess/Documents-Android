@@ -1,8 +1,3 @@
-=begin
-Given(/^I land on help popup$/) do
-  find_element(id:"fab").click
-end
-
 Given(/^Tap on the tab Portall$/) do
   find_element(id:"tab_layout").find_element(xpath:"//android.widget.TextView[@text='PORTAL']").click
 end
