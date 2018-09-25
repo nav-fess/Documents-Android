@@ -14,7 +14,7 @@ Feature:  Login in portal
      And Tap on the  button Next
      Then Tap on the button About
 
-     Examples: loginData
+     Examples:
      |domen_portal|
      |info|
      |eu|
@@ -58,16 +58,16 @@ Feature:  Login in portal
     Then Tap on the button About
 
 
-  #@portalSocialNetwork
-  #Scenario Outline: User enters through facebook
-  #  Given Tap on the tab Portall
-  #  When Enter <domen_portal> portal
-  #  And Tap on the button Next
-  #  And Tap on the facebook button
-  #  And Input data facebook account
-  #  And Tap on the account profile facebook
-  #  Then Tap on the button About
-  #
-  #  Examples: loginData
-  #    |domen_portal|
-  #    |info|
+  @portalSocialNetwork
+  Scenario Outline: User enters through facebook
+    Given Tap on the tab Portall
+    When Enter <domen_portal> portal
+    And Tap on the button Next
+    And Tap on the facebook button
+    And Input data facebook account
+    And Tap on the account profile facebook
+    Then Tap on the button About
+
+    Examples: loginData
+      |domen_portal|
+      |info|

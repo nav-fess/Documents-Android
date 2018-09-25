@@ -4,7 +4,7 @@ class FileLoginConfig
   include Singleton
   attr_accessor :dataPortalsArray
 
-  def initializeHashDataPortal(path)
+  def self.initializeHashDataPortal(path)
 
     @dataPortalsArray = []
     File.foreach(path) do |line|

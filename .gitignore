@@ -1,5 +1,4 @@
 *.html
-git rm --cached --ignore-unmatch *.apk
-
 *.xml
 *.apk
+*.idea

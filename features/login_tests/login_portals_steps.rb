@@ -2,10 +2,7 @@ require_relative '../../features/support/hooks.rb'
 
 def searchDataPortal(domenName, attribute)
   indexPortalData = $fileLoginConfig.index{|dataPortal| dataPortal["domen"].include? domenName}
-  file = File.open("/home/vvoronin/RubymineProjects/Documents-Android/features/support/file.txt","w")
-  file.write("index = #{indexPortalData}")
-  file.write("svoistvo = #{ $fileLoginConfig[indexPortalData][attribute]}")
-  $fileLoginConfig[indexPortalData][attribute]
+   $fileLoginConfig[indexPortalData][attribute]
 end
 
 Given(/^Tap on the tab Portall$/) do
@@ -32,13 +29,7 @@ end
 
 Then(/^Tap on the button About$/) do
   find_element(id:"app_bar_layout").find_element(xpath:"//android.widget.ImageButton[@index='0']").click
-  #if exists {find_element(id:"app_bar_layout").find_element(xpath:"//android.widget.TextView[@text='MY']")}
-   # find_element(id:"app_bar_layout").find_element(xpath:"//android.widget.TextView[@text='MY']").click
-  #else
-   # fail("Button About does not exist")
-  #end
-
-end
+ end
 
 Given(/^click on Skip button$/) do
   find_element(id:"on_boarding_panel_skip_button").click
@@ -90,6 +81,6 @@ And(/^Input data facebook account $/) do
 end
 
 And(/^Tap on the account profile facebook$/) do
-  #find_element(xpath:"//android.widget.LinearLayout[@index='1']").click
+  pending
 end
 
