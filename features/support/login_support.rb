@@ -1,23 +1,19 @@
 require 'singleton'
-
+# Parse data potrals
 class FileLoginConfig
   include Singleton
   attr_accessor :dataPortalsArray
 
-  def self.initializeHashDataPortal(path)
-
-    @dataPortalsArray = []
+  def self.initialize_hash_data_portal(path)
+    @data_portals_array = []
     File.foreach(path) do |line|
-      dataPortal = line.split('|')
-      domenPortal = ''
-      domenPortal = if dataPortal[0].include? 'personal'
-                      dataPortal[0]
-                    else
-                      dataPortal[0].split('.').last
-                    end
-
-      @dataPortalsArray.push('domen' => domenPortal, 'portal' => dataPortal[0], 'l' => dataPortal[1], 'p' => dataPortal[2])
+      data_portal = line.split('|')
+      domen_portal = (data_portal[0].include? 'personal') ? data_portal[0]
+                     : data_portal[0].split('.').last
+      @data_portals_array.push('domen' => domen_portal,
+                               'portal' => data_portal[0], 'l' => data_portal[1],
+                               'p' => data_portal[2])
     end
-    @dataPortalsArray
+    @data_portals_array
   end
 end
