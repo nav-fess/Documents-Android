@@ -7,19 +7,21 @@ Feature:  Login in portal
   @portal
    Scenario Outline: User enters a portal
      Given Tap on the tab Portall
-     When Enter <domen_portal> portal
+     When Enter <domain_portal> portal
      And Tap on the button Next
-     And Enter login in <domen_portal>
-     And Enter password <domen_portal>
+     And Enter login in <domain_portal>
+     And Enter password <domain_portal>
      And Tap on the  button Next
      Then Tap on the button About
 
      Examples:
-     |domen_portal|
+     |domain_portal|
      |info|
-     |eu|
-     |sg|
-     |com|
+     |com |
+     |eu  |
+     |sg  |
+     |personal.com |
+     |personal.info|
 
    @personal
    Scenario Outline: User enters a personal
@@ -29,22 +31,23 @@ Feature:  Login in portal
       And Tap on the button Sing In
       Then Tap on the button About
 
-      Examples: dataPersonal
+      Examples:
       |personal|
-      |personal.onlyoffice|
+      |personal.info|
+      |personal.com|
 
 
   @portalSocialNetwork
   Scenario Outline: User enters a potral
     Given Tap on the tab Portall
-    When Enter <domen_portal> portal
+    When Enter <domain_portal> portal
     And Tap on the button Next
     And Tap on the google button
     And Tap on the account profile google
     Then Tap on the button About
 
-    Examples: loginData
-    |domen_portal|
+    Examples: 
+    |domain_portal|
     |eu|
     |sg|
     |com|
@@ -58,16 +61,17 @@ Feature:  Login in portal
     Then Tap on the button About
 
 
-  @portalSocialNetwork
-  Scenario Outline: User enters through facebook
-    Given Tap on the tab Portall
-    When Enter <domen_portal> portal
-    And Tap on the button Next
-    And Tap on the facebook button
-    And Input data facebook account
-    And Tap on the account profile facebook
-    Then Tap on the button About
+  #@portalSocialNetwork
+  #Scenario Outline: User enters through facebook
+  #  Given Tap on the tab Portall
+  #  When Enter <domain_portal> portal
+  #  And Tap on the button Next
+  #  And Tap on the facebook button
+  #  And Input data facebook account
+  #  And Tap on the account profile facebook
+  #  Then Tap on the button About
+  #
+  #  Examples: loginData
+  #    |domain_portal|
+  #    |info|
 
-    Examples: loginData
-      |domen_portal|
-      |info|
