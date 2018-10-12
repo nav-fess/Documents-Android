@@ -1,10 +1,8 @@
 require_relative '../../features/support/hooks.rb'
 
 def search_data_portal(domen_name, attribute)
-  index_portal_data = $file_login_config.index do |data_portal|
-    data_portal['domen'].include? domen_name
-  end
-  $file_login_config[index_portal_data][attribute]
+  data = FileLoginConfig.data_portal(domen_name)
+  data[attribute]
 end
 
 Given(/^Tap on the tab Portall$/) do
@@ -17,12 +15,12 @@ And(/^Tap on the button Next$/) do
 end
 
 And(/^Enter login in (.*)$/) do |domen|
-  login = searchDataPortal(domen, 'l')
+  login = search_data_portal(domen, 'l')
   find_element(id: 'login_enterprise_portal_email_edit').send_keys(login)
 end
 
 And(/^Enter password (.*)$/) do |domen|
-  password =  searchDataPortal(domen, 'p')
+  password =  search_data_portal(domen, 'p')
   find_element(id: 'login_enterprise_portal_password_edit').send_keys(password)
 end
 

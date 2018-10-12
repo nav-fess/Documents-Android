@@ -1,19 +1,13 @@
-require 'singleton'
 # Parse data potrals
 class FileLoginConfig
-  include Singleton
-  attr_accessor :dataPortalsArray
+  attr_accessor :data
 
-  def self.initialize_hash_data_portal(path)
-    @data_portals_array = []
-    File.foreach(path) do |line|
-      data_portal = line.split('|')
-      domen_portal = (data_portal[0].include? 'personal') ? data_portal[0]
-                     : data_portal[0].split('.').last
-      @data_portals_array.push('domen' => domen_portal,
-                               'portal' => data_portal[0], 'l' => data_portal[1],
-                               'p' => data_portal[2])
-    end
-    @data_portals_array
+  def self.data_portals
+    @data = YAML.load_file("#{Dir.pwd}/PortalTypeData.json")
+  end
+
+  def self.data_portal(key)
+    dataportrals = @data[key].split('|')
+    { 'portal' => dataportrals[0], 'l' => dataportrals[1], 'p' => dataportrals[2] }
   end
 end
