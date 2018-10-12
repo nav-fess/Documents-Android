@@ -64,7 +64,7 @@ Feature:  Login in portal
   #@portalSocialNetwork
   #Scenario Outline: User enters through facebook
   #  Given Tap on the tab Portall
-  #  When Enter <domen_portal> portal
+  #  When Enter <domain_portal> portal
   #  And Tap on the button Next
   #  And Tap on the facebook button
   #  And Input data facebook account
@@ -72,6 +72,6 @@ Feature:  Login in portal
   #  Then Tap on the button About
   #
   #  Examples: loginData
-  #    |domen_portal|
+  #    |domain_portal|
   #    |info|
 
