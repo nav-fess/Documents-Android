@@ -5,7 +5,9 @@ Feature: Registration in portal
 
   @portalRegistration
   Scenario Outline: User registration a portal
-    Given Tap on the tab Create Portall
+
+    Given Change localization <portal>
+    And Tap on the tab Portall
     And Input address <portal>
     And Input email for <portal>
     And Input first name for <portal>
@@ -18,7 +20,8 @@ Feature: Registration in portal
 
     Examples:
       |portal|
-      |potraldeletenow|
+      |potraleu|
+      |potralcom|
 
 
 

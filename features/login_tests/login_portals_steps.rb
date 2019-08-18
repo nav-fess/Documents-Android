@@ -5,7 +5,7 @@ def search_data_portal(domen_name, attribute)
   data[attribute]
 end
 
-Given(/^Tap on the tab Portall$/) do
+And(/^Tap on the tab Portall$/) do
   find_element(id: 'tab_layout')
     .find_element(xpath: "//android.widget.TextView[@text='PORTAL']").click
 end

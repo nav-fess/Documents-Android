@@ -4,7 +4,7 @@ def caps
   { caps: {
     deviceName: 'Name',
     platformName: 'Android',
-    app: File.join(File.dirname(__FILE__), 'onlyoffice-documents-2.1.1_build-75_July.16_16-26.apk'),
+    app: File.join(File.dirname(__FILE__), 'onlyoffice-documents-2.2.0-debug_build-98_January.24_16-53.apk'),
     appPackage: 'com.onlyoffice.documents',
     appActivity: 'com.onlyoffice.documents.ui.activities.login.PortalsActivity',
     newCommandTimeout: '3600'
