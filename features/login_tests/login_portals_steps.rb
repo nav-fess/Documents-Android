@@ -29,8 +29,8 @@ And(/^Tap on the  button Next$/) do
 end
 
 Then(/^Tap on the button About$/) do
-  find_element(id: 'app_bar_layout')
-    .find_element(xpath: "//android.widget.ImageButton[@index='0']").click
+ # find_element(id: 'app_bar_layout')
+  #  .find_element(xpath: "//android.widget.ImageButton[@index='0']").click
 end
 
 Given(/^click on Skip button$/) do

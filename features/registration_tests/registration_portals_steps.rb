@@ -6,8 +6,11 @@ def search_data_regestration_portal(domen_name, attribute)
 end
 
 Given (/^Change localization (.*)$/) do |portal|
-  loc = search_data_regestration_portal("portaleu","local" )
-  execute_script("mobile:shell",{"command"=>"am broadcast -a com.android.intent.action.SET_LOCALE --es com.android.intent.extra.LOCALE #{loc}"})
+  local = search_data_regestration_portal(portal,"local" )
+  @driver.restart
+  @driver.caps['locale'] = local
+  @driver.caps['language'] = local
+  find_element(id: 'on_boarding_panel_skip_button').click
 end
 
 And(/^Tap on the tab Create Portall$/) do
@@ -30,12 +33,14 @@ And(/^Input first name for (.*)$/) do |portal|
 end
 
 And(/^Input last name for (.*)$/) do |portal|
+  @AppiumDriver.hide_keyboard
   last_name =  search_data_regestration_portal(portal,"last_name" )
   find_element(id:"login_create_portal_last_name_edit").send_keys(last_name)
 end
 
 And(/^Tap on the button Next registration$/) do
-  find_element(id:"login_signin_create_portal_button").click
+  @AppiumDriver.hide_keyboard
+    find_element(id:"login_signin_create_portal_button").click
 end
 
 And(/^Input password for registration (.*)$/) do |portal|

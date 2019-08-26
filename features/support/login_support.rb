@@ -12,10 +12,8 @@ class FileLoginConfig
   end
 
   def self.data_regestration_portal(key)
-  #  file = File.open("/home/vvoronin/RubymineProjects/Documents-Android/features/support/file.txt","w")
-  #  file.write("@data_regestration = #{@data_regestration[key]}")
     dataportrals = @data[key].to_s.split('|')
-    { 'portal' => dataportrals[0], 'email' => dataportrals[1], 'first_name' => dataportrals[2],'last_name'=> dataportrals[3], 'p'=> dataportrals[4], 'local' => dataportrals[5] }
+     { 'portal' => dataportrals[0], 'email' => dataportrals[1], 'first_name' => dataportrals[2],'last_name'=> dataportrals[3], 'p'=> dataportrals[4], 'local' => dataportrals[5] }
   end
 
 end

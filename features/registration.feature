@@ -1,13 +1,10 @@
 Feature: Registration in portal
 
-  Background:
-    Given click on Skip button
-
   @portalRegistration
   Scenario Outline: User registration a portal
 
     Given Change localization <portal>
-    And Tap on the tab Portall
+    And Tap on the tab Create Portall
     And Input address <portal>
     And Input email for <portal>
     And Input first name for <portal>
@@ -20,8 +17,8 @@ Feature: Registration in portal
 
     Examples:
       |portal|
-      |potraleu|
-      |potralcom|
+      |portaleu|
+      |portalcom|
 
 
 
