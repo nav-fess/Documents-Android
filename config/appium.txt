@@ -1,0 +1,8 @@
+[caps]
+appActivity = "com.onlyoffice.documents.ui.activities.login.SplashActivity"
+appPackage = "com.onlyoffice.documents.beta"
+autoGrantPermissions = true
+automationName = "UiAutomator2"
+deviceName = "Device"
+newCommandTimeout = "3600"
+platformName = "Android"
