@@ -5,13 +5,13 @@ def data_portals
   YAML.load_file("#{Dir.pwd}/PortalTypeData.json")
 end
 
-def data_regestration_portal(key)
-  dataportrals = data_portals[key].to_s.split('|')
-  { 'portal' => dataportrals[0], 'email' => dataportrals[1], 'first_name' => dataportrals[2],'last_name'=> dataportrals[3], 'p'=> dataportrals[4], 'local' => dataportrals[5], "language" => dataportrals[6]}
+def data_registration_portal(key)
+  dataportals = data_portals[key].to_s.split('|')
+  { 'portal' => dataportals[0], 'email' => dataportals[1], 'first_name' => dataportals[2],'last_name'=> dataportals[3], 'p'=> dataportals[4], 'local' => dataportals[5], "language" => dataportals[6]}
 end
 
-def search_data_regestration_portal(domen_name, attribute)
-  data = data_regestration_portal(domen_name)
+def search_data_registration_portal(domen_name, attribute)
+  data = data_registration_portal(domen_name)
   data[attribute]
 end
 
@@ -27,8 +27,8 @@ describe 'Registration in portal' do
 
       it 'localization portal' do |ds|
         print "\n* #{ds.description} =>  "
-        local = search_data_regestration_portal(key,"local" )
-        language = search_data_regestration_portal(key,"language" )
+        local = search_data_registration_portal(key,"local" )
+        language = search_data_registration_portal(key,"language" )
         caps['locale'] = local
         caps['language'] = local
         restart
