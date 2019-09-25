@@ -1,8 +1,8 @@
-require 'yaml'
+require 'json'
 require_relative '../spec/spec_helper.rb'
 
 def data_portals
-  YAML.load_file("#{Dir.pwd}/PortalTypeData.json")
+  JSON.parse(File.read("#{Dir.pwd}/PortalTypeData.json"))
 end
 
 def data_registration_portal(key)
@@ -17,13 +17,13 @@ end
 
 
 describe 'Registration in portal' do
-  print "\n Describe:  #{metadata[:description]}"
+  puts "Describe: #{metadata[:description]}"
 
   let(:dataPortals){ data_portals }
 
   data_portals.each_key do |key|
     context 'User registration a portal' do |data_portals|
-      print "\n Context:  #{metadata[:description]}"
+      puts "Context:  #{metadata[:description]}"
 
       it 'localization portal' do |ds|
         print "\n* #{ds.description} =>  "
