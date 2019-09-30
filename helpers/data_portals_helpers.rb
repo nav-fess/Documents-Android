@@ -5,13 +5,31 @@ module DataPotalHelpers
     JSON.parse(File.read("#{Dir.pwd}/PortalTypeData.json"))
   end
 
-  def data_registration_portal(key)
-    dataportals = data_portals[key].to_s.split('|')
-      { portal: dataportals[0], email: dataportals[1], first_name: dataportals[2],last_name: dataportals[3], p: dataportals[4], locale: dataportals[5], language: dataportals[6]}
+  def data_registration_portal(tl_domen)
+    all_data_potal = data_portals[tl_domen].to_s.split('|').concat locale_language(tl_domen)
+    keys_hash_data_portals.zip(all_data_potal).to_h
    end
 
   def search_data_registration_portal(domen_name, attribute)
     data = data_registration_portal(domen_name)
     data[attribute]
   end
+
+  def locale_language(tl_domen)
+    case tl_domen
+    when 'eu', 'info'
+      %w[RU RU]
+    when 'com'
+      %w[EN EN]
+    when 'sg'
+      %w[VIE VI]
+    else
+      'Languages and localization are not supported'
+    end
+  end
+
+  def keys_hash_data_portals
+    %w[portal email first_name last_name p locale language]
+  end
+
 end

@@ -8,7 +8,6 @@ RSpec.configure do |config|
   config.before(:all) do
     Appium::Driver.new(capabilities, true)
     Appium.promote_appium_methods Object
-
     @driver.start_driver
   end
 
