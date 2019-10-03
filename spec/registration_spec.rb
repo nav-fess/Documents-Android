@@ -1,20 +1,20 @@
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../helpers/data_portals_helpers.rb'
-include DataPotalHelpers
+include DataPortalHelpers
 
-describe 'Registration in portal' do
-  puts "Describe: #{metadata[:description]}"
+describe'Registration in portal'
+puts "Describe: #{metadata[:description]}"
 
-  data_portals.each_key do |tl_domen|
-  context 'User registration a portal' do |ms|
+data_portals.each_key do |domen|
+  context 'Wihout 2FA' do
     puts "Context:  #{metadata[:description]}"
 
     it 'localization portal' do |it_info|
       sleep 2
       print "\n* #{it_info.description} =>  "
-      locale = search_data_registration_portal(tl_domen,"locale" )
-      language = search_data_registration_portal(tl_domen,"language" )
+      locale = search_data_registration_portal(domen, "locale")
+      language = search_data_registration_portal(domen, "language")
       caps['locale'] = locale
       caps['language'] = language
       restart
@@ -45,75 +45,74 @@ describe 'Registration in portal' do
     it 'tap on the tab Create Portall' do |it_info|
       sleep 2
       print "\n* #{it_info.description} =>  "
-      click_on_element = find_element(id:"login_enterprise_create_button").click
+      click_on_element = find_element(id: "login_enterprise_create_button").click
       expect(click_on_element).to be_truthy
-     end
+    end
 
     it 'Input address portal' do |it_info|
       sleep 2
       print "\n* #{it_info.description} =>  "
-      address = search_data_registration_portal(tl_domen,"portal")
-      intput_text = find_element(id:"login_create_portal_address_edit").send_keys(address)
+      address = search_data_registration_portal(domen, "portal")
+      intput_text = find_element(id: "login_create_portal_address_edit").send_keys(address)
       expect(intput_text).to be_truthy
     end
 
     it 'Input email user`s' do |it_info|
       sleep 2
       print "\n* #{it_info.description} =>  "
-      email_part =  search_data_registration_portal(tl_domen,"email" ) #.to_s.split( ".")
-      intput_text = find_element(id:"login_create_portal_email_edit").send_keys(email_part)
+      email_part = search_data_registration_portal(domen, "email")
+      intput_text = find_element(id: "login_create_portal_email_edit").send_keys(email_part)
       expect(intput_text).to be_truthy
     end
 
     it 'Input first name user`s' do |it_info|
       sleep 2
-       print "\n* #{it_info.description} =>  "
-       first_name =  search_data_registration_portal(tl_domen,"first_name" )
-       intput_text =find_element(id:"login_create_portal_first_name_edit").send_keys(first_name)
-       expect(intput_text).to be_truthy
-     end
+      print "\n* #{it_info.description} =>  "
+      first_name = search_data_registration_portal(domen, "first_name")
+      intput_text = find_element(id: "login_create_portal_first_name_edit").send_keys(first_name)
+      expect(intput_text).to be_truthy
+    end
 
     it 'Input last name user`s' do |it_info|
       sleep 2
       print "\n* #{it_info.description} =>  "
-      first_name =  search_data_registration_portal(tl_domen,"last_name" )
-      intput_text =find_element(id:"login_create_portal_last_name_edit").send_keys(first_name)
+      first_name = search_data_registration_portal(domen, "last_name")
+      intput_text = find_element(id: "login_create_portal_last_name_edit").send_keys(first_name)
       expect(intput_text).to be_truthy
     end
 
     it 'Tap on the button Next registration' do |it_info|
       sleep 2
-      #@driver.hide_keyboard
+      # @driver.hide_keyboard
       sleep 2
       print "\n* #{it_info.description} =>  "
-      click_on_element = find_element(id:"login_signin_create_portal_button").click
+      click_on_element = find_element(id: "login_signin_create_portal_button").click
       expect(click_on_element).to be_truthy
     end
 
     it 'Input password for registration' do |it_info|
       sleep 2
       print "\n* #{it_info.description} =>  "
-      pass =  search_data_registration_portal(tl_domen,"p" )
-      click_on_element = find_element(id:"login_signin_password_edit").send_keys(pass)
+      pass = search_data_registration_portal(domen, "p")
+      click_on_element = find_element(id: "login_signin_password_edit").send_keys(pass)
       expect(click_on_element).to be_truthy
     end
 
     it 'Repeat password for registration' do |it_info|
       sleep 2
       print "\n* #{it_info.description} =>  "
-      pass =  search_data_registration_portal(tl_domen,"p" )
-      click_on_element = find_element(id:"login_signin_repeat_edit").send_keys(pass)
+      pass = search_data_registration_portal(domen, "p")
+      click_on_element = find_element(id: "login_signin_repeat_edit").send_keys(pass)
       expect(click_on_element).to be_truthy
     end
 
     it 'Tap on the button Create' do |it_info|
       sleep 2
       print "\n* #{it_info.description} =>  "
-      click_on_element = find_element(id:"login_signin_create_portal_button").click
+      click_on_element = find_element(id: "login_signin_create_portal_button").click
       expect(click_on_element).to be_truthy
       sleep 5
     end
 
-  end
   end
 end
