@@ -10,7 +10,7 @@ module Helpers
 
     def self.data_registration_portal(tl_domen)
       all_data_potal = data_portals[tl_domen]
-                       .to_s.split('|').concat locale_language(tl_domen)
+                           .to_s.split('|').concat locale_language(tl_domen)
       keys_hash_data_portals.zip(all_data_potal).to_h
     end
 
