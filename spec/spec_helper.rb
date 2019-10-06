@@ -1,7 +1,7 @@
 require 'appium_lib'
 
 RSpec.configure do |config|
-  appium_config = File.join(File.dirname(__FILE__), '..', 'config', 'appium.txt')
+  appium_config = File.join File.dirname(__FILE__), '..', 'config', 'appium.txt'
   capabilities = Appium.load_settings file: appium_config
   capabilities[:caps][:app] = File.join(File.dirname(__FILE__), 'Documents.apk')
 
