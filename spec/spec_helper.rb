@@ -1,9 +1,13 @@
 require 'appium_lib'
+require 'json'
 
 RSpec.configure do |config|
+
   appium_config = File.join File.dirname(__FILE__), '..', 'config', 'appium.txt'
   capabilities = Appium.load_settings file: appium_config
   capabilities[:caps][:app] = File.join(File.dirname(__FILE__), 'Documents.apk')
+  $data_portals = JSON.parse(File.read("#{Dir.pwd}/PortalTypeData.json"))
+
 
   config.before(:all) do
     Appium::Driver.new(capabilities, true)
