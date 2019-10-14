@@ -9,10 +9,10 @@ describe 'Registration in portal' do
     context 'Without 2FA' do
       puts "Context:  #{metadata[:description]}"
       it 'localization portal' do |it_info|
+        print "\n\n #{it_info.description} =>  "
         sleep 2
-        print "\n* #{it_info.description} =>  "
-        locale = DataPortals.locale_language(tl_domain)[:locale]
-        language = DataPortals.locale_language(tl_domain)[:language]
+        locale = DataPortals.locale_language(tl_domain)['locale']
+        language = DataPortals.locale_language(tl_domain)['language']
         capabilities_set('locale' => locale, 'language' => language)
         expect(caps['locale']).to eq(locale)
         expect(caps['language']).to eq(language)
@@ -43,14 +43,15 @@ describe 'Registration in portal' do
         email       = data_portals[tl_domain]['email']
         first_name  = data_portals[tl_domain]['first_name']
         last_name   = data_portals[tl_domain]['last_name']
+        DataPortals.if_portal_info(tl_domain)
         input_text_id('login_create_portal_address_edit', portal_name)
         domain_field = get_text_id('login_create_portal_address_hint_end')
                        .split('.').last
         input_text_id('login_create_portal_email_edit', email)
         input_text_id('login_create_portal_first_name_edit', first_name)
         input_text_id('login_create_portal_last_name_edit', last_name)
-        click_on_signin_button = click_id('login_signin_create_portal_button')
-        expect(click_on_signin_button).to be_truthy
+        click_on_sign_in_button = click_id('login_signin_create_portal_button')
+        expect(click_on_sign_in_button).to be_truthy
         expect(domain_field).to eq(tl_domain)
       end
 

@@ -6,13 +6,20 @@ module Helpers
     def self.locale_language(tl_domain)
       case tl_domain
       when 'eu', 'info'
-        { locale: 'RU', language: 'RU' }
+        { 'locale' => 'RU', 'language' => 'RU' }
       when 'com'
-        { locale: 'EN', language: 'EN' }
+        { 'locale' => 'EN', 'language' => 'EN' }
       when 'sg'
-        { locale: 'VN', language: 'vi' }
+        { 'locale' => 'VN', 'language' => 'vi' }
       else
         'Languages and localization are not supported'
+      end
+    end
+
+    def self.if_portal_info(portal_name)
+      if portal_name.eql?('info')
+        input_text_id('login_create_portal_address_edit', 'getinfoportal00000')
+        clear_id('login_create_portal_address_edit')
       end
     end
   end
@@ -27,6 +34,10 @@ module Helpers
 
   def input_text_id(id, text)
     wait_true { find_element(id: id) }.send_keys(text)
+  end
+
+  def clear_id(id)
+    wait_true { find_element(id: id) }.clear
   end
 
   def capabilities_set(capabilities)
