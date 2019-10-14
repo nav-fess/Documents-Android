@@ -5,7 +5,7 @@ include Helpers
 
 describe 'Registration in portal' do
   puts "Describe: #{metadata[:description]}"
-  data_portals.each_key do |tl_domain|
+  registration_data.each_key do |tl_domain|
     context 'Without 2FA' do
       puts "Context:  #{metadata[:description]}"
       it 'localization portal' do |it_info|
@@ -39,10 +39,10 @@ describe 'Registration in portal' do
 
       it 'Input account information' do |it_info|
         print "\n* #{it_info.description} =>  "
-        portal_name = data_portals[tl_domain]['portal']
-        email       = data_portals[tl_domain]['email']
-        first_name  = data_portals[tl_domain]['first_name']
-        last_name   = data_portals[tl_domain]['last_name']
+        portal_name = registration_data[tl_domain]['portal']
+        email       = registration_data[tl_domain]['email']
+        first_name  = registration_data[tl_domain]['first_name']
+        last_name   = registration_data[tl_domain]['last_name']
         DataPortals.change_domain_to_info if tl_domain.eql? 'info'
         input_text_id('login_create_portal_address_edit', portal_name)
         domain_field = get_text_id('login_create_portal_address_hint_end')
@@ -57,7 +57,7 @@ describe 'Registration in portal' do
 
       it 'Input password' do |it_info|
         print "\n* #{it_info.description} =>  "
-        pass = data_portals[tl_domain]['p']
+        pass = registration_data[tl_domain]['p']
         input_text_id('login_signin_password_edit', pass)
         input_text_id('login_signin_repeat_edit', pass)
         click_id 'login_signin_create_portal_button'

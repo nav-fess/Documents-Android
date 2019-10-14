@@ -1,0 +1,57 @@
+require_relative '../spec/spec_helper.rb'
+
+describe 'Portal login Without 2FA' do
+  puts "Describe: #{metadata[:description]}"
+  login_data.each_key do |tl_domain|
+
+    before(:all) do
+      print "\n* Before: click on onlyoffice button =>  "
+      click_id 'on_boarding_panel_skip_button'
+      click_id 'menu_item_cloud'
+      click_id 'cloudsItemOnlyOffice'
+    end
+
+    context "domain : #{tl_domain}" do
+      puts "Context:  #{metadata[:description]}"
+      it 'input potal name' do |it_info|
+        print "\n* #{it_info.description} =>  "
+        portal_name = login_data[tl_domain]['portal']
+        input_text_id('login_enterprise_portal_edit', portal_name)
+        click_on_logon_button = click_id'login_enterprise_next_button'
+        expect(click_on_logon_button).to be_truthy
+      end
+
+      it 'input data' do |it_info|
+        print "\n* #{it_info.description} =>  "
+        email = login_data[tl_domain]['email']
+        pass =  login_data[tl_domain]['p']
+        input_text_id('login_enterprise_portal_email_edit', email)
+        input_text_id('login_enterprise_portal_password_edit', pass)
+        click_on_login_button = click_id 'login_enterprise_signin_button'
+        expect(click_on_login_button).to be_truthy
+      end
+    end
+
+    next unless tl_domain.eql?'personal'
+
+    context 'Personal:' do
+      puts "Context:  #{metadata[:description]}"
+
+      it 'click on personal tab' do
+        print "\n* #{it_info.description} =>  "
+        click_on_tab = click_xpath("//android.widget.TextView[@text='PORTAL']")
+        expect(click_on_tab).to be_truthy
+      end
+
+      it 'input data' do
+        print "\n* #{it_info.description} =>  "
+        email = login_data[tl_domain]['email']
+        pass =  login_data[tl_domain]['p']
+        input_text_id('login_personal_portal_email_edit', email)
+        input_text_id('login_personal_portal_password_edit', pass)
+        click_on_login_button = click_id 'login_enterprise_signin_button'
+        expect(click_on_login_button).to be_truthy
+      end
+    end
+  end
+end

@@ -12,7 +12,7 @@ module Helpers
       when 'sg'
         { 'locale' => 'VN', 'language' => 'vi' }
       else
-        'Languages and localization are not supported'
+        'Languages and locali zation are not supported'
       end
     end
 
@@ -24,6 +24,10 @@ module Helpers
 
   def click_id(id)
     wait_true { find_element(id: id) }.click
+  end
+
+  def click_xpath(xpath)
+    wait_true { find_element(xpath: id) }.click
   end
 
   def get_text_id(id)

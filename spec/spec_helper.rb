@@ -6,8 +6,12 @@ RSpec.configure do |config|
   capabilities = Appium.load_settings file: appium_config
   capabilities[:caps][:app] = File.join(File.dirname(__FILE__), 'Documents.apk')
 
-  def data_portals
+  def registration_data
     JSON.parse(File.read("#{Dir.pwd}/PortalTypeData.json"))
+  end
+
+  def login_data
+    JSON.parse(File.read("#{Dir.pwd}/PortalLoginData.json"))
   end
 
   config.before(:all) do
