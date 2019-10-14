@@ -16,11 +16,9 @@ module Helpers
       end
     end
 
-    def self.if_portal_info(portal_name)
-      if portal_name.eql?('info')
-        input_text_id('login_create_portal_address_edit', 'getinfoportal00000')
-        clear_id('login_create_portal_address_edit')
-      end
+    def self.change_domain_to_info
+      input_text_id('login_create_portal_address_edit', 'getinfoportal00000')
+      clear_id('login_create_portal_address_edit')
     end
   end
 

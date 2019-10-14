@@ -43,7 +43,7 @@ describe 'Registration in portal' do
         email       = data_portals[tl_domain]['email']
         first_name  = data_portals[tl_domain]['first_name']
         last_name   = data_portals[tl_domain]['last_name']
-        DataPortals.if_portal_info(tl_domain)
+        DataPortals.change_domain_to_info if tl_domain.eql? 'info'
         input_text_id('login_create_portal_address_edit', portal_name)
         domain_field = get_text_id('login_create_portal_address_hint_end')
                        .split('.').last
