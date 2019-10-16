@@ -27,7 +27,7 @@ module Helpers
   end
 
   def click_xpath(xpath)
-    wait_true { find_element(xpath: id) }.click
+    wait_true { find_element(xpath: xpath) }.click
   end
 
   def get_text_id(id)
