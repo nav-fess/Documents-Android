@@ -34,6 +34,10 @@ module Helpers
     wait_true { find_element(id: id) }.text
   end
 
+  def input_text_xpath(xpath, text)
+    wait_true { find_element(xpath: xpath) }.send_keys(text)
+  end
+
   def input_text_id(id, text)
     wait_true { find_element(id: id) }.send_keys(text)
   end
