@@ -3,7 +3,7 @@ require_relative '../spec/spec_helper.rb'
 require_relative '../helpers/helpers.rb'
 include Helpers
 
-describe 'Registration in portal' do
+describe 'Registration in portal', registration: true do
   puts "Describe: #{metadata[:description]}"
   registration_data.each_key do |tl_domain|
     context 'Without 2FA' do
@@ -18,7 +18,7 @@ describe 'Registration in portal' do
         expect(caps['language']).to eq(language)
       end
 
-      it 'click on skip button' do |it_info|
+      it 'click on skip button' do |it_info|;
         print "\n* #{it_info.description} =>  "
         click_on_element = click_id 'on_boarding_panel_skip_button'
         expect(click_on_element).to be_truthy

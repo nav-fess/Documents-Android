@@ -2,6 +2,8 @@ require 'appium_lib'
 require 'json'
 
 RSpec.configure do |config|
+  config.filter_run_including :foo => :bar
+  config.silence_filter_announcements = true
   appium_config = File.join File.dirname(__FILE__), '..', 'config', 'appium.txt'
   capabilities = Appium.load_settings file: appium_config
   capabilities[:caps][:app] = File.join(File.dirname(__FILE__), 'Documents.apk')
