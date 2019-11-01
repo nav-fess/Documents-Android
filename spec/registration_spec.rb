@@ -41,7 +41,7 @@ describe 'Registration in portal', registration: true do
 
       it 'Input account information' do |it_info|
         print "\n* #{it_info.description} =>  "
-        portal_namre = registration_data[tl_domain]['portal']
+        portal_name = registration_data[tl_domain]['portal']
         email       = registration_data[tl_domain]['email']
         first_name  = registration_data[tl_domain]['first_name']
         last_name   = registration_data[tl_domain]['last_name']
