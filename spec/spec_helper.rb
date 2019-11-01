@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'appium_lib'
 require 'json'
 
@@ -9,11 +11,18 @@ RSpec.configure do |config|
   capabilities[:caps][:app] = File.join(File.dirname(__FILE__), 'Documents.apk')
 
   def registration_data
+    Dir.chdir('../data/')
     JSON.parse(File.read("#{Dir.pwd}/PortalTypeData.json"))
   end
 
-  def login_data
+  def login_data_portals
+    Dir.chdir('../data/')
     JSON.parse(File.read("#{Dir.pwd}/PortalLoginData.json"))
+  end
+
+  def login_data_personal
+    Dir.chdir('../data/')
+    JSON.parse(File.read("#{Dir.pwd}/PersonalLoginData.json"))
   end
 
   config.before(:all) do

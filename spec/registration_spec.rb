@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../helpers/helpers.rb'
@@ -18,7 +20,7 @@ describe 'Registration in portal', registration: true do
         expect(caps['language']).to eq(language)
       end
 
-      it 'click on skip button' do |it_info|;
+      it 'click on skip button' do |it_info|
         print "\n* #{it_info.description} =>  "
         click_on_element = click_id 'on_boarding_panel_skip_button'
         expect(click_on_element).to be_truthy
@@ -39,7 +41,7 @@ describe 'Registration in portal', registration: true do
 
       it 'Input account information' do |it_info|
         print "\n* #{it_info.description} =>  "
-        portal_name = registration_data[tl_domain]['portal']
+        portal_namre = registration_data[tl_domain]['portal']
         email       = registration_data[tl_domain]['email']
         first_name  = registration_data[tl_domain]['first_name']
         last_name   = registration_data[tl_domain]['last_name']

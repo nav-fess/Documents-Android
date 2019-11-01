@@ -22,6 +22,30 @@ module Helpers
     end
   end
 
+  class Login
+    def self.login_facebook(email_fb_, p_fb )
+      click_id 'login_social_facebook_button'
+      input_text_xpath("*//android.view.View[@index='2']/android.widget.EditText[@index='0']", email_fb_)
+      input_text_xpath("*//android.view.View[@index='2']/android.widget.EditText[@index='1']", p_fb)
+      click_xpath("*//android.widget.Button[@index='2']")
+      click_xpath("*//android.widget.Button[@index='0']")
+      click_id 'accountContainer'
+    end
+
+    def self.login_google
+      click_id 'login_social_google_button'
+      click_xpath("*//android.support.v7.widget.RecyclerView[@index='3']/android.widget.LinearLayout[@index='0']")
+      click_id 'accountContainer'
+    end
+
+    def self.before_login
+      capabilities_set('locale' => 'EN', 'language' => 'EN')
+      click_id 'on_boarding_panel_skip_button'
+      click_id 'menu_item_cloud'
+      click_id 'cloudsItemOnlyOffice'
+    end
+  end
+
   def click_id(id)
     wait_true { find_element(id: id) }.click
   end
