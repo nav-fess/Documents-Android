@@ -12,7 +12,7 @@ RSpec.configure do |config|
 
   def registration_data
     Dir.chdir('../data/')
-    JSON.parse(File.read("#{Dir.pwd}/PortalTypeData.json"))
+    JSON.parse(File.read("#{Dir.pwd}/PortalRegistrationData.json"))
   end
 
   def login_data_portals
@@ -23,6 +23,16 @@ RSpec.configure do |config|
   def login_data_personal
     Dir.chdir('../data/')
     JSON.parse(File.read("#{Dir.pwd}/PersonalLoginData.json"))
+  end
+
+  def login_data_clouds
+    Dir.chdir('../data/')
+    JSON.parse(File.read("#{Dir.pwd}/CloudLoginData.json"))
+  end
+
+  def add_data_storage
+    Dir.chdir('../data/')
+    JSON.parse(File.read("#{Dir.pwd}/StorageAddData.json"))
   end
 
   config.before(:all) do
