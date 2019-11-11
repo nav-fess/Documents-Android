@@ -31,15 +31,13 @@ add_data_storage.each do |tl_domain, storages|
         case  storage
         when 'google_drive'
           click_xpath "*//android.widget.TextView[@text='Google Drive']"
-          click_xpath "*//android.view.View[@index='2']/android.view.View[@index='0']/android.widget.EditText[@index='0']"
-          input_text_xpath("*//android.widget.EditText[@index='0']", data_input['login'])
-          click_xpath "*//android.view.View[@index='3'] /android.widget.Button[@index='0']"
+          textfields[0].send_keys data_input['login']
+          buttons[2].click
           sleep 2
-          puts "data_input['p'] = #{data_input['p']}"
-          click_xpath "*//android.view.View[@index='2']/android.view.View[@index='0']/android.view.View[@index='0']/android.widget.EditText[@index='0']"
-          input_text_xpath("*//android.widget.EditText[@index='0']", data_input['p'])
-          click_xpath "*//android.view.View[@index='3'] /android.widget.Button[@index='0']"
-          click_xpath "*//android.view.View[@index='4'] /android.widget.Button[@index='0']"
+          textfields[0].send_keys  data_input['p']
+          buttons[1].click
+          buttons[3].click
+
           sleep 3
         when 'drop_box'
         when 'one_drive'

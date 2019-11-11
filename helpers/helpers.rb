@@ -55,7 +55,7 @@ module Helpers
 
     def self.login_google
       click_id 'login_social_google_button'
-      click_xpath("*//android.support.v7.widget.RecyclerView[@index='3']/android.widget.LinearLayout[@index='0']")
+      click_xpath("*//android.support.v7.widget.RecyclerifView[@index='3']/android.widget.LinearLayout[@index='0']")
       find_id ('accountContainer')
     end
 
