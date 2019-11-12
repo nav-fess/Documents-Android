@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-=begin
-example PortalTypeDaga.json:
-"domen": {"portal":"name_portal", "email":"email_name", "first_name" : "firstname", "last_name": "last name", "p":"your_pass"}}
-=end
-
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../helpers/helpers.rb'

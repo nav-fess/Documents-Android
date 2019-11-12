@@ -1,15 +1,5 @@
 # frozen_string_literal: true
 
-=begin
-example CloudLoginDaga.json:
-
-{
-  "cloud": { "portal":"portal_name","login":"login_name","p":"pass"},
-}
-
-cloud = owncloud | nextcloud | webdav
-=end
-
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../helpers/helpers.rb'
@@ -24,8 +14,8 @@ login_data_clouds.each_key do |tl_domain|
       Login.before_login
     end
 
-    context "#{tl_domain}:" do 
-    puts "Context:  #{metadata[:description]}"
+    context "#{tl_domain}:" do
+    puts "Context: #{ metadata[:description] }"
 
     it 'click on button cloud' do |it_info|
       print "\n* #{it_info.description} =>  "
@@ -47,5 +37,3 @@ login_data_clouds.each_key do |tl_domain|
     end
   end
 end
-
-

@@ -1,17 +1,5 @@
 # frozen_string_literal: true
 
-=begin
-example PortalLoginDaga.json:
-
-{
-  "domen": { "portal":"portal_name","email":"email_name","p":"pass"},
-  "domen": { "portal":"portal_name","email":"facebook","fblogin":"email_for_facebook" ,"fbp":"pass_facebook"},
-  "domen": { "portal":"portal_name","email":"google"},
-}
-
-domen = Personal|Personal2|...|Personaln
-=end
-
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../helpers/helpers.rb'
@@ -74,4 +62,3 @@ login_data_portals.each_key do |tl_domain|
     end
   end
 end
-

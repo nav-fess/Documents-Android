@@ -22,8 +22,8 @@ module Helpers
     end
   end
 
+  # Class contains data help methods for login on a portal
   class Login
-
     def self.login_complete(domain)
       before_login
       click_id 'cloudsItemOnlyOffice'
@@ -44,19 +44,20 @@ module Helpers
       click_id 'menu_item_cloud'
     end
 
-    def self.login_facebook(email_fb_, p_fb )
+    def self.login_facebook(email_fb_, p_fb)
       click_id 'login_social_facebook_button'
       input_text_xpath("*//android.view.View[@index='2']/android.widget.EditText[@index='0']", email_fb_)
       input_text_xpath("*//android.view.View[@index='2']/android.widget.EditText[@index='1']", p_fb)
-      click_xpath("*//android.widget.Button[@index='2']")
-      click_xpath("*//android.widget.Button[@index='0']")
-      find_id('accountContainer')
+      click_xpath "*//android.widget.Button[@index='2']"
+      click_xpath "*//android.widget.Button[@index='0']"
+      find_id 'accountContainer'
     end
 
     def self.login_google
       click_id 'login_social_google_button'
-      click_xpath("*//android.support.v7.widget.RecyclerifView[@index='3']/android.widget.LinearLayout[@index='0']")
-      find_id ('accountContainer')
+      sleep 3
+      click_xpath("*//android.support.v7.widget.RecyclerView['2']/android.widget.LinearLayout['0']")
+      find_id 'accountContainer'
     end
 
     def self.login_cloud(portal, login, pass)
@@ -64,7 +65,7 @@ module Helpers
       input_text_id('storage_web_dav_login_edit', login)
       input_text_id('storage_web_dav_password_edit', pass)
       click_id 'storage_web_dav_save_button'
-      find_id('accountContainer')
+      find_id 'accountContainer'
     end
   end
 
