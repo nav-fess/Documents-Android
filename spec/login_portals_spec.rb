@@ -2,7 +2,7 @@
 
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
-require_relative '../helpers/helpers.rb'
+require_relative '../Framework/helpers/helpers.rb'
 include Helpers
 
 login_data_portals.each_key do |tl_domain|
