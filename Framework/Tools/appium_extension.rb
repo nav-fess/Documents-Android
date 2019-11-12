@@ -9,6 +9,14 @@ module AppiumExtension
     end
   end
 
+  def element_text(args = {})
+    key = selector_key(args)
+    time = args[:time] || 5
+    wait_true(time) do
+      find_element(key, args[key]).text
+    end
+  end
+
   def elements(args = {})
     key = selector_key(args)
     time = args[:time] || 5

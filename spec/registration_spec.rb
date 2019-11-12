@@ -3,7 +3,10 @@
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../Framework/helpers/helpers.rb'
+require_relative '../Framework/Tools/appium_extension.rb'
+require_relative '../Framework/constants/id'
 include Helpers
+include AppiumExtension
 
 describe 'Registration in portal', registration: true do
   puts "Describe: #{metadata[:description]}"
@@ -22,20 +25,20 @@ describe 'Registration in portal', registration: true do
 
       it 'click on skip button' do |it_info|
         print "\n* #{it_info.description} =>  "
-        click_on_element = click_id 'on_boarding_panel_skip_button'
+        click_on_element = click id: ID::SKIP_ONBOARDING
         expect(click_on_element).to be_truthy
       end
 
       it 'click on onlyoffice button' do |it_info|
         print "\n* #{it_info.description} =>  "
-        click_id 'menu_item_cloud'
-        click_on_cloud = click_id'cloudsItemOnlyOffice'
+        click id: ID::CLOUDS
+        click_on_cloud = click id: ID::CLOUDS_MENU_ITEM
         expect(click_on_cloud).to be_truthy
       end
 
       it 'tap on the tab Create Portall' do |it_info|
         print "\n* #{it_info.description} =>  "
-        click_on_element = click_id 'login_enterprise_create_button'
+        click_on_element = click id: ID::REGISTRATION_CREATE
         expect(click_on_element).to be_truthy
       end
 
@@ -46,13 +49,12 @@ describe 'Registration in portal', registration: true do
         first_name  = registration_data[tl_domain]['first_name']
         last_name   = registration_data[tl_domain]['last_name']
         DataPortals.change_domain_to_info if tl_domain.eql? 'info'
-        input_text_id('login_create_portal_address_edit', portal_name)
-        domain_field = get_text_id('login_create_portal_address_hint_end')
-                       .split('.').last
-        input_text_id('login_create_portal_email_edit', email)
-        input_text_id('login_create_portal_first_name_edit', first_name)
-        input_text_id('login_create_portal_last_name_edit', last_name)
-        click_on_sign_in_button = click_id('login_signin_create_portal_button')
+        fill_form id: ID::REGISTRATION_NAME, data: portal_name
+        domain_field = element_text(id: ID::REGISTRATION_DOMAIN).split('.').last
+        fill_form id: ID::REGISTRATION_EMAIL, data: email
+        fill_form id: ID::REGISTRATION_FN, data: first_name
+        fill_form id: ID::REGISTRATION_LN, data: last_name
+        click_on_sign_in_button = click id: ID::REGISTRATION_SIGN
         expect(click_on_sign_in_button).to be_truthy
         expect(domain_field).to eq(tl_domain)
       end
@@ -60,10 +62,11 @@ describe 'Registration in portal', registration: true do
       it 'Input password' do |it_info|
         print "\n* #{it_info.description} =>  "
         pass = registration_data[tl_domain]['p']
-        input_text_id('login_signin_password_edit', pass)
-        input_text_id('login_signin_repeat_edit', pass)
-        click_id 'login_signin_create_portal_button'
-        click_on_account = click_id 'accountContainer'
+        fill_form id: ID::REGISTRATION_PASS, data: pass
+        fill_form id: ID::REGISTRATION_R_PASS, data: pass
+        click id: ID::REGISTRATION_SIGN
+        sleep 5
+        click_on_account = click id: ID::ACCOUNTS
         expect(click_on_account).to be_truthy
       end
     end

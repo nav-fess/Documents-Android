@@ -3,6 +3,7 @@
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../Framework/helpers/helpers.rb'
+require_relative '../Framework/constants/id'
 include Helpers
 
 add_data_storage.each do |tl_domain, storages|
@@ -13,7 +14,6 @@ add_data_storage.each do |tl_domain, storages|
       print "\n* Before: login on the #{tl_domain} =>  "
       Login.login_complete(tl_domain)
     end
-
 
     context "on  #{ tl_domain }:" do
     puts "Context:  #{metadata[:description]}"
@@ -30,7 +30,7 @@ add_data_storage.each do |tl_domain, storages|
 
         case  storage
         when 'google_drive'
-          click_xpath "*//android.widget.TextView[@text='Google Drive']"
+          wait_true { texts[ConstIter::GOOGLE_STORAGE].click }
           wait_true { textfields[0].send_keys data_input['login'] }
           wait_true { buttons[2].click }
           wait_true { textfields[0].send_keys data_input['p'] }
