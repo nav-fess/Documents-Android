@@ -33,6 +33,10 @@ module ID
   PERSONAL_PASSWORD   = 'login_personal_portal_password_edit'
   PERSONAL_SIGN_IN    = 'login_personal_signin_button'
 
+  #social networks
+  GOOGLE   = 'login_social_google_button'
+  FACEBOOK = 'login_social_facebook_button'
+
   # Clouds
   TOOLBAR_PORTAL_URL  = 'toolbarSubTitle'
 

@@ -4,7 +4,7 @@ require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../Framework/helpers/helpers.rb'
 require_relative '../Framework/Tools/appium_extension.rb'
-require_relative '../Framework/constants/id'
+require_relative '../Framework/constants/id.rb'
 include Helpers
 include AppiumExtension
 
@@ -50,7 +50,7 @@ describe 'Registration in portal', registration: true do
         last_name   = registration_data[tl_domain]['last_name']
         DataPortals.change_domain_to_info if tl_domain.eql? 'info'
         fill_form id: ID::REGISTRATION_NAME, data: portal_name
-        domain_field = element_text(id: ID::REGISTRATION_DOMAIN).split('.').last
+        domain_field = element(id: ID::REGISTRATION_DOMAIN).text.split('.').last
         fill_form id: ID::REGISTRATION_EMAIL, data: email
         fill_form id: ID::REGISTRATION_FN, data: first_name
         fill_form id: ID::REGISTRATION_LN, data: last_name

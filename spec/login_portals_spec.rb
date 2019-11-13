@@ -3,7 +3,10 @@
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../Framework/helpers/helpers.rb'
+require_relative '../Framework/constants/id'
+require_relative '../Framework/Tools/appium_extension.rb'
 include Helpers
+include AppiumExtension
 
 login_data_portals.each_key do |tl_domain|
   describe 'Portal login portals Without 2FA', login: 'portals' do
@@ -19,14 +22,14 @@ login_data_portals.each_key do |tl_domain|
 
       it 'click on button portal' do |it_info|
         print "\n* #{it_info.description} =>  "
-        click_id 'cloudsItemOnlyOffice'
+        click id: ID::CLOUDS_MENU_ITEM
       end
 
       it 'input portal name' do |it_info|
         print "\n* #{it_info.description} =>  "
         portal_name = login_data_portals[tl_domain]['portal']
-        input_text_id('login_enterprise_portal_edit', portal_name)
-        click_on_logon_button = click_id 'login_enterprise_next_button'
+        fill_form id: ID::ENTERPRISE_PORTAL, data: portal_name
+        click_on_logon_button = click id: ID::ENTERPRISE_NEXT
         sleep 5
         expect(click_on_logon_button).to be_truthy
       end
@@ -52,10 +55,10 @@ login_data_portals.each_key do |tl_domain|
           print "\n* #{it_info.description} =>  "
           email = login_data_portals[tl_domain]['email']
           pass = login_data_portals[tl_domain]['p']
-          input_text_id('login_enterprise_portal_email_edit', email)
-          input_text_id('login_enterprise_portal_password_edit', pass)
-          click_id 'login_enterprise_signin_button'
-          element_exist = find_id 'accountContainer'
+          fill_form id: ID::ENTERPRISE_EMAIL, data: email
+          fill_form id: ID::ENTERPRISE_PASSWORD, data: pass
+          click id: ID::ENTERPRISE_SIGN_IN
+          element_exist = element id: ID::ACCOUNTS
           expect(element_exist).to be_truthy
         end
       end

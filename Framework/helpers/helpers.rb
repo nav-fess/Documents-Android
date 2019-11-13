@@ -1,3 +1,9 @@
+# frozen_string_literal: true
+require_relative '../../Framework/constants/id.rb'
+require_relative '../../Framework/constants/const_iterator.rb'
+require_relative '../../Framework/Tools/appium_extension.rb'
+
+
 module Helpers
   # Class contains data help methods for Registration portal
   class DataPortals
@@ -10,7 +16,7 @@ module Helpers
       when 'sg'
         { 'locale' => 'VN', 'language' => 'vi' }
       else
-        'Languages and locali zation are not supported'
+        'Languages and localization are not supported'
       end
     end
 
@@ -38,24 +44,26 @@ module Helpers
 
     def self.before_login
       capabilities_set('locale' => 'EN', 'language' => 'EN')
-      click_id 'on_boarding_panel_skip_button'
-      click_id 'menu_item_cloud'
+      click id: ID::SKIP_ONBOARDING
+      click id: ID::CLOUDS
     end
 
-    def self.login_facebook(email_fb_, p_fb)
-      click_id 'login_social_facebook_button'
-      input_text_xpath("*//android.view.View[@index='2']/android.widget.EditText[@index='0']", email_fb_)
-      input_text_xpath("*//android.view.View[@index='2']/android.widget.EditText[@index='1']", p_fb)
-      click_xpath "*//android.widget.Button[@index='2']"
-      click_xpath "*//android.widget.Button[@index='0']"
-      find_id 'accountContainer'
+    def self.login_facebook(email_fb, p_fb)
+      click id: ID::FACEBOOK
+      fill_form textfield: ConstIndex::GOOGLE_LOGIN, data: email_fb, pause: 10
+      fill_form textfield: ConstIndex::GOOGLE_PASS, data: p_fb
+      click button: ConstIndex::GOOGLE_NEXT
+      sleep 4
+      click button: ConstIndex::GOOGLE_CONTINUE
+      sleep 8
+      element id: ID::ACCOUNTS
     end
 
     def self.login_google
-      click_id 'login_social_google_button'
-      sleep 3
-      click_xpath("*//android.support.v7.widget.RecyclerView['2']/android.widget.LinearLayout['0']")
-      find_id 'accountContainer'
+      click id: ID::GOOGLE
+      #sleep 3
+      click text: ConstIter::GOOGLE_USER
+      element id: ID::ACCOUNTS
     end
 
     def self.login_cloud(portal, login, pass)

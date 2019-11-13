@@ -2,50 +2,49 @@
 
 module AppiumExtension
   def element(args = {})
-    key = selector_key(args)
+    sleep args[:pause] || 0
     time = args[:time] || 5
     wait_true(time) do
-      find_element key, args[key]
-    end
-  end
-
-  def element_text(args = {})
-    key = selector_key(args)
-    time = args[:time] || 5
-    wait_true(time) do
-      find_element(key, args[key]).text
+      find args
     end
   end
 
   def elements(args = {})
-    key = selector_key(args)
+    sleep args[:pause] || 0
     time = args[:time] || 5
     wait_true(time) do
-      find_elements key, args[key]
+      find args
     end
   end
 
   def fill_form(args = {})
-    key = selector_key(args)
+    sleep args[:pause] || 0
     time = args[:time] || 5
     selenium_element = wait_true(time) do
-      find_element key, args[key]
+      find args
     end
     selenium_element.send_keys args[:data]
   end
 
   def click(args = {})
-    key = selector_key(args)
+    sleep args[:pause] || 0
     time = args[:time] || 5
     selenium_element = wait_true(time) do
-      find_element key, args[key]
+      find args
     end
     selenium_element.click
   end
 
-  def selector_key(args_hash)
-    return :id until args_hash[:id].nil?
-    return :xpath until args_hash[:xpath].nil?
+  def find(args_hash)
+    variation_id = args_hash.keys[0]
+    puts "variation_id = #{variation_id}"
+    value_constant = args_hash[variation_id]
+    puts "value_constant = #{value_constant}"
+    return buttons[value_constant]         if variation_id.eql? :button
+    return texts[value_constant]           if variation_id.eql? :text
+    return textfields[value_constant]      if variation_id.eql? :textfield
+    return find_element id: value_constant if variation_id.eql? :id
+    find_element xpath: value_constant
   end
 
   def hardback
