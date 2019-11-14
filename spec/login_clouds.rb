@@ -3,7 +3,10 @@
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../Framework/helpers/helpers.rb'
+require_relative '../Framework/Tools/appium_extension.rb'
+require_relative '../Framework/constants/id.rb'
 include Helpers
+include AppiumExtension
 
 login_data_clouds.each_key do |tl_domain|
   describe 'Cloud login', login: 'cloud' do
@@ -15,25 +18,26 @@ login_data_clouds.each_key do |tl_domain|
     end
 
     context "#{tl_domain}:" do
-    puts "Context: #{ metadata[:description] }"
+      puts "Context: #{metadata[:description]}"
 
-    it 'click on button cloud' do |it_info|
-      print "\n* #{it_info.description} =>  "
-      case tl_domain
-      when 'nextcloud' then click_id 'cloudsItemNextCloud'
-      when 'owncloud'  then click_id 'cloudsItemOwnCloud'
-      when 'webdav'    then click_id 'cloudsItemWebDav'
+      it 'click on button cloud' do |it_info|
+        print "\n* #{it_info.description} =>  "
+        case tl_domain
+        when 'nextcloud' then click id: ID::NEXTCLOUD
+        when 'owncloud'  then click id: ID::OWNCLOUD
+        when 'webdav'    then click id: ID::WEBDAV
+        else puts 'Other cloud'
+        end
       end
-    end
 
-    it 'input data cloud' do |it_info|
-      print "\n* #{it_info.description} =>  "
-      portal = login_data_clouds[tl_domain]['portal']
-      login  = login_data_clouds[tl_domain]['login']
-      pass   = login_data_clouds[tl_domain]['p']
-      element_exist = Login.login_cloud(portal, login, pass)
-      expect(element_exist).to be_truthy
-    end
+      it 'input data cloud' do |it_info|
+        print "\n* #{it_info.description} =>  "
+        portal = login_data_clouds[tl_domain]['portal']
+        login  = login_data_clouds[tl_domain]['login']
+        pass   = login_data_clouds[tl_domain]['p']
+        element_exist = Login.login_cloud(portal, login, pass)
+        expect(element_exist).to be_truthy
+      end
     end
   end
 end

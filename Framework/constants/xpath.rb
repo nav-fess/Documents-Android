@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Xpath
   # Login
   ENTERPRISE_SECTION = "//android.widget.TextView[@text='PORTAL']"
@@ -9,8 +11,4 @@ module Xpath
   COMMON_SECTION = "//android.widget.TextView[@text='COMMON']"
   PROJECTS_SECTION = "//android.widget.TextView[@text='PROJECTS']"
   TRASH_SECTION = "//android.widget.TextView[@text='TRASH']"
-end
-
-module ConstIter
-  GOOGLE_STORAGE = 1
 end

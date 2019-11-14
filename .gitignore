@@ -3,3 +3,4 @@
 *.apk
 *.idea
 *.json
+.spec/script.rb

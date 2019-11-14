@@ -25,20 +25,27 @@ module ID
   REGISTRATION_FN     = 'login_create_portal_first_name_edit'
   REGISTRATION_LN     = 'login_create_portal_last_name_edit'
   REGISTRATION_SIGN   = 'login_signin_create_portal_button'
-  REGISTRATION_PASS   ='login_signin_password_edit'
-  REGISTRATION_R_PASS   = 'login_signin_repeat_edit'
+  REGISTRATION_PASS   = 'login_signin_password_edit'
+  REGISTRATION_R_PASS = 'login_signin_repeat_edit'
 
   # Personal login
   PERSONAL_EMAIL      = 'login_personal_portal_email_edit'
   PERSONAL_PASSWORD   = 'login_personal_portal_password_edit'
   PERSONAL_SIGN_IN    = 'login_personal_signin_button'
 
-  #social networks
+  # social networks
   GOOGLE   = 'login_social_google_button'
   FACEBOOK = 'login_social_facebook_button'
 
   # Clouds
   TOOLBAR_PORTAL_URL  = 'toolbarSubTitle'
+  NEXTCLOUD           = 'cloudsItemNextCloud'
+  OWNCLOUD            = 'cloudsItemOwnCloud'
+  WEBDAV              = 'cloudsItemWebDav'
+  CLOUD_NAME          = 'storage_web_dav_url_edit'
+  CLOUD_LOGIN         = 'storage_web_dav_login_edit'
+  CLOUD_PASS          = 'storage_web_dav_password_edit'
+  CLOUD_SAVE          = 'storage_web_dav_save_button'
 
   # Common
   PLUS_FAB       = 'app_floating_action_button'
@@ -77,5 +84,7 @@ module ID
   CONNECT_STORAGE     = 'list_explorer_action_storage'
   EDIT_NAME_FIELD     = 'dialogCommonEditLineValueEdit'
   CREATE_FAB          = 'dialogCommonAcceptButton'
-end
 
+  # Storage
+  CONNECT_SAVE = 'storage_connect_save'
+end

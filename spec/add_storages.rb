@@ -3,7 +3,9 @@
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../Framework/helpers/helpers.rb'
-require_relative '../Framework/constants/id'
+require_relative '../Framework/constants/id.rb'
+require_relative '../Framework/constants/const_index.rb'
+require_relative '../Framework/Tools/appium_extension.rb'
 include Helpers
 
 add_data_storage.each do |tl_domain, storages|
@@ -15,47 +17,50 @@ add_data_storage.each do |tl_domain, storages|
       Login.login_complete(tl_domain)
     end
 
-    context "on  #{ tl_domain }:" do
-    puts "Context:  #{metadata[:description]}"
+    context "on  #{tl_domain}:" do
+      puts "Context:  #{metadata[:description]}"
 
-    it 'tap on button connect third-party storage' do |it_info|
-      print "\n* #{it_info.description} =>  "
-      click_id 'app_floating_action_button'
-      click_id 'list_explorer_action_storage'
-    end
-
-    storages.each do |storage, data_input|
-      it "#{storage}:" do |it_info|
+      it 'tap on button connect third-party storage' do |it_info|
         print "\n* #{it_info.description} =>  "
+        click id: ID::PLUS_FAB
+        click id: ID::CONNECT_STORAGE
+      end
 
-        case  storage
-        when 'google_drive'
-          wait_true { texts[ConstIter::GOOGLE_STORAGE].click }
-          wait_true { textfields[0].send_keys data_input['login'] }
-          wait_true { buttons[2].click }
-          wait_true { textfields[0].send_keys data_input['p'] }
-          wait_true { buttons[1].click }
-          sleep 4
-          wait_true { buttons[3].click }
-          click_id 'storage_connect_save'
-          sleep 3
-        when 'drop_box'
-          puts 'pending'
-        when 'one_drive'
-          puts 'pending'
-        when 'yandex_disk'
-          puts 'pending'
-        when 'box'
-          puts 'pending'
-        when 'owncloud'
-          puts 'pending'
-        when 'nextcloud'
-          puts 'pending'
-        when 'webdav'
-          puts 'pending'
+      storages.each do |storage, data_input|
+        it "#{storage}:" do |it_info|
+          print "\n* #{it_info.description} =>  "
+
+          case  storage
+          when 'google_drive'
+            click text: ConstIndex::GOOGLE_STORAGE, pause: 3
+            fill_form textfield: ConstIndex::GOOGLE_EMAIL,
+                      data: data_input['login']
+
+            click button: ConstIndex::GOOGLE_NEXT_ONE
+            fill_form textfield: ConstIndex::GOOGLE_PASS_STORAGE,
+                      data: data_input['p'], pause: 3
+
+            click button: ConstIndex::GOOGLE_NEXT_TWO
+            click button: ConstIndex::GOOGLE_NEXT_THREE, pause: 4
+            click id: ID::CONNECT_SAVE
+            sleep 3
+          when 'drop_box'
+            puts 'pending'
+          when 'one_drive'
+            puts 'pending'
+          when 'yandex_disk'
+            puts 'pending'
+          when 'box'
+            puts 'pending'
+          when 'owncloud'
+            puts 'pending'
+          when 'nextcloud'
+            puts 'pending'
+          when 'webdav'
+            puts 'pending'
+          end
         end
       end
-    end
     end
   end
 end

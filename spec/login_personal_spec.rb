@@ -3,6 +3,8 @@
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../Framework/helpers/helpers.rb'
+require_relative '../Framework/Tools/appium_extension.rb'
+require_relative '../Framework/constants/id.rb'
 include Helpers
 
 login_data_personal.each_key do |tl_domain|
@@ -12,7 +14,7 @@ login_data_personal.each_key do |tl_domain|
     before(:all) do
       print "\n* Before: click on onlyoffice button =>  "
       Login.before_login
-      click_id 'cloudsItemOnlyOffice'
+      click id: ID::CLOUDS_MENU_ITEM
     end
 
     context 'Personal:' do
@@ -20,7 +22,7 @@ login_data_personal.each_key do |tl_domain|
 
       it 'click on personal tab' do |it_info|
         print "\n* #{it_info.description} =>  "
-        click_on_tab = click_xpath("*//android.widget.TextView[@text='PERSONAL']")
+        click_on_tab = click text: ConstIndex::PERSONAL_TAB, pause: 2
         expect(click_on_tab).to be_truthy
       end
 
@@ -46,9 +48,9 @@ login_data_personal.each_key do |tl_domain|
           print "\n* #{it_info.description} =>  "
           email = login_data_personal[tl_domain]['email']
           pass =  login_data_personal[tl_domain]['p']
-          input_text_id('login_personal_portal_email_edit', email)
-          input_text_id('login_personal_portal_password_edit', pass)
-          click_id 'login_personal_signin_button'
+          fill_form id: ID::PERSONAL_EMAIL, data: email
+          fill_form id: ID::PERSONAL_PASSWORD, data: pass
+          click id: ID::PERSONAL_SIGN_IN
           element_exist = find_id 'accountContainer'
           expect(element_exist).to be_truthy
         end

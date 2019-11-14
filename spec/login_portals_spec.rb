@@ -3,7 +3,7 @@
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../Framework/helpers/helpers.rb'
-require_relative '../Framework/constants/id'
+require_relative '../Framework/constants/id.rb'
 require_relative '../Framework/Tools/appium_extension.rb'
 include Helpers
 include AppiumExtension
@@ -37,19 +37,19 @@ login_data_portals.each_key do |tl_domain|
       type_login = login_data_portals[tl_domain]['email']
       case type_login
       when 'google'
-      it 'tap on google button' do |it_info|
-        print "\n* #{it_info.description} =>  "
-        element_exist = Login.login_google
-        expect(element_exist).to be_truthy
-      end
+        it 'tap on google button' do |it_info|
+          print "\n* #{it_info.description} =>  "
+          element_exist = Login.login_google
+          expect(element_exist).to be_truthy
+        end
       when 'facebook'
-      it 'tap on facebook button' do |it_info|
-        print "\n* #{it_info.description} =>  "
-        fb_login = login_data_portals[tl_domain]['fblogin']
-        fbp = login_data_portals[tl_domain]['fbp']
-        element_exist = Login.login_facebook(fb_login, fbp)
-        expect(element_exist).to be_truthy
-      end
+        it 'tap on facebook button' do |it_info|
+          print "\n* #{it_info.description} =>  "
+          fb_login = login_data_portals[tl_domain]['fblogin']
+          fbp = login_data_portals[tl_domain]['fbp']
+          element_exist = Login.login_facebook(fb_login, fbp)
+          expect(element_exist).to be_truthy
+        end
       else
         it 'input data portal' do |it_info|
           print "\n* #{it_info.description} =>  "

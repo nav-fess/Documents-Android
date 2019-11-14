@@ -1,9 +1,11 @@
 # frozen_string_literal: true
+
 require_relative '../../Framework/constants/id.rb'
-require_relative '../../Framework/constants/const_iterator.rb'
+require_relative '../../Framework/constants/const_index.rb'
 require_relative '../../Framework/Tools/appium_extension.rb'
+include AppiumExtension
 
-
+# Module contain different classes of help
 module Helpers
   # Class contains data help methods for Registration portal
   class DataPortals
@@ -43,64 +45,32 @@ module Helpers
     end
 
     def self.before_login
-      capabilities_set('locale' => 'EN', 'language' => 'EN')
       click id: ID::SKIP_ONBOARDING
       click id: ID::CLOUDS
     end
 
     def self.login_facebook(email_fb, p_fb)
       click id: ID::FACEBOOK
-      fill_form textfield: ConstIndex::GOOGLE_LOGIN, data: email_fb, pause: 10
+      fill_form textfield: ConstIndex::GOOGLE_LOGIN, data: email_fb, pause: 5
       fill_form textfield: ConstIndex::GOOGLE_PASS, data: p_fb
       click button: ConstIndex::GOOGLE_NEXT
-      sleep 4
-      click button: ConstIndex::GOOGLE_CONTINUE
-      sleep 8
-      element id: ID::ACCOUNTS
+      click button: ConstIndex::GOOGLE_CONTINUE, pause: 5
+      element id: ID::ACCOUNTS, pause: 5
     end
 
     def self.login_google
       click id: ID::GOOGLE
-      #sleep 3
-      click text: ConstIter::GOOGLE_USER
+      click text: ConstIndex::GOOGLE_USER, pause: 3
       element id: ID::ACCOUNTS
     end
 
     def self.login_cloud(portal, login, pass)
-      input_text_id('storage_web_dav_url_edit', portal)
-      input_text_id('storage_web_dav_login_edit', login)
-      input_text_id('storage_web_dav_password_edit', pass)
-      click_id 'storage_web_dav_save_button'
-      find_id 'accountContainer'
+      fill_form id: ID::CLOUD_NAME,  data: portal
+      fill_form id: ID::CLOUD_LOGIN, data: login
+      fill_form id: ID::CLOUD_PASS,  data: pass
+      click     id: ID::CLOUD_SAVE
+      element id: ID::ACCOUNTS
     end
-  end
-
-  def find_id(id)
-    wait_true { find_element(id: id) }
-  end
-
-  def click_id(id)
-    wait_true { find_element(id: id) }.click
-  end
-
-  def click_xpath(xpath)
-    wait_true { find_element(xpath: xpath) }.click
-  end
-
-  def get_text_id(id)
-    wait_true { find_element(id: id) }.text
-  end
-
-  def input_text_xpath(xpath, text)
-    wait_true { find_element(xpath: xpath) }.send_keys(text)
-  end
-
-  def input_text_id(id, text)
-    wait_true { find_element(id: id) }.send_keys(text)
-  end
-
-  def clear_id(id)
-    wait_true { find_element(id: id) }.clear
   end
 
   def capabilities_set(capabilities)
