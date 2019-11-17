@@ -32,16 +32,16 @@ module Helpers
   class Login
     def self.login_complete(domain)
       before_login
-      click_id 'cloudsItemOnlyOffice'
+      click id: ID::CLOUDS_MENU_ITEM #'cloudsItemOnlyOffice'
       if domain.eql? 'personal'
-        click_xpath("*//android.widget.TextView[@text='PERSONAL']")
+        click_on_tab = click text: ConstIndex::PERSONAL_TAB, pause: 2
       else
         portal_name = login_data_portals[domain]['portal']
-        input_text_id('login_enterprise_portal_edit', portal_name)
-        click_id 'login_enterprise_next_button'
+        fill_form id: ID::ENTERPRISE_PORTAL, data: portal_name
+        click id: ID::ENTERPRISE_NEXT
       end
       login_google
-      find_id 'accountContainer'
+      element id: ID::ACCOUNTS
     end
 
     def self.before_login
@@ -51,10 +51,10 @@ module Helpers
 
     def self.login_facebook(email_fb, p_fb)
       click id: ID::FACEBOOK
-      fill_form textfield: ConstIndex::GOOGLE_LOGIN, data: email_fb, pause: 5
-      fill_form textfield: ConstIndex::GOOGLE_PASS, data: p_fb
-      click button: ConstIndex::GOOGLE_NEXT
-      click button: ConstIndex::GOOGLE_CONTINUE, pause: 5
+      fill_form textfield: ConstIndex::FACEBOOK_LOGIN, data: email_fb, pause: 5
+      fill_form textfield: ConstIndex::FACEBOOK_PASS, data: p_fb
+      click button: ConstIndex::FACEBOOK_NEXT
+      click button: ConstIndex::FACEBOOK_CONTINUE, pause: 5
       element id: ID::ACCOUNTS, pause: 5
     end
 

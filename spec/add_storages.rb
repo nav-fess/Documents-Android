@@ -3,6 +3,7 @@
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
 require_relative '../Framework/helpers/helpers.rb'
+require_relative '../Framework/helpers/add_storage_helper.rb'
 require_relative '../Framework/constants/id.rb'
 require_relative '../Framework/constants/const_index.rb'
 require_relative '../Framework/Tools/appium_extension.rb'
@@ -29,25 +30,15 @@ add_data_storage.each do |tl_domain, storages|
       storages.each do |storage, data_input|
         it "#{storage}:" do |it_info|
           print "\n* #{it_info.description} =>  "
+          element_exist = ''
 
-          case  storage
+          case storage
           when 'google_drive'
-            click text: ConstIndex::GOOGLE_STORAGE, pause: 3
-            fill_form textfield: ConstIndex::GOOGLE_EMAIL,
-                      data: data_input['login']
-
-            click button: ConstIndex::GOOGLE_NEXT_ONE
-            fill_form textfield: ConstIndex::GOOGLE_PASS_STORAGE,
-                      data: data_input['p'], pause: 3
-
-            click button: ConstIndex::GOOGLE_NEXT_TWO
-            click button: ConstIndex::GOOGLE_NEXT_THREE, pause: 4
-            click id: ID::CONNECT_SAVE
-            sleep 3
+            element_exist = AddStorage.google_drive(data_input['login'], data_input['p'])
           when 'drop_box'
-            puts 'pending'
+            element_exist = AddStorage.dropbox(data_input['login'], data_input['p'])
           when 'one_drive'
-            puts 'pending'
+            element_exist = AddStorage.one_drive(data_input['login'], data_input['p'])
           when 'yandex_disk'
             puts 'pending'
           when 'box'
@@ -58,7 +49,10 @@ add_data_storage.each do |tl_domain, storages|
             puts 'pending'
           when 'webdav'
             puts 'pending'
+          else
+            puts "not storage"
           end
+          expect(element_exist).to be_truthy
         end
       end
     end
