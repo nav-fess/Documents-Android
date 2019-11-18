@@ -40,7 +40,7 @@ add_data_storage.each do |tl_domain, storages|
           when 'one_drive'
             element_exist = AddStorage.one_drive(data_input['login'], data_input['p'])
           when 'yandex_disk'
-            puts 'pending'
+            element_exist = AddStorage.yandex_disk(data_input['login'], data_input['p'])
           when 'box'
             puts 'pending'
           when 'owncloud'

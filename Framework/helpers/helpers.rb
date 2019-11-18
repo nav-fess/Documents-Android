@@ -40,7 +40,7 @@ module Helpers
         fill_form id: ID::ENTERPRISE_PORTAL, data: portal_name
         click id: ID::ENTERPRISE_NEXT
       end
-      login_google
+      login_facebook('iivanna995@gmail.com','zsdfv123')
       element id: ID::ACCOUNTS
     end
 
