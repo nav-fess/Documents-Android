@@ -1,3 +1,4 @@
+add_storage_helper.rb
 # frozen_string_literal: true
 
 require_relative '../../Framework/constants/id.rb'
@@ -56,7 +57,13 @@ module Helpers
       click id: ID::CONNECT_SAVE, pause: 4
       click button: ConstIndex::BACK, pause: 5
       element id: ID::ACCOUNTS, pause: 5
+    end
 
+    def self.yandex_disk(login, pass)
+      click text: ConstIndex::YANDEX_STORAGE, pause: 6
+      fill_form  id: ID::CLOUD_LOGIN, data: login
+      fill_form  id: ID::CLOUD_PASS, data: pass
+      click button: ID::CLOUD_SAVE, pause: 3
     end
   end
 end

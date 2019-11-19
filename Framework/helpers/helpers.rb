@@ -11,14 +11,14 @@ module Helpers
   class DataPortals
     def self.locale_language(tl_domain)
       case tl_domain
-      when 'eu', 'info'
-        { 'locale' => 'RU', 'language' => 'RU' }
-      when 'com'
-        { 'locale' => 'EN', 'language' => 'EN' }
-      when 'sg'
-        { 'locale' => 'VN', 'language' => 'vi' }
-      else
-        'Languages and localization are not supported'
+        when 'eu', 'info'
+          { 'locale' => 'RU', 'language' => 'RU' }
+        when 'com'
+          { 'locale' => 'EN', 'language' => 'EN' }
+        when 'sg'
+          { 'locale' => 'VN', 'language' => 'vi' }
+        else
+          'Languages and localization are not supported'
       end
     end
 
@@ -80,3 +80,4 @@ module Helpers
     restart
   end
 end
+

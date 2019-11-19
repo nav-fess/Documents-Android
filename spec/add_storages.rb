@@ -33,24 +33,24 @@ add_data_storage.each do |tl_domain, storages|
           element_exist = ''
 
           case storage
-          when 'google_drive'
-            element_exist = AddStorage.google_drive(data_input['login'], data_input['p'])
-          when 'drop_box'
-            element_exist = AddStorage.dropbox(data_input['login'], data_input['p'])
-          when 'one_drive'
-            element_exist = AddStorage.one_drive(data_input['login'], data_input['p'])
-          when 'yandex_disk'
-            puts 'pending'
-          when 'box'
-            puts 'pending'
-          when 'owncloud'
-            puts 'pending'
-          when 'nextcloud'
-            puts 'pending'
-          when 'webdav'
-            puts 'pending'
-          else
-            puts "not storage"
+            when 'google_drive'
+              element_exist = AddStorage.google_drive(data_input['login'], data_input['p'])
+            when 'drop_box'
+              element_exist = AddStorage.dropbox(data_input['login'], data_input['p'])
+            when 'one_drive'
+              element_exist = AddStorage.one_drive(data_input['login'], data_input['p'])
+            when 'yandex_disk'
+              element_exist = AddStorage.yandex_disk(data_input['login'], data_input['p'])
+            when 'box'
+              puts 'pending'
+            when 'owncloud'
+              puts 'pending'
+            when 'nextcloud'
+              puts 'pending'
+            when 'webdav'
+              puts 'pending'
+            else
+              puts "not storage"
           end
           expect(element_exist).to be_truthy
         end
