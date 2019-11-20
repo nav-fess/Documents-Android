@@ -2,9 +2,9 @@
 
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
-require_relative '../Framework/helpers/helpers.rb'
-require_relative '../Framework/Tools/appium_extension.rb'
-require_relative '../Framework/constants/id.rb'
+require_relative '../framework/helpers/login_helpers.rb'
+require_relative '../framework/tools/appium_extension.rb'
+require_relative '../framework/constants/id.rb'
 include Helpers
 include AppiumExtension
 
@@ -35,7 +35,8 @@ login_data_clouds.each_key do |tl_domain|
         portal = login_data_clouds[tl_domain]['portal']
         login  = login_data_clouds[tl_domain]['login']
         pass   = login_data_clouds[tl_domain]['p']
-        element_exist = Login.login_cloud(portal, login, pass)
+        Login.login_cloud(portal, login, pass)
+        element_exist = element id: ID::ACCOUNTS
         expect(element_exist).to be_truthy
       end
     end

@@ -2,9 +2,10 @@
 
 require 'appium_lib'
 require_relative '../spec/spec_helper.rb'
-require_relative '../Framework/helpers/helpers.rb'
-require_relative '../Framework/Tools/appium_extension.rb'
-require_relative '../Framework/constants/id.rb'
+require_relative '../framework/../framework/helpers/registration_helper.rb'
+require_relative '../framework/helpers/helpers.rb'
+require_relative '../framework/tools/appium_extension.rb'
+require_relative '../framework/constants/id.rb'
 include Helpers
 include AppiumExtension
 

@@ -14,7 +14,7 @@ module AppiumExtension
     sleep args[:pause] || 0
     time = args[:time] || 5
     wait_true(time) do
-      key = args[0].keys
+      key = args.keys[0]
       find_elements key, args[key]
     end
   end
