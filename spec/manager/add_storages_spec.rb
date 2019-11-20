@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'appium_lib'
-require_relative '../spec/helper.rb'
-require_relative '../framework/helpers/helpers.rb'
-require_relative '../framework/helpers/add_storage_helper.rb'
-require_relative '../framework/constants/id.rb'
-require_relative '../framework/constants/const_index.rb'
-require_relative '../framework/tools/appium_extension.rb'
+require_relative '../../spec/spec_helper.rb'
+require_relative '../../framework/helpers/helpers.rb'
+require_relative '../../framework/helpers/add_storage_helper.rb'
+require_relative '../../framework/constants/id.rb'
+require_relative '../../framework/constants/const_index.rb'
+require_relative '../../framework/tools/appium_extension.rb'
 include Helpers
 
 add_data_storage.each do |tl_domain, storages|

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'appium_lib'
-require_relative '../spec/helper.rb'
-require_relative '../framework/helpers/registration_helper.rb'
-require_relative '../framework/helpers/helpers.rb'
-require_relative '../framework/tools/appium_extension.rb'
-require_relative '../framework/constants/id.rb'
+require_relative '../spec_helper.rb'
+require_relative '../../framework/helpers/registration_helper.rb'
+require_relative '../../framework/helpers/helpers.rb'
+require_relative '../../framework/tools/appium_extension.rb'
+require_relative '../../framework/constants/id.rb'
 include Helpers
 include AppiumExtension
 
