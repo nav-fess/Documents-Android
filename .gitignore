@@ -1,5 +1,10 @@
+#report files
 *.html
+#apk files
 *.apk
-*.idea
+#RubyMine files
+.idea/
+#config files
 *.json
-.spec/script.rb
+#helpers script
+spec/script.rb

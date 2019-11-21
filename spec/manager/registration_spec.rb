@@ -1,21 +1,12 @@
 # frozen_string_literal: true
 
-require 'appium_lib'
 require_relative '../spec_helper.rb'
-require_relative '../../framework/helpers/registration_helper.rb'
-require_relative '../../framework/helpers/helpers.rb'
-require_relative '../../framework/tools/appium_extension.rb'
-require_relative '../../framework/constants/id.rb'
-include Helpers
 include AppiumExtension
 
 describe 'Registration in portal', registration: true do
-  puts "Describe: #{metadata[:description]}"
   registration_data.each_key do |tl_domain|
     context 'Without 2FA' do
-      puts "Context:  #{metadata[:description]}"
-      it 'localization portal' do |it_info|
-        print "\n\n #{it_info.description} =>  "
+      it 'localization portal' do
         sleep 2
         locale = DataPortals.locale_language(tl_domain)['locale']
         language = DataPortals.locale_language(tl_domain)['language']
@@ -24,27 +15,23 @@ describe 'Registration in portal', registration: true do
         expect(caps['language']).to eq(language)
       end
 
-      it 'click on skip button' do |it_info|
-        print "\n* #{it_info.description} =>  "
+      it 'click on skip button' do
         click_on_element = click id: ID::SKIP_ONBOARDING
         expect(click_on_element).to be_truthy
       end
 
-      it 'click on onlyoffice button' do |it_info|
-        print "\n* #{it_info.description} =>  "
+      it 'click on onlyoffice button' do
         click id: ID::CLOUDS
         click_on_cloud = click id: ID::CLOUDS_MENU_ITEM
         expect(click_on_cloud).to be_truthy
       end
 
-      it 'tap on the tab Create Portall' do |it_info|
-        print "\n* #{it_info.description} =>  "
+      it 'tap on the tab Create Portall' do
         click_on_element = click id: ID::REGISTRATION_CREATE
         expect(click_on_element).to be_truthy
       end
 
-      it 'Input account information' do |it_info|
-        print "\n* #{it_info.description} =>  "
+      it 'Input account information' do
         portal_name = registration_data[tl_domain]['portal']
         email       = registration_data[tl_domain]['email']
         first_name  = registration_data[tl_domain]['first_name']
@@ -60,8 +47,7 @@ describe 'Registration in portal', registration: true do
         expect(domain_field).to eq(tl_domain)
       end
 
-      it 'Input password' do |it_info|
-        print "\n* #{it_info.description} =>  "
+      it 'Input password' do
         pass = registration_data[tl_domain]['p']
         fill_form id: ID::REGISTRATION_PASS, data: pass
         fill_form id: ID::REGISTRATION_R_PASS, data: pass
