@@ -2,6 +2,7 @@
 
 require_relative '../../spec/spec_helper.rb'
 include AppiumExtension
+include Helpers
 
 add_data_storage.each do |tl_domain, storages|
   storages.each do |storage, data_input|

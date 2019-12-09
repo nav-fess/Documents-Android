@@ -9,14 +9,14 @@ class Login
     before_login
     click id: ID::CLOUDS_MENU_ITEM
     if domain.eql? 'personal'
-      logn_personal(domain)
+      login_personal(domain)
     else
       login_portal(domain)
     end
-    element id: ID::ACCOUNTS
+    element id: ID::ACCOUNTS, pause: 7
   end
 
-  def self.logn_personal(domain)
+  def self.login_personal(domain)
     click text: ConstIndex::PERSONAL_TAB, pause: 2
     email = login_data_personal[domain]['email']
     pass =  login_data_personal[domain]['p']
