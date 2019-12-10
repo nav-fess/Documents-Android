@@ -5,30 +5,25 @@ include AppiumExtension
 
 # Class contains data help methods for login on a portal
 class Login
-  def self.login_complete(domain)
+  def self.login_complete(portal_name, login, pass)
     before_login
     click id: ID::CLOUDS_MENU_ITEM
-    if domain.eql? 'personal'
-      login_personal(domain)
+    if portal_name.eql? 'personal'
+      login_personal(login, pass)
     else
-      login_portal(domain)
+      login_portal(portal_name, login, pass)
     end
     element id: ID::ACCOUNTS, pause: 7
   end
 
-  def self.login_personal(domain)
+  def self.login_personal(login, pass)
     click text: ConstIndex::PERSONAL_TAB, pause: 2
-    email = login_data_personal[domain]['email']
-    pass =  login_data_personal[domain]['p']
-    fill_form id: ID::PERSONAL_EMAIL, data: email
+    fill_form id: ID::PERSONAL_EMAIL, data: login
     fill_form id: ID::PERSONAL_PASSWORD, data: pass
     click id: ID::PERSONAL_SIGN_IN
   end
 
-  def self.login_portal(domain)
-    portal_name = login_data_portals[domain]['portal']
-    login = login_data_portals[domain]['email']
-    pass = login_data_portals[domain]['p']
+  def self.login_portal(portal_name, login, pass)
     fill_form id: ID::ENTERPRISE_PORTAL, data: portal_name
     click id: ID::ENTERPRISE_NEXT
     fill_form id: ID::ENTERPRISE_EMAIL, data: login

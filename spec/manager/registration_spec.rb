@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative '../spec_helper.rb'
+require_relative '../../framework/helpers/helpers.rb'
+
 include AppiumExtension
 
 describe 'Registration in portal', registration: true do
