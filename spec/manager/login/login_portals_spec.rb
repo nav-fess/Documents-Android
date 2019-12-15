@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../../spec/spec_helper.rb'
-include AppiumExtension
 
 login_data_portals.each do |type_login, data_portal|
   data_portal.each do |data|
@@ -27,10 +26,10 @@ login_data_portals.each do |type_login, data_portal|
         when 'enterprise'
           it 'input data portal' do
             email = data['login']
-            pass = data['pass']
-            fill_form id: ID::ENTERPRISE_EMAIL, data: email
-            fill_form id: ID::ENTERPRISE_PASSWORD, data: pass
-            click id: ID::ENTERPRISE_SIGN_IN
+            password = data['pass']
+            Login.fill_enterprise_email email
+            Login.fill_enterprise_password password
+            Login.click_enterprise_sign_in
             element_exist = element id: ID::ACCOUNTS
             expect(element_exist).to be_truthy
           end

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../spec/spec_helper.rb'
-include AppiumExtension
 
 # Module contain different classes of help
 module Helpers

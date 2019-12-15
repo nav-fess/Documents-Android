@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../../spec/spec_helper.rb'
-include AppiumExtension
 
 login_data_personal.each do |domain, data_login|
   data_login.each do |data|

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../spec/spec_helper.rb'
-include AppiumExtension
-include Helpers
 
 add_data_storage.each do |portal_name, data_portals|
   data_portals['storage_data'].each do |data|

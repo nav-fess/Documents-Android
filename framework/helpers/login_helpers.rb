@@ -1,34 +1,35 @@
 # frozen_string_literal: true
 
 require_relative '../../spec/spec_helper.rb'
-include AppiumExtension
 
 # Class contains data help methods for login on a portal
 class Login
-  def self.login_complete(portal_name, login, pass)
+  def self.login_complete(url, email, password)
     before_login
-    click id: ID::CLOUDS_MENU_ITEM
-    if portal_name.eql? 'personal'
-      login_personal(login, pass)
+    if url.eql? 'personal'
+      login_onlyoffice_personal(email: email, password: password)
     else
-      login_portal(portal_name, login, pass)
+      login_onlyoffice_enterprise(url: url, email: email, password: password)
     end
     element id: ID::ACCOUNTS, pause: 7
   end
 
-  def self.login_personal(login, pass)
-    click text: ConstIndex::PERSONAL_TAB, pause: 2
-    fill_form id: ID::PERSONAL_EMAIL, data: login
-    fill_form id: ID::PERSONAL_PASSWORD, data: pass
-    click id: ID::PERSONAL_SIGN_IN
+  def self.login_onlyoffice_personal(email:, password:)
+    open_onlyoffice_connect
+    open_personal_section
+    fill_personal_email email
+    fill_personal_password password
+    click_personal_sign_in
   end
 
-  def self.login_portal(portal_name, login, pass)
-    fill_form id: ID::ENTERPRISE_PORTAL, data: portal_name
-    click id: ID::ENTERPRISE_NEXT
-    fill_form id: ID::ENTERPRISE_EMAIL, data: login
-    fill_form id: ID::ENTERPRISE_PASSWORD, data: pass
-    click id: ID::ENTERPRISE_SIGN_IN
+  def self.login_onlyoffice_enterprise(url:, email:, password:)
+    open_onlyoffice_connect
+    open_enterprise_section
+    fill_enterprise_portal_address url
+    open_enterprise_account_form
+    fill_enterprise_email email
+    fill_enterprise_password password
+    click_enterprise_sign_in
   end
 
   def self.before_login
@@ -56,5 +57,49 @@ class Login
     fill_form id: ID::CLOUD_LOGIN, data: login
     fill_form id: ID::CLOUD_PASS,  data: pass
     click     id: ID::CLOUD_SAVE
+  end
+
+  def self.open_onlyoffice_connect
+    click id: ID::CLOUDS_MENU_ITEM
+  end
+
+  def self.open_enterprise_section
+    click xpath: Xpath::ENTERPRISE_SECTION
+  end
+
+  def self.fill_enterprise_portal_address(address)
+    fill_form id: ID::ENTERPRISE_PORTAL, data: address
+  end
+
+  def self.open_enterprise_account_form
+    click id: ID::ENTERPRISE_NEXT
+  end
+
+  def self.fill_enterprise_email(email)
+    fill_form id: ID::ENTERPRISE_EMAIL, data: email
+  end
+
+  def self.fill_enterprise_password(password)
+    fill_form id: ID::ENTERPRISE_PASSWORD, data: password
+  end
+
+  def self.click_enterprise_sign_in
+    click id: ID::ENTERPRISE_SIGN_IN
+  end
+
+  def self.open_personal_section
+    click xpath: Xpath::PERSONAL_SECTION
+  end
+
+  def self.fill_personal_email(email)
+    fill_form id: ID::PERSONAL_EMAIL, data: email
+  end
+
+  def self.fill_personal_password(password)
+    fill_form id: ID::PERSONAL_PASSWORD, data: password
+  end
+
+  def self.click_personal_sign_in
+    click id: ID::PERSONAL_SIGN_IN
   end
 end

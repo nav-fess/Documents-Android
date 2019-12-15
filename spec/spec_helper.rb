@@ -4,11 +4,14 @@ require 'appium_lib'
 require 'json'
 require_relative '../framework/constants/id.rb'
 require_relative '../framework/constants/const_index.rb'
+require_relative '../framework/constants/xpath.rb'
 require_relative '../framework/tools/appium_extension.rb'
 require_relative '../framework/helpers/add_storage_helper.rb'
 require_relative '../framework/helpers/login_helpers.rb'
 require_relative '../framework/helpers/registration_helper.rb'
 require_relative '../framework/helpers/helpers.rb'
+include AppiumExtension
+include Helpers
 
 RSpec.configure do |config|
   config.filter_run_including foo: :bar

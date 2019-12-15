@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../spec/spec_helper.rb'
-require 'appium_lib'
-include AppiumExtension
 
 def capabilities_set(capabilities)
   capabilities.each do |key, value|

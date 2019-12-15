@@ -3,8 +3,6 @@
 require_relative '../spec_helper.rb'
 require_relative '../../framework/helpers/helpers.rb'
 
-include AppiumExtension
-
 describe 'Registration in portal', registration: true do
   registration_data.each do |domain, data_portal|
     data_portal.each do |data|
@@ -40,12 +38,14 @@ describe 'Registration in portal', registration: true do
           first_name  = data['first_name']
           last_name   = data['last_name']
           DataPortals.change_domain_to_info if domain.eql? 'info'
+
           fill_form id: ID::REGISTRATION_NAME, data: portal_name
           domain_field = element(id: ID::REGISTRATION_DOMAIN).text.split('.').last
           fill_form id: ID::REGISTRATION_EMAIL, data: email
           fill_form id: ID::REGISTRATION_FN, data: first_name
           fill_form id: ID::REGISTRATION_LN, data: last_name
           click_on_sign_in_button = click id: ID::REGISTRATION_SIGN
+
           expect(click_on_sign_in_button).to be_truthy
           expect(domain_field).to eq(domain)
         end
