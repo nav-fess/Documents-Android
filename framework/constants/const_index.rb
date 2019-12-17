@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # Module for storing index values
-
 module ConstIndex
   # Google
   GOOGLE_STORAGE = 1
