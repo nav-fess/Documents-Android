@@ -1,10 +1,17 @@
-#report files
+# Spec reports
 *.html
-#apk files
+
+# Apk files
 *.apk
-#RubyMine files
+
+# RubyMine files
 .idea/
-#config files
+
+# Config and private data files
 *.json
-#helpers script
+
+# Script for initialize env in IRB
 spec/script.rb
+
+# Locked Gemfile
+Gemfile.lock

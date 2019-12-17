@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # Module for storing resource-id xpath
-
 module Xpath
   # Login
   ENTERPRISE_SECTION = "//android.widget.TextView[@text='PORTAL']"
