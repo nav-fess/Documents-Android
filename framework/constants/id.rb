@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # Module for storing resource-id values
-
 module ID
   # Profile
   ACCOUNTS = 'accountContainer'
@@ -35,7 +34,7 @@ module ID
   PERSONAL_PASSWORD = 'login_personal_portal_password_edit'
   PERSONAL_SIGN_IN = 'login_personal_signin_button'
 
-  # social networks
+  # Social networks
   GOOGLE = 'login_social_google_button'
   FACEBOOK = 'login_social_facebook_button'
 
@@ -69,6 +68,12 @@ module ID
   FILE_COPY = 'list_explorer_context_copy'
   FILE_DOWNLOAD = 'list_explorer_context_download'
   FILE_SHARE_REMOVE = 'list_explorer_context_share_delete'
+  SHARE_MENU = 'list_explorer_context_share'
+
+  # Share menu
+  ADD_SHARE_PEOPLE = 'share_settings_add_item'
+  ADD_SHARE_PEOPLE_NAME = 'share_add_item_main_title'
+  SEARCH_SHARE_PEOPLE = 'menu_share_add_search'
 
   # Manager sections
   RECENT = 'menu_item_recent'
@@ -77,7 +82,7 @@ module ID
   PROFILE = 'menu_item_setting'
 
   # Onlyoffice FAB menu
-  CREATE_DO = 'list_explorer_action_docs'
+  CREATE_DOC = 'list_explorer_action_docs'
   CREATE_TABLE = 'list_explorer_action_sheet'
   CREATE_PRESENTATION = 'list_explorer_action_presentation'
   CREATE_FOLDER = 'list_explorer_action_folder'
