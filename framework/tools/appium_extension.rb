@@ -2,17 +2,20 @@
 
 # Module for extends functional of Appium lib
 module AppiumExtension
+  DEFAULT_PAUSE = 0
+  DEFAULT_TIME = 5
+
   def element(args = {})
-    sleep args[:pause] || 0
-    time = args[:time] || 5
+    sleep args[:pause] || DEFAULT_PAUSE
+    time = args[:time] || DEFAULT_TIME
     wait_true(time) do
       find args
     end
   end
 
   def elements(args = {})
-    sleep args[:pause] || 0
-    time = args[:time] || 5
+    sleep args[:pause] || DEFAULT_PAUSE
+    time = args[:time] || DEFAULT_TIME
     wait_true(time) do
       key = args.keys[0]
       find_elements key, args[key]
@@ -20,8 +23,8 @@ module AppiumExtension
   end
 
   def fill_form(args = {})
-    sleep args[:pause] || 0
-    time = args[:time] || 5
+    sleep args[:pause] || DEFAULT_PAUSE
+    time = args[:time] || DEFAULT_TIME
     selenium_element = wait_true(time) do
       find args
     end
@@ -29,8 +32,8 @@ module AppiumExtension
   end
 
   def click(args = {})
-    sleep args[:pause] || 0
-    time = args[:time] || 5
+    sleep args[:pause] || DEFAULT_PAUSE
+    time = args[:time] || DEFAULT_TIME
     selenium_element = wait_true(time) do
       find args
     end
