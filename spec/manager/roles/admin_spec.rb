@@ -8,17 +8,16 @@ user_data = AuthDataTools.find_by_role(auth_data[:accounts], 'admin')[0]
 file_types = { document: ID::CREATE_DOC, spreadsheet: ID::CREATE_TABLE,
                presentation: ID::CREATE_PRESENTATION }
 
-describe 'Create files in My Documents section', :roles, :admin do
-  it 'open login form' do
+RSpec.configure do |config|
+  config.before :all do
     Login.before_login
-  end
-
-  it 'login' do
     Login.login_onlyoffice_enterprise url: auth_data[:url],
                                       email: user_data[:login],
                                       password: user_data[:pass]
   end
+end
 
+describe 'Create files in My Documents section', :roles, :admin do
   it 'open My Documents section' do
     OpenSection.my_documents if OpenSection.sections_displayed? 10
   end
@@ -56,16 +55,6 @@ end
 
 describe 'Create folder in My Documents section', :roles, :admin do
   creation_time = Time.now.strftime '%Y-%m-%d %H-%M-%S'
-
-  it 'open login form' do
-    Login.before_login
-  end
-
-  it 'login' do
-    Login.login_onlyoffice_enterprise url: auth_data[:url],
-                                      email: user_data[:login],
-                                      password: user_data[:pass]
-  end
 
   it 'open My Documents section' do
     OpenSection.my_documents if OpenSection.sections_displayed? 10
