@@ -53,3 +53,37 @@ describe 'Create files in My Documents section', :roles, :admin do
     end
   end
 end
+
+describe 'Create folder in My Documents section', :roles, :admin do
+  creation_time = Time.now.strftime '%Y-%m-%d %H-%M-%S'
+
+  it 'open login form' do
+    Login.before_login
+  end
+
+  it 'login' do
+    Login.login_onlyoffice_enterprise url: auth_data[:url],
+                                      email: user_data[:login],
+                                      password: user_data[:pass]
+  end
+
+  it 'open My Documents section' do
+    OpenSection.my_documents if OpenSection.sections_displayed? 10
+  end
+
+  it 'create folder' do
+    PlusFAB.open if PlusFAB.displayed?
+    PlusFAB.create_folder name: creation_time
+  end
+
+  it 'find folder' do
+    click id: ID::SEARCH
+    fill_form id: ID::SEARCH_FORM, data: creation_time
+    file = element id: ID::FOLDER_NAME
+    expect(file.text.include?(creation_time)).to be_truthy
+  end
+
+  it 'close search' do
+    2.times { hardback }
+  end
+end
