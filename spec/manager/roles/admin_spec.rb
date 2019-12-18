@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-auth_data_path = File.join __dir__, '..', '..', '..', 'data', 'roles.json'
+auth_data_path = File.join __dir__, '..', '..', '..', 'data', 'Roles.json'
 auth_data = JSON.parse File.read(auth_data_path), symbolize_names: true
 user_data = AuthDataTools.find_by_role(auth_data[:accounts], 'admin')[0]
 file_types = { document: ID::CREATE_DOC, spreadsheet: ID::CREATE_TABLE,

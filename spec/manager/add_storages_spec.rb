@@ -36,7 +36,7 @@ add_data_storage.each do |portal_name, data_portals|
           else puts 'Other storage'
           end
 
-          click button: ConstIndex::BACK, pause: 12
+          click button: IndexUI::BACK, pause: 12
           element_exist = element id: ID::ACCOUNTS, pause: 5
           expect(element_exist).to be_truthy
         end
