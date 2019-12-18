@@ -12,7 +12,7 @@ login_data_personal.each do |domain, data_login|
 
       context 'Personal:' do
         it 'click on personal tab' do
-          click_on_tab = click text: ConstIndex::PERSONAL_TAB, pause: 2
+          click_on_tab = click text: IndexUI::PERSONAL_TAB, pause: 2
           expect(click_on_tab).to be_truthy
         end
 

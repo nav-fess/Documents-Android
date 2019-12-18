@@ -39,16 +39,16 @@ class Login
 
   def self.login_facebook(email_fb, p_fb)
     click id: ID::FACEBOOK
-    fill_form textfield: ConstIndex::FACEBOOK_LOGIN, data: email_fb, pause: 5
-    fill_form textfield: ConstIndex::FACEBOOK_PASS, data: p_fb
-    click button: ConstIndex::FACEBOOK_NEXT
-    click button: ConstIndex::FACEBOOK_CONTINUE, pause: 5
+    fill_form textfield: IndexUI::FACEBOOK_LOGIN, data: email_fb, pause: 5
+    fill_form textfield: IndexUI::FACEBOOK_PASS, data: p_fb
+    click button: IndexUI::FACEBOOK_NEXT
+    click button: IndexUI::FACEBOOK_CONTINUE, pause: 5
     element id: ID::ACCOUNTS, pause: 5
   end
 
   def self.login_google
     click id: ID::GOOGLE
-    click text: ConstIndex::GOOGLE_USER, pause: 3
+    click text: IndexUI::GOOGLE_USER, pause: 3
     element id: ID::ACCOUNTS
   end
 

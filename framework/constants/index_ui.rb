@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Module for storing index values
-module ConstIndex
+module IndexUI
   # Google
   GOOGLE_STORAGE = 1
   GOOGLE_EMAIL = 0

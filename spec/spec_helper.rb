@@ -5,7 +5,7 @@ require 'json'
 
 # Constants
 require_relative '../framework/constants/id'
-require_relative '../framework/constants/const_index'
+require_relative '../framework/constants/index_ui'
 require_relative '../framework/constants/xpath'
 
 # Helpers
