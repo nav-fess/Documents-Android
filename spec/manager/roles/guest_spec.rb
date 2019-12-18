@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-auth_data_path = File.join __dir__, '..', '..', '..', 'data', 'roles.json'
+auth_data_path = File.join __dir__, '..', '..', '..', 'data', 'Roles.json'
 auth_data = JSON.parse File.read(auth_data_path), symbolize_names: true
 user_data = AuthDataTools.find_by_role(auth_data[:accounts], 'guest')[0]
 
@@ -25,7 +25,7 @@ describe 'Check the absence of a My Documents section', :roles, :guest do
 end
 
 describe 'Check the absence of a plus FAB in sections', :roles, :guest do
-  before :all do
+  it 'open login form' do
     Login.before_login
   end
 
