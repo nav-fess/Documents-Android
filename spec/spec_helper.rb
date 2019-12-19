@@ -4,6 +4,7 @@ require 'appium_lib'
 require 'json'
 
 # Constants
+require_relative '../framework/constants/consts'
 require_relative '../framework/constants/id'
 require_relative '../framework/constants/index_ui'
 require_relative '../framework/constants/xpath'
