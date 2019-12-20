@@ -2,18 +2,6 @@
 
 # Class for fast access to operations in "+" FAB
 class PlusFAB
-  def self.create_file(name:, id:)
-    click id: id
-    entity_name name
-    create
-  end
-
-  def self.create_folder(name:)
-    click id: ID::CREATE_FOLDER
-    entity_name name
-    create
-  end
-
   def self.open
     click id: ID::PLUS_FAB
   end
@@ -22,11 +10,21 @@ class PlusFAB
     fill_form id: ID::EDIT_NAME_FIELD, data: name
   end
 
-  def self.create
-    click id: ID::CREATE_FAB
+  def self.create(name, type, close = false)
+    click id: type_to_id(type)
+    entity_name name
+    click id: ID::DIALOG_ACCEPT
+    hardback if close && type != :folder
   end
 
   def self.displayed?
     elements(id: ID::PLUS_FAB).count.positive?
+  end
+
+  def self.type_to_id(type)
+    return ID::CREATE_DOC if type == :document
+    return ID::CREATE_TABLE if type == :spreadsheet
+    return ID::CREATE_PRESENTATION if type == :presentation
+    return ID::CREATE_FOLDER if type == :folder
   end
 end
