@@ -57,7 +57,7 @@ describe 'Create files and folder in each section' do
           end
 
           it 'close search' do
-            2.times { hardback pause: 2}
+            2.times { hardback pause: 2 }
           end
         end
       end
