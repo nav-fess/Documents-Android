@@ -12,6 +12,13 @@ context_ids = { document: ID::FILE_CONTEXT, spreadsheet: ID::FILE_CONTEXT,
 layout_ids = { document: ID::FILE_NAME, spreadsheet: ID::FILE_NAME,
                presentation: ID::FILE_NAME, folder: ID::FOLDER_NAME }
 
+sections = { MyDocuments: Xpath::MY_DOCUMENTS_SECTION, CommonDocuments: Xpath::COMMON_SECTION }
+
+names = { document: Consts::PREFIX_CREATE + Consts::DOCUMENT_NAME,
+          spreadsheet: Consts::PREFIX_CREATE + Consts::SPREADSHEET_NAME,
+          presentation: Consts::PREFIX_CREATE + Consts::PRESENTATION_NAME,
+          folder: Consts::PREFIX_CREATE + Consts::FOLDER_NAME }
+
 RSpec.configure do |config|
   config.before :all do
     Login.before_login
@@ -21,75 +28,38 @@ RSpec.configure do |config|
   end
 end
 
-describe 'Create files in My Documents section', :roles, :admin do
-  names = { document: Consts::PREFIX_CREATE + Consts::MyDocuments::DOCUMENT_NAME,
-            spreadsheet: Consts::PREFIX_CREATE + Consts::MyDocuments::SPREADSHEET_NAME,
-            presentation: Consts::PREFIX_CREATE + Consts::MyDocuments::PRESENTATION_NAME,
-            folder: Consts::PREFIX_CREATE + Consts::MyDocuments::FOLDER_NAME }
-
-  it 'open My Documents section' do
-    OpenSection.my_documents if OpenSection.sections_displayed? 10
-  end
-
-  names.each_pair do |type, name|
-    describe "create #{type}" do
-      it "create #{type}" do
-        PlusFAB.open if PlusFAB.displayed?
-        PlusFAB.create name, type, true
+describe 'Create files and folder in each section' do
+  sections.each_pair do |section, selector|
+    describe section do
+      it "open #{section}" do
+        OpenSection.sections_displayed? 10
+        click xpath: selector
       end
 
-      it "find #{type}" do
-        click id: ID::SEARCH
-        fill_form id: ID::SEARCH_FORM, data: name
-        file = element id: layout_ids[type]
-        expect(file.text.include?(name)).to be_truthy
-      end
+      names.each_pair do |type, name|
+        describe type do
+          it "create #{type}" do
+            PlusFAB.open if PlusFAB.displayed?
+            PlusFAB.create name, type, true
+          end
 
-      it "delete #{type}" do
-        click id: context_ids[type]
-        click id: ID::FILE_DELETE
-        click id: ID::DIALOG_ACCEPT
-      end
+          it "find #{type}" do
+            click id: ID::SEARCH
+            fill_form id: ID::SEARCH_FORM, data: name
+            file = element id: layout_ids[type]
+            expect(file.text.include?(name)).to be_truthy
+          end
 
-      it 'close search' do
-        2.times { hardback pause: 2}
-      end
-    end
-  end
-end
+          it "delete #{type}" do
+            click id: context_ids[type]
+            click id: ID::FILE_DELETE
+            click id: ID::DIALOG_ACCEPT
+          end
 
-describe 'Create files in Common Documents section', :roles, :admin do
-  names = { document: Consts::PREFIX_CREATE + Consts::CommonDocuments::DOCUMENT_NAME,
-            spreadsheet: Consts::PREFIX_CREATE + Consts::CommonDocuments::SPREADSHEET_NAME,
-            presentation: Consts::PREFIX_CREATE + Consts::CommonDocuments::PRESENTATION_NAME,
-            folder: Consts::PREFIX_CREATE + Consts::CommonDocuments::FOLDER_NAME }
-
-  it 'open Common Documents section' do
-    OpenSection.common_documents if OpenSection.sections_displayed? 10
-  end
-
-  names.each_pair do |type, name|
-    describe "create #{type}" do
-      it "create #{type}" do
-        PlusFAB.open if PlusFAB.displayed?
-        PlusFAB.create name, type, true
-      end
-
-      it "find #{type}" do
-        click id: ID::SEARCH
-        fill_form id: ID::SEARCH_FORM, data: name
-        file = element id: layout_ids[type]
-        expect(file.text.include?(name)).to be_truthy
-      end
-
-      it "delete #{type}" do
-        click id: context_ids[type]
-        click id: ID::FILE_DELETE
-        click id: ID::DIALOG_ACCEPT
-      end
-
-      it 'close search' do
-        2.times { hardback pause: 2}
+          it 'close search' do
+            2.times { hardback pause: 2}
+          end
+        end
       end
     end
   end
