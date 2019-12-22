@@ -51,8 +51,7 @@ module AppiumExtension
     find_element xpath: value_constant
   end
 
-  def hardback(args = {})
-    sleep args[:pause] || DEFAULT_PAUSE
+  def hardback
     press_keycode 4
   end
 end

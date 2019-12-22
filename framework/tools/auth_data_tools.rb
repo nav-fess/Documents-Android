@@ -9,4 +9,8 @@ class AuthDataTools
     end
     result
   end
+
+  def self.parse_json(file_name)
+    JSON.parse(File.read(File.join(__dir__, '..', '..', 'data', file_name)))
+  end
 end

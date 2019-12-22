@@ -3,7 +3,7 @@
 require_relative '../../spec/spec_helper.rb'
 
 # Class contains data help methods for Registration portal
-class DataPortals
+class Registration
   def self.locale_language(tl_domain)
     case tl_domain
     when 'eu', 'info'
