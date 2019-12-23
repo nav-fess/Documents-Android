@@ -11,17 +11,17 @@ login_data_portals.each do |type_login, data_portal|
         Login.before_login
       end
 
-      context "domain : #{type_login}" do
+      context "domain : #{data['portal']}" do
         it 'click on button portal' do
-          click id: ID::CLOUDS_MENU_ITEM
+          Login.open_onlyoffice_connect
         end
 
         it 'input portal name' do
           portal_name = data['portal']
-          fill_form id: ID::ENTERPRISE_PORTAL, data: portal_name
-          click_on_logon_button = click id: ID::ENTERPRISE_NEXT
+          Login.fill_enterprise_portal_address portal_name
+          click_on_login_button = Login.open_enterprise_account_form
           sleep 5
-          expect(click_on_logon_button).to be_truthy
+          expect(click_on_login_button).to be_truthy
         end
 
         case type_login
@@ -32,7 +32,7 @@ login_data_portals.each do |type_login, data_portal|
             Login.fill_enterprise_email email
             Login.fill_enterprise_password password
             Login.click_enterprise_sign_in
-            element_exist = element id: ID::ACCOUNTS
+            element_exist = Login.find_accounts
             expect(element_exist).to be_truthy
           end
         when 'google'
