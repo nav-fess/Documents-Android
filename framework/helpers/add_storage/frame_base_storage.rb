@@ -6,13 +6,13 @@ module AddStorage
   class FrameBaseStorage
     def self.create(email, pass); end
 
-    def self.click_on_storage; end
+    def self.tap_on_storage; end
 
     def self.fill_email(email); end
 
     def self.fill_pass(pass); end
 
-    def self.click_on_button_save
+    def self.tap_on_button_save
       click id: ID::CONNECT_SAVE, pause: 4
     end
 

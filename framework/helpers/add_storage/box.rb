@@ -15,7 +15,7 @@ module AddStorage
       click_on_button_save
     end
 
-    def self.click_on_storage
+    def self.tap_on_storage
       click text: IndexUI::BOX_STORAGE, pause: 6
     end
 
@@ -27,15 +27,15 @@ module AddStorage
       fill_form textfield: IndexUI::GOOGLE_PASS_STORAGE, data: pass, pause: 3
     end
 
-    def self.click_authorize
+    def self.tap_authorize
       click button: IndexUI::BOX_AUTHORIZE, pause: 2
     end
 
-    def self.click_access
+    def self.tap_access
       click button: IndexUI::BOX_ACCESS, pause: 2
     end
 
-    def self.click_next_two
+    def self.tap_next_two
       click button: IndexUI::GOOGLE_NEXT_TWO, pause: 2
     end
   end

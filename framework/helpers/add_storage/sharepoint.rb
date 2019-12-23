@@ -6,7 +6,7 @@ require_relative '../../../spec/spec_helper'
 module AddStorage
   # Class contain methods for adding storage Sharepoint
   class Sharepoint < OtherBaseStorage
-    def self.click_on_storage
+    def self.tap_on_storage
       click text: IndexUI::WEBDAV, pause: 6
     end
   end

@@ -11,7 +11,12 @@ class Login
     else
       login_onlyoffice_enterprise(url: url, email: email, password: password)
     end
-    element id: ID::ACCOUNTS, pause: 7
+      find_accounts
+  end
+
+  def self.before_login
+    click id: ID::SKIP_ONBOARDING, time: 5
+    click id: ID::CLOUDS
   end
 
   def self.login_onlyoffice_personal(email:, password:)
@@ -32,9 +37,8 @@ class Login
     click_enterprise_sign_in
   end
 
-  def self.before_login
-    click id: ID::SKIP_ONBOARDING, time: 5
-    click id: ID::CLOUDS
+  def self.find_accounts
+    element id: ID::ACCOUNTS, pause: 7
   end
 
   def self.login_facebook(email_fb, p_fb)
