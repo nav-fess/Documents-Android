@@ -24,7 +24,7 @@ class Login
     open_personal_section
     fill_personal_email email
     fill_personal_password password
-    tab_personal_sign_in
+    tap_personal_sign_in
   end
 
   def self.login_onlyoffice_enterprise(url:, email:, password:)
@@ -103,7 +103,7 @@ class Login
     fill_form id: ID::PERSONAL_PASSWORD, data: password
   end
 
-  def self.tab_personal_sign_in
+  def self.tap_personal_sign_in
     click id: ID::PERSONAL_SIGN_IN
   end
 

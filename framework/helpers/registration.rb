@@ -58,7 +58,7 @@ class Registration
     fill_form id: ID::REGISTRATION_LN, data: last_name
   end
 
-  def self.sig_in
+  def self.sign_in
     click id: ID::REGISTRATION_SIGN
   end
 

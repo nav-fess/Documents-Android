@@ -46,7 +46,7 @@ describe 'Registration in portal', registration: true do
           Registration.fill_email email
           Registration.fill_first_name first_name
           Registration.fill_last_name last_name
-          click_on_sign_in_button = Registration.sig_in
+          click_on_sign_in_button = Registration.sign_in
 
           expect(click_on_sign_in_button).to be_truthy
           expect(domain_field).to eq(domain)
@@ -56,7 +56,7 @@ describe 'Registration in portal', registration: true do
           pass = data['pass']
           Registration.fill_pass pass
           Registration.re_fill_pass pass
-          Registration.sig_in
+          Registration.sign_in
           sleep 5
           click_on_account = Login.find_accounts
           expect(click_on_account).to be_truthy

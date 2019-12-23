@@ -25,7 +25,7 @@ login_data_personal.each do |domain, data_login|
             pass =  data['pass']
             Login.fill_personal_email email
             Login.fill_personal_password pass
-            Login.tab_personal_sign_in
+            Login.tap_personal_sign_in
             element_exist = Login.find_accounts
             expect(element_exist).to be_truthy
           end
