@@ -24,7 +24,7 @@ class Login
     open_personal_section
     fill_personal_email email
     fill_personal_password password
-    click_personal_sign_in
+    tab_personal_sign_in
   end
 
   def self.login_onlyoffice_enterprise(url:, email:, password:)
@@ -47,13 +47,13 @@ class Login
     fill_form textfield: IndexUI::FACEBOOK_PASS, data: p_fb
     click button: IndexUI::FACEBOOK_NEXT
     click button: IndexUI::FACEBOOK_CONTINUE, pause: 5
-    element id: ID::ACCOUNTS, pause: 5
+    find_accounts
   end
 
   def self.login_google
     click id: ID::GOOGLE
     click text: IndexUI::GOOGLE_USER, pause: 3
-    element id: ID::ACCOUNTS
+    find_accounts
   end
 
   def self.login_cloud(portal, login, pass)
@@ -103,7 +103,11 @@ class Login
     fill_form id: ID::PERSONAL_PASSWORD, data: password
   end
 
-  def self.click_personal_sign_in
+  def self.tab_personal_sign_in
     click id: ID::PERSONAL_SIGN_IN
+  end
+
+  def self.tap_personal_tab
+    click text: IndexUI::PERSONAL_TAB, pause: 2
   end
 end
