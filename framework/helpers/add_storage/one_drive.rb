@@ -18,15 +18,15 @@ module AddStorage
       click text: IndexUI::ONEDRIVE_STORAGE, pause: 6
     end
 
-    def self.tap_form_google_email(login)
-      fill_form textfield: IndexUI::ONEDRIVE_LOGIN, data: login, pause: 3
+    def self.fill_email(email)
+      fill_form textfield: IndexUI::ONEDRIVE_LOGIN, data: email, pause: 3
     end
 
     def self.tap_button_next_one
       click button: IndexUI::ONEDRIVE_NEXT_ONE
     end
 
-    def self.tap_pass_onedrive(pass)
+    def self.fill_pass(pass)
       fill_form textfield: IndexUI::ONEDRIVE_PASS, data: pass, pause: 3
     end
 

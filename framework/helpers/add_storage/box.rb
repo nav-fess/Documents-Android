@@ -5,14 +5,14 @@ module AddStorage
   # Class contain methods for adding storage Box
   class Box < FrameBaseStorage
     def initialize(login, pass)
-      click_on_storage
+      tap_on_storage
       fill_email(login)
-      click_button_next_one
+      tap_button_next_one
       fill_pass(pass)
-      click_authorize
-      click_access
+      tap_authorize
+      tap_access
       put_back
-      click_on_button_save
+      tap_on_button_save
     end
 
     def self.tap_on_storage
