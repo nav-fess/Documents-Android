@@ -110,4 +110,16 @@ class Login
   def self.tap_personal_tab
     click text: IndexUI::PERSONAL_TAB, pause: 2
   end
+
+  def self.tap_on_nextcloud
+    click id: ID::NEXTCLOUD
+  end
+
+  def self.tap_on_owncloud
+    click id: ID::OWNCLOUD
+  end
+
+  def self.tap_on_webdav_cloud
+    click id: ID::WEBDAV
+  end
 end
