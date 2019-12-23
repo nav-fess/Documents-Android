@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 # Module for extends functional of Appium lib
@@ -51,7 +52,8 @@ module AppiumExtension
     find_element xpath: value_constant
   end
 
-  def hardback
+  def hardback(args = {})
+    sleep args[:pause] || DEFAULT_PAUSE
     press_keycode 4
   end
 end

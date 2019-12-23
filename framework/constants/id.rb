@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 # Module for storing resource-id values
@@ -68,6 +69,7 @@ module ID
   FILE_COPY = 'list_explorer_context_copy'
   FILE_DOWNLOAD = 'list_explorer_context_download'
   FILE_SHARE_REMOVE = 'list_explorer_context_share_delete'
+  FILE_DELETE = 'list_explorer_context_delete'
   SHARE_MENU = 'list_explorer_context_share'
 
   # Share menu
@@ -90,7 +92,12 @@ module ID
   UPLOAD_FILE = 'list_explorer_action_upload'
   CONNECT_STORAGE = 'list_explorer_action_storage'
   EDIT_NAME_FIELD = 'dialogCommonEditLineValueEdit'
-  CREATE_FAB = 'dialogCommonAcceptButton'
+
+  # Dialogs
+  DIALOG_ACCEPT = 'dialogCommonAcceptButton'
+  DIALOG_CANCEL = 'dialogCommonCancelButton'
+  DIALOG_TITLE = 'dialogCommonTopTitleText'
+  DIALOG_BODY = 'dialogCommonBottomTitleText'
 
   # Storage
   CONNECT_SAVE = 'storage_connect_save'

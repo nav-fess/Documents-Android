@@ -33,7 +33,7 @@ class Login
   end
 
   def self.before_login
-    click id: ID::SKIP_ONBOARDING
+    click id: ID::SKIP_ONBOARDING, time: 5
     click id: ID::CLOUDS
   end
 

@@ -5,165 +5,62 @@ require 'spec_helper'
 auth_data_path = File.join __dir__, '..', '..', '..', 'data', 'Roles.json'
 auth_data = JSON.parse File.read(auth_data_path), symbolize_names: true
 user_data = AuthDataTools.find_by_role(auth_data[:accounts], 'admin')[0]
-file_types = { document: ID::CREATE_DOC, spreadsheet: ID::CREATE_TABLE,
-               presentation: ID::CREATE_PRESENTATION }
 
-describe 'Create files in My Documents section', :roles, :admin do
-  it 'open login form' do
+context_ids = { document: ID::FILE_CONTEXT, spreadsheet: ID::FILE_CONTEXT,
+                presentation: ID::FILE_CONTEXT, folder: ID::FOLDER_CONTEXT }
+
+layout_ids = { document: ID::FILE_NAME, spreadsheet: ID::FILE_NAME,
+               presentation: ID::FILE_NAME, folder: ID::FOLDER_NAME }
+
+sections = { MyDocuments: Xpath::MY_DOCUMENTS_SECTION, CommonDocuments: Xpath::COMMON_SECTION }
+
+names = { document: Consts::PREFIX_CREATE + Consts::DOCUMENT_NAME,
+          spreadsheet: Consts::PREFIX_CREATE + Consts::SPREADSHEET_NAME,
+          presentation: Consts::PREFIX_CREATE + Consts::PRESENTATION_NAME,
+          folder: Consts::PREFIX_CREATE + Consts::FOLDER_NAME }
+
+RSpec.configure do |config|
+  config.before :all do
     Login.before_login
-  end
-
-  it 'login' do
     Login.login_onlyoffice_enterprise url: auth_data[:url],
                                       email: user_data[:login],
                                       password: user_data[:pass]
   end
+end
 
-  it 'open My Documents section' do
-    OpenSection.my_documents if OpenSection.sections_displayed? 10
-  end
-
-  file_types.each_pair do |type, id|
-    describe "create #{type}" do
-      creation_time = Time.now.strftime '%Y-%m-%d %H-%M-%S'
-
-      it 'generate creation time' do
-        creation_time = Time.now.strftime '%Y-%m-%d %H-%M-%S'
+describe 'Create files and folder in each section' do
+  sections.each_pair do |section, selector|
+    describe section do
+      it "open #{section}" do
+        OpenSection.sections_displayed? 10
+        click xpath: selector
       end
 
-      it "create #{type}" do
-        PlusFAB.open if PlusFAB.displayed?
-        PlusFAB.create_file name: creation_time, id: id
-      end
+      names.each_pair do |type, name|
+        describe type do
+          it "create #{type}" do
+            PlusFAB.open if PlusFAB.displayed?
+            PlusFAB.create name, type, true
+          end
 
-      it 'close editor' do
-        hardback
-      end
+          it "find #{type}" do
+            click id: ID::SEARCH
+            fill_form id: ID::SEARCH_FORM, data: name
+            file = element id: layout_ids[type]
+            expect(file.text.include?(name)).to be_truthy
+          end
 
-      it "find #{type}" do
-        click id: ID::SEARCH
-        fill_form id: ID::SEARCH_FORM, data: creation_time
-        file = element id: ID::FILE_NAME
-        expect(file.text.include?(creation_time)).to be_truthy
-      end
+          it "delete #{type}" do
+            click id: context_ids[type]
+            click id: ID::FILE_DELETE
+            click id: ID::DIALOG_ACCEPT
+          end
 
-      it 'close search' do
-        2.times { hardback }
+          it 'close search' do
+            2.times { hardback pause: 2 }
+          end
+        end
       end
     end
-  end
-end
-
-describe 'Create folder in My Documents section', :roles, :admin do
-  creation_time = Time.now.strftime '%Y-%m-%d %H-%M-%S'
-
-  it 'open login form' do
-    Login.before_login
-  end
-
-  it 'login' do
-    Login.login_onlyoffice_enterprise url: auth_data[:url],
-                                      email: user_data[:login],
-                                      password: user_data[:pass]
-  end
-
-  it 'open My Documents section' do
-    OpenSection.my_documents if OpenSection.sections_displayed? 10
-  end
-
-  it 'create folder' do
-    PlusFAB.open if PlusFAB.displayed?
-    PlusFAB.create_folder name: creation_time
-  end
-
-  it 'find folder' do
-    click id: ID::SEARCH
-    fill_form id: ID::SEARCH_FORM, data: creation_time
-    file = element id: ID::FOLDER_NAME
-    expect(file.text.include?(creation_time)).to be_truthy
-  end
-
-  it 'close search' do
-    2.times { hardback }
-  end
-end
-
-describe 'Create files in Common Documents section', :roles, :admin do
-  it 'open login form' do
-    Login.before_login
-  end
-
-  it 'login' do
-    Login.login_onlyoffice_enterprise url: auth_data[:url],
-                                      email: user_data[:login],
-                                      password: user_data[:pass]
-  end
-
-  it 'open Common Documents section' do
-    OpenSection.common_documents if OpenSection.sections_displayed? 10
-  end
-
-  file_types.each_pair do |type, id|
-    describe "create #{type}" do
-      creation_time = Time.now.strftime '%Y-%m-%d %H-%M-%S'
-
-      it 'generate creation time' do
-        creation_time = Time.now.strftime '%Y-%m-%d %H-%M-%S'
-      end
-
-      it "create #{type}" do
-        PlusFAB.open if PlusFAB.displayed?
-        PlusFAB.create_file name: creation_time, id: id
-      end
-
-      it 'close editor' do
-        hardback
-      end
-
-      it "find #{type}" do
-        click id: ID::SEARCH
-        fill_form id: ID::SEARCH_FORM, data: creation_time
-        file = element id: ID::FILE_NAME
-        expect(file.text.include?(creation_time)).to be_truthy
-      end
-
-      it 'close search' do
-        2.times { hardback }
-      end
-    end
-  end
-end
-
-describe 'Create folder in Common Documents section', :roles, :admin do
-  creation_time = Time.now.strftime '%Y-%m-%d %H-%M-%S'
-
-  it 'open login form' do
-    Login.before_login
-  end
-
-  it 'login' do
-    Login.login_onlyoffice_enterprise url: auth_data[:url],
-                                      email: user_data[:login],
-                                      password: user_data[:pass]
-  end
-
-  it 'open Common Documents section' do
-    OpenSection.common_documents if OpenSection.sections_displayed? 10
-  end
-
-  it 'create folder' do
-    PlusFAB.open if PlusFAB.displayed?
-    PlusFAB.create_folder name: creation_time
-  end
-
-  it 'find folder' do
-    click id: ID::SEARCH
-    fill_form id: ID::SEARCH_FORM, data: creation_time
-    file = element id: ID::FOLDER_NAME
-    expect(file.text.include?(creation_time)).to be_truthy
-  end
-
-  it 'close search' do
-    2.times { hardback }
   end
 end

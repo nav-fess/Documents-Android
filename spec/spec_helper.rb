@@ -4,18 +4,18 @@ require 'appium_lib'
 require 'json'
 
 # Constants
+require_relative '../framework/constants/consts'
 require_relative '../framework/constants/id'
 require_relative '../framework/constants/index_ui'
 require_relative '../framework/constants/xpath'
 
 # Helpers
-require_relative '../framework/helpers/add_storage/google_drive.rb'
-require_relative '../framework/helpers/login.rb'
-require_relative '../framework/helpers/registration.rb'
-require_relative '../framework/helpers/helpers.rb'
+require_relative '../framework/helpers/add_storage/add_storage'
+require_relative '../framework/helpers/login'
+require_relative '../framework/helpers/registration'
+require_relative '../framework/helpers/helpers'
 require_relative '../framework/helpers/plus_fab'
 require_relative '../framework/helpers/open_section'
-require_relative '../framework/helpers/add_storage/add_storage'
 
 # Tools
 require_relative '../framework/tools/appium_extension'
