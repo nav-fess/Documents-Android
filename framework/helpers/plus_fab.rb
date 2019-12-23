@@ -6,6 +6,10 @@ class PlusFAB
     click id: ID::PLUS_FAB
   end
 
+  def self.connect
+    click id: ID::CONNECT_STORAGE
+  end
+
   def self.entity_name(name)
     fill_form id: ID::EDIT_NAME_FIELD, data: name
   end

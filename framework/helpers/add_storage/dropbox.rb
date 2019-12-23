@@ -5,14 +5,14 @@ module AddStorage
   # Class contain methods for adding storage Dropbox
   class Dropbox < FrameBaseStorage
     def initialize(login, pass)
-      click_on_storage
-      click_on_sign_in_with_google
+      tap_on_storage
+      tap_on_sign_in_with_google
       fill_email(login)
-      click_button_next_one
+      tap_button_next_one
       fill_pass(pass)
-      click_next_two
+      tap_next_two
       put_back
-      click_on_button_save
+      tap_on_button_save
     end
 
     def self.tap_on_storage
