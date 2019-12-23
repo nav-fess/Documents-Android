@@ -11,7 +11,7 @@ class Login
     else
       login_onlyoffice_enterprise(url: url, email: email, password: password)
     end
-      find_accounts
+    find_accounts
   end
 
   def self.before_login
