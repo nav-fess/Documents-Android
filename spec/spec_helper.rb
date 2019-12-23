@@ -10,10 +10,10 @@ require_relative '../framework/constants/index_ui'
 require_relative '../framework/constants/xpath'
 
 # Helpers
-require_relative '../framework/helpers/add_storage_helper.rb'
-require_relative '../framework/helpers/login_helpers.rb'
-require_relative '../framework/helpers/registration_helper.rb'
-require_relative '../framework/helpers/helpers.rb'
+require_relative '../framework/helpers/add_storage/add_storage'
+require_relative '../framework/helpers/login'
+require_relative '../framework/helpers/registration'
+require_relative '../framework/helpers/helpers'
 require_relative '../framework/helpers/plus_fab'
 require_relative '../framework/helpers/open_section'
 
@@ -22,7 +22,6 @@ require_relative '../framework/tools/appium_extension'
 require_relative '../framework/tools/auth_data_tools'
 
 include AppiumExtension
-include Helpers
 
 RSpec.configure do |config|
   config.filter_run_including foo: :bar

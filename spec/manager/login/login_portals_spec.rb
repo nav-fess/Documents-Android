@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../../spec/spec_helper.rb'
+require 'spec_helper'
+
+login_data_portals = AuthDataTools.parse_json('PortalLoginData.json')
 
 login_data_portals.each do |type_login, data_portal|
   data_portal.each do |data|

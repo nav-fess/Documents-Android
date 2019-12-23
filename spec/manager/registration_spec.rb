@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../spec_helper.rb'
-require_relative '../../framework/helpers/helpers.rb'
+require 'spec_helper'
+
+registration_data = AuthDataTools.parse_json('PortalRegistrationData.json')
 
 describe 'Registration in portal', registration: true do
   registration_data.each do |domain, data_portal|
@@ -9,9 +10,9 @@ describe 'Registration in portal', registration: true do
       context 'Without 2FA' do
         it 'localization portal' do
           sleep 2
-          locale = DataPortals.locale_language(domain)['locale']
-          language = DataPortals.locale_language(domain)['language']
-          capabilities_set('locale' => locale, 'language' => language)
+          locale = Registration.locale_language(domain)['locale']
+          language = Registration.locale_language(domain)['language']
+          Helpers.capabilities_set('locale' => locale, 'language' => language)
           expect(caps['locale']).to eq(locale)
           expect(caps['language']).to eq(language)
         end
@@ -37,7 +38,7 @@ describe 'Registration in portal', registration: true do
           email       = data['email']
           first_name  = data['first_name']
           last_name   = data['last_name']
-          DataPortals.change_domain_to_info if domain.eql? 'info'
+          Registration.change_domain_to_info if domain.eql? 'info'
 
           fill_form id: ID::REGISTRATION_NAME, data: portal_name
           domain_field = element(id: ID::REGISTRATION_DOMAIN).text.split('.').last

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../../spec/spec_helper.rb'
+require 'spec_helper'
+
+include AddStorage
+
+add_data_storage = AuthDataTools.parse_json('StorageAddData.json')
 
 add_data_storage.each do |portal_name, data_portals|
   data_portals['storage_data'].each do |data|
@@ -24,15 +28,15 @@ add_data_storage.each do |portal_name, data_portals|
           pass   = data['pass']
 
           case data['name']
-          when 'google_drive' then AddStorage.google_drive(login, pass)
-          when 'drop_box' then AddStorage.dropbox(login, pass)
-          when 'one_drive' then AddStorage.one_drive(login, pass)
-          when 'yandex_disk' then AddStorage.yandex_disk(login, pass)
-          when 'box' then AddStorage.box(login, pass)
-          when 'owncloud' then AddStorage.owncloud(portal, login, pass)
-          when 'nextcloud' then AddStorage.nextcloud(portal, login, pass)
-          when 'webdav' then AddStorage.webdav(portal, login, pass)
-          when 'sharepoint' then AddStorage.sharepoint(portal, login, pass)
+          when 'google_drive' then GoogleDrive.create(login, pass)
+          when 'drop_box'     then Dropbox.create(login, pass)
+          when 'one_drive'    then OneDrive.create(login, pass)
+          when 'yandex_disk'  then YandexDisk.create(login, pass)
+          when 'box'          then Box.create(login, pass)
+          when 'owncloud'     then OwnCloud.create(portal, login, pass)
+          when 'nextcloud'    then NextCloud.create(portal, login, pass)
+          when 'webdav'       then WebDAV.create(portal, login, pass)
+          when 'sharepoint'   then Sharepoint.create(portal, login, pass)
           else puts 'Other storage'
           end
 

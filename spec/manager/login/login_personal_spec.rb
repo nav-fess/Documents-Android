@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../../spec/spec_helper.rb'
+require 'spec_helper'
+
+login_data_personal = AuthDataTools.parse_json('PersonalLoginData.json')
 
 login_data_personal.each do |domain, data_login|
   data_login.each do |data|
@@ -24,7 +26,7 @@ login_data_personal.each do |domain, data_login|
             fill_form id: ID::PERSONAL_EMAIL, data: login
             fill_form id: ID::PERSONAL_PASSWORD, data: pass
             click id: ID::PERSONAL_SIGN_IN
-            element_exist = element id: ID::ACCOUNTS
+            element_exist = element id: ID::ACCOUNTS, pause: 3
             expect(element_exist).to be_truthy
           end
         when 'google'
