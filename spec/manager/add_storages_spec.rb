@@ -17,8 +17,8 @@ add_data_storage.each do |portal_name, data_portals|
 
       context "on  #{portal_name}:" do
         it 'tap on button connect third-party storage' do
-          click id: ID::PLUS_FAB
-          click_element = click id: ID::CONNECT_STORAGE
+          PlusFAB.open
+          click_element = PlusFAB.connect
           expect(click_element).to be_truthy
         end
 
@@ -40,8 +40,8 @@ add_data_storage.each do |portal_name, data_portals|
           else puts 'Other storage'
           end
 
-          click button: IndexUI::BACK, pause: 12
-          element_exist = element id: ID::ACCOUNTS, pause: 5
+          hardback pause: 12
+          element_exist = Login.find_accounts
           expect(element_exist).to be_truthy
         end
       end

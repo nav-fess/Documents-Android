@@ -14,9 +14,9 @@ login_data_clouds.each do |domain, data_clouds|
       context "#{domain}:" do
         it 'click on button cloud' do
           case domain
-          when 'nextcloud' then click id: ID::NEXTCLOUD
-          when 'owncloud'  then click id: ID::OWNCLOUD
-          when 'webdav'    then click id: ID::WEBDAV
+          when 'nextcloud' then Login.tap_on_nextcloud
+          when 'owncloud'  then Login.tap_on_owncloud
+          when 'webdav'    then Login.tap_on_webdav_cloud
           else puts 'Other cloud'
           end
         end
@@ -26,7 +26,7 @@ login_data_clouds.each do |domain, data_clouds|
           login  = data['login']
           pass   = data['pass']
           Login.login_cloud(portal, login, pass)
-          element_exist = element id: ID::ACCOUNTS
+          element_exist = Login.find_accounts
           expect(element_exist).to be_truthy
         end
       end

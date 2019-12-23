@@ -5,14 +5,14 @@ module AddStorage
   # Class contain methods for adding storage without frame
   class OtherBaseStorage
     def self.create(url, email, pass)
-      click_on_storage
+      tap_on_storage
       fill_url url
       fill_email email
       fill_pass pass
       save
     end
 
-    def self.click_on_storage; end
+    def self.tap_on_storage; end
 
     def self.fill_url(url)
       fill_form id: ID::CLOUD_NAME, data: url

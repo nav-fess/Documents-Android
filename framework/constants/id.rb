@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 # Module for storing resource-id values

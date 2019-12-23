@@ -18,18 +18,18 @@ describe 'Registration in portal', registration: true do
         end
 
         it 'click on skip button' do
-          click_on_element = click id: ID::SKIP_ONBOARDING
+          click_on_element = Registration.tap_on_skip
           expect(click_on_element).to be_truthy
         end
 
         it 'click on onlyoffice button' do
-          click id: ID::CLOUDS
-          click_on_cloud = click id: ID::CLOUDS_MENU_ITEM
+          Registration.tap_on_clouds
+          click_on_cloud = Registration.tap_on_onlyoffice
           expect(click_on_cloud).to be_truthy
         end
 
         it 'tap on the tab Create Portall' do
-          click_on_element = click id: ID::REGISTRATION_CREATE
+          click_on_element = Registration.tap_on_registration_button
           expect(click_on_element).to be_truthy
         end
 
@@ -38,14 +38,15 @@ describe 'Registration in portal', registration: true do
           email       = data['email']
           first_name  = data['first_name']
           last_name   = data['last_name']
+
           Registration.change_domain_to_info if domain.eql? 'info'
 
-          fill_form id: ID::REGISTRATION_NAME, data: portal_name
-          domain_field = element(id: ID::REGISTRATION_DOMAIN).text.split('.').last
-          fill_form id: ID::REGISTRATION_EMAIL, data: email
-          fill_form id: ID::REGISTRATION_FN, data: first_name
-          fill_form id: ID::REGISTRATION_LN, data: last_name
-          click_on_sign_in_button = click id: ID::REGISTRATION_SIGN
+          Registration.fill_portal_name portal_name
+          domain_field = Registration.top_level_domain
+          Registration.fill_email email
+          Registration.fill_first_name first_name
+          Registration.fill_last_name last_name
+          click_on_sign_in_button = Registration.sign_in
 
           expect(click_on_sign_in_button).to be_truthy
           expect(domain_field).to eq(domain)
@@ -53,11 +54,11 @@ describe 'Registration in portal', registration: true do
 
         it 'Input password' do
           pass = data['pass']
-          fill_form id: ID::REGISTRATION_PASS, data: pass
-          fill_form id: ID::REGISTRATION_R_PASS, data: pass
-          click id: ID::REGISTRATION_SIGN
+          Registration.fill_pass pass
+          Registration.re_fill_pass pass
+          Registration.sign_in
           sleep 5
-          click_on_account = click id: ID::ACCOUNTS
+          click_on_account = Login.find_accounts
           expect(click_on_account).to be_truthy
         end
       end

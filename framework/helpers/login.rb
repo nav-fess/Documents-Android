@@ -11,7 +11,12 @@ class Login
     else
       login_onlyoffice_enterprise(url: url, email: email, password: password)
     end
-    element id: ID::ACCOUNTS, pause: 7
+    find_accounts
+  end
+
+  def self.before_login
+    click id: ID::SKIP_ONBOARDING, time: 5
+    click id: ID::CLOUDS
   end
 
   def self.login_onlyoffice_personal(email:, password:)
@@ -19,7 +24,7 @@ class Login
     open_personal_section
     fill_personal_email email
     fill_personal_password password
-    click_personal_sign_in
+    tap_personal_sign_in
   end
 
   def self.login_onlyoffice_enterprise(url:, email:, password:)
@@ -32,9 +37,8 @@ class Login
     click_enterprise_sign_in
   end
 
-  def self.before_login
-    click id: ID::SKIP_ONBOARDING, time: 5
-    click id: ID::CLOUDS
+  def self.find_accounts
+    element id: ID::ACCOUNTS, pause: 7
   end
 
   def self.login_facebook(email_fb, p_fb)
@@ -43,13 +47,13 @@ class Login
     fill_form textfield: IndexUI::FACEBOOK_PASS, data: p_fb
     click button: IndexUI::FACEBOOK_NEXT
     click button: IndexUI::FACEBOOK_CONTINUE, pause: 5
-    element id: ID::ACCOUNTS, pause: 5
+    find_accounts
   end
 
   def self.login_google
     click id: ID::GOOGLE
     click text: IndexUI::GOOGLE_USER, pause: 3
-    element id: ID::ACCOUNTS
+    find_accounts
   end
 
   def self.login_cloud(portal, login, pass)
@@ -99,7 +103,23 @@ class Login
     fill_form id: ID::PERSONAL_PASSWORD, data: password
   end
 
-  def self.click_personal_sign_in
+  def self.tap_personal_sign_in
     click id: ID::PERSONAL_SIGN_IN
+  end
+
+  def self.tap_personal_tab
+    click text: IndexUI::PERSONAL_TAB, pause: 2
+  end
+
+  def self.tap_on_nextcloud
+    click id: ID::NEXTCLOUD
+  end
+
+  def self.tap_on_owncloud
+    click id: ID::OWNCLOUD
+  end
+
+  def self.tap_on_webdav_cloud
+    click id: ID::WEBDAV
   end
 end
