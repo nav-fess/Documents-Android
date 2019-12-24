@@ -26,6 +26,7 @@ login_data_clouds.each do |domain, data_clouds|
           login  = data['login']
           pass   = data['pass']
           Login.login_cloud(portal, login, pass)
+          Helpers.screen('Cloud login', domain)
           element_exist = Login.find_accounts
           expect(element_exist).to be_truthy
         end

@@ -10,4 +10,13 @@ class Helpers
     end
     restart
   end
+
+  def self.screen(folder, screen_name)
+    name_folder = File.join(File.dirname(__FILE__), '..', '..', folder)
+    Dir.mkdir name_folder unless Dir.exist? name_folder
+    sleep 4
+    path_screenshots = File.join(name_folder, "#{screen_name}.png")
+    puts "NAME SCREENSHOTS = #{path_screenshots}"
+    screenshot(path_screenshots)
+  end
 end
