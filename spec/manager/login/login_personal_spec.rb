@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 login_data_personal = AuthDataTools.parse_json('PersonalLoginData.json')
-
+time = Time.now
 login_data_personal.each do |domain, data_login|
   data_login.each do |data|
     describe 'Portal login Personal Without 2FA', login: 'personal' do
@@ -26,12 +26,14 @@ login_data_personal.each do |domain, data_login|
             Login.fill_personal_email email
             Login.fill_personal_password pass
             Login.tap_personal_sign_in
+            Helpers.screen('Login Personal', domain, {pause: 4, time:time})
             element_exist = Login.find_accounts
             expect(element_exist).to be_truthy
           end
         when 'google'
           it 'tap on google button' do
             element_exist = Login.login_google
+            Helpers.screen('Login Personal', domain, {pause: 4, time:time})
             expect(element_exist).to be_truthy
           end
         when 'facebook'
@@ -39,6 +41,7 @@ login_data_personal.each do |domain, data_login|
             fb_login = data['login']
             fbp = data['pass']
             element_exist = Login.login_facebook(fb_login, fbp)
+            Helpers.screen('Login Personal', domain, {pause: 4, time:time})
             expect(element_exist).to be_truthy
           end
         end

@@ -11,11 +11,11 @@ class Helpers
     restart
   end
 
-  def self.screen(folder, screen_name)
-    name_folder = File.join(File.dirname(__FILE__), '..', '..', folder)
-    Dir.mkdir name_folder unless Dir.exist? name_folder
-    sleep 4
-    path_screenshots = File.join(name_folder, "#{screen_name}.png")
+  def self.screen(folder, screen_name, args = {})
+    name_folder = File.join(File.dirname(__FILE__), '..', '..', 'Screenshots', "#{folder}_#{args[:time]}")
+    Dir.mkdir "#{name_folder}" unless Dir.exist? name_folder
+    sleep args[:pause] || DEFAULT_TIME
+    path_screenshots = File.join(name_folder, "#{screen_name}  #{Time.now}.png")
     puts "NAME SCREENSHOTS = #{path_screenshots}"
     screenshot(path_screenshots)
   end

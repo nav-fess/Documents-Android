@@ -10,7 +10,7 @@ module AddStorage
       super('', email, pass)
     end
 
-    def self.tap_on_storage
+    def self.click_on_storage
       click text: IndexUI::YANDEX_STORAGE, pause: 6
     end
 

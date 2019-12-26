@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 login_data_portals = AuthDataTools.parse_json('PortalLoginData.json')
-
+time = Time.now
 login_data_portals.each do |type_login, data_portal|
   data_portal.each do |data|
     describe 'Portal login portals Without 2FA', login: 'portals' do
@@ -33,11 +33,13 @@ login_data_portals.each do |type_login, data_portal|
             Login.fill_enterprise_password password
             Login.click_enterprise_sign_in
             element_exist = Login.find_accounts
+            Helpers.screen('Login portals', type_login, {pause: 4, time:time})
             expect(element_exist).to be_truthy
           end
         when 'google'
           it 'tap on google button' do
             element_exist = Login.login_google
+            Helpers.screen('Login portals', type_login, {pause: 4, time:time})
             expect(element_exist).to be_truthy
           end
         when 'facebook'
@@ -45,6 +47,7 @@ login_data_portals.each do |type_login, data_portal|
             fb_login = data['login']
             fbp = data['pass']
             element_exist = Login.login_facebook(fb_login, fbp)
+            Helpers.screen('Login portals', type_login, {pause: 4, time:time})
             expect(element_exist).to be_truthy
           end
         end
