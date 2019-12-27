@@ -13,6 +13,9 @@ login_data_personal.each do |domain, data_login|
       end
 
       context 'Personal:' do
+        screenshot_data = { folder: 'Login Personal', screen_name: domain, pause: 4,
+                            timestamp: timestamp }
+
         it 'click on personal tab' do
           click_on_tab = Login.tap_personal_tab
           expect(click_on_tab).to be_truthy
@@ -26,16 +29,14 @@ login_data_personal.each do |domain, data_login|
             Login.fill_personal_email email
             Login.fill_personal_password pass
             Login.tap_personal_sign_in
-            Helpers.screen folder: 'Login Personal', screen_name: domain, pause: 4,
-                           timestamp: timestamp
+            Helpers.screen screenshot_data
             element_exist = Login.find_accounts
             expect(element_exist).to be_truthy
           end
         when 'google'
           it 'tap on google button' do
             element_exist = Login.login_google
-            Helpers.screen folder: 'Login Personal', screen_name: domain, pause: 4,
-                           timestamp: timestamp
+            Helpers.screen screenshot_data
             expect(element_exist).to be_truthy
           end
         when 'facebook'
@@ -43,8 +44,7 @@ login_data_personal.each do |domain, data_login|
             fb_login = data['login']
             fbp = data['pass']
             element_exist = Login.login_facebook(fb_login, fbp)
-            Helpers.screen folder: 'Login Personal', screen_name: domain, pause: 4,
-                           timestamp: timestamp
+            Helpers.screen screenshot_data
             expect(element_exist).to be_truthy
           end
         end
