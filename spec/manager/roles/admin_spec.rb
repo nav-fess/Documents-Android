@@ -52,7 +52,7 @@ describe 'Create files and folder in each section' do
 
           it "delete #{type}" do
             click id: context_ids[type]
-            click id: ID::FILE_DELETE
+            click id: ID::CONTEXT_DELETE
             click id: ID::DIALOG_ACCEPT
           end
 
