@@ -11,7 +11,7 @@ class PlusFAB
   end
 
   def self.entity_name(name)
-    fill_form id: ID::EDIT_NAME_FIELD, data: name
+    fill_form id: ID::DIALOG_FIELD, data: name
   end
 
   def self.create(name, type, close = false)

@@ -12,4 +12,8 @@ module Xpath
   COMMON_SECTION = "//android.widget.TextView[@text='COMMON']"
   PROJECTS_SECTION = "//android.widget.TextView[@text='PROJECTS']"
   TRASH_SECTION = "//android.widget.TextView[@text='TRASH']"
+
+  # Camera
+  CAMERA_MAKE_PHOTO = "//GLButton[@text='Shutter']"
+  CAMERA_SWITCH = "//GLButton[@text='Switch camera']"
 end
