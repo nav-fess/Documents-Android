@@ -17,7 +17,13 @@ module Consts
   SPREADSHEET_EXTENSIONS = %w[xlsx xls ods csv].freeze
   PRESENTATION_EXTENSIONS = %w[pptx ppt odp].freeze
 
+  module MyDocuments
+    TITLE = 'MyDocuments'
+  end
+
   module SharedWithMe
+    TITLE = 'SharedWithMe'
+
     ADMIN_DOCUMENT_NAME = PREFIX_ADMIN + DOCUMENT_NAME
     ADMIN_SPREADSHEET_NAME = PREFIX_ADMIN + SPREADSHEET_NAME
     ADMIN_PRESENTATION_NAME = PREFIX_ADMIN + PRESENTATION_NAME
@@ -29,8 +35,18 @@ module Consts
     USER_FOLDER_NAME = PREFIX_ADMIN + FOLDER_NAME
   end
 
+  module CommonDocuments
+    TITLE = 'CommonDocuments'
+  end
+
   module ProjectDocuments
+    TITLE = 'ProjectDocuments'
+
     ADMIN_PROJECT_NAME = PREFIX_ADMIN + PROJECT_NAME
     USER_PROJECT_NAME = PREFIX_USER + PROJECT_NAME
+  end
+
+  module Trash
+    TITLE = 'Trash'
   end
 end
