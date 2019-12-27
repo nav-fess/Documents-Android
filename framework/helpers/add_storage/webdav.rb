@@ -4,7 +4,7 @@
 module AddStorage
   # Class contain methods for adding storage WebDAV
   class WebDAV < OtherBaseStorage
-    def self.click_on_storage
+    def self.tap_on_storage
       click text: IndexUI::WEBDAV, pause: 6
     end
   end

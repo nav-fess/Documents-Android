@@ -9,24 +9,24 @@ login_data_personal.each do |domain, data_login|
     describe 'Portal login Personal Without 2FA', login: 'personal' do
       before(:all) do
         Login.before_login
-        click id: ID::CLOUDS_MENU_ITEM
+        Login.open_onlyoffice_connect
       end
 
       context 'Personal:' do
         it 'click on personal tab' do
-          click_on_tab = click text: IndexUI::PERSONAL_TAB, pause: 2
+          click_on_tab = Login.tap_personal_tab
           expect(click_on_tab).to be_truthy
         end
 
         case domain
         when 'personal'
           it 'input data' do
-            login = data['login']
+            email = data['login']
             pass =  data['pass']
-            fill_form id: ID::PERSONAL_EMAIL, data: login
-            fill_form id: ID::PERSONAL_PASSWORD, data: pass
-            click id: ID::PERSONAL_SIGN_IN
-            element_exist = element id: ID::ACCOUNTS, pause: 3
+            Login.fill_personal_email email
+            Login.fill_personal_password pass
+            Login.tap_personal_sign_in
+            element_exist = Login.find_accounts
             expect(element_exist).to be_truthy
           end
         when 'google'

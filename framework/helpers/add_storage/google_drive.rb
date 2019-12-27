@@ -7,17 +7,17 @@ module AddStorage
   # Class contain methods for adding storage Google Drive
   class GoogleDrive < FrameBaseStorage
     def self.create(email, pass)
-      click_on_storage
+      tap_on_storage
       fill_email(email)
-      click_button_next_one
+      tap_button_next_one
       fill_pass(pass)
-      click_next_two
-      click_next_three
+      tap_next_two
+      tap_next_three
       put_back
-      click_on_button_save
+      tap_on_button_save
     end
 
-    def self.click_on_storage
+    def self.tap_on_storage
       click text: IndexUI::GOOGLE_STORAGE, pause: 6
     end
 
@@ -25,7 +25,7 @@ module AddStorage
       fill_form textfield: IndexUI::GOOGLE_EMAIL, data: email
     end
 
-    def self.click_button_next_one
+    def self.tap_button_next_one
       click button: IndexUI::GOOGLE_NEXT_ONE
     end
 
@@ -33,11 +33,11 @@ module AddStorage
       fill_form textfield: IndexUI::GOOGLE_PASS_STORAGE, data: pass, pause: 3
     end
 
-    def self.click_next_two
+    def self.tap_next_two
       click button: IndexUI::GOOGLE_NEXT_TWO
     end
 
-    def self.click_next_three
+    def self.tap_next_three
       click button: IndexUI::GOOGLE_NEXT_THREE, pause: 4
     end
   end
