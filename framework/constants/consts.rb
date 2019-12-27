@@ -13,6 +13,10 @@ module Consts
 
   PREFIX_CREATE = 'Created'
 
+  DOCUMENT_EXTENSIONS = %w[docx doc odt rtf txt].freeze
+  SPREADSHEET_EXTENSIONS = %w[xlsx xls ods csv].freeze
+  PRESENTATION_EXTENSIONS = %w[pptx ppt odp].freeze
+
   module SharedWithMe
     ADMIN_DOCUMENT_NAME = PREFIX_ADMIN + DOCUMENT_NAME
     ADMIN_SPREADSHEET_NAME = PREFIX_ADMIN + SPREADSHEET_NAME

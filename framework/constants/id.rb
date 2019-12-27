@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 # Module for storing resource-id values
@@ -57,20 +56,26 @@ module ID
   FILE_INFO = 'list_explorer_file_info'
   FILE_CONTEXT = 'list_explorer_file_context'
   SNACKBAR = 'snackbar_text'
+  FOLDER_LAYOUT = 'list_explorer_folder_layout'
   FOLDER_NAME = 'list_explorer_folder_name'
   FOLDER_INFO = 'list_explorer_folder_info'
   FOLDER_CONTEXT = 'list_explorer_folder_context'
   SEARCH = 'search_button'
   SEARCH_FORM = 'search_src_text'
+  SEARCH_CLOSE = 'search_close_btn'
 
   # File context menu
-  FILE_CONTEXT_NAME = 'list_explorer_context_header_title_text'
-  FILE_CONTEXT_INFO = 'list_explorer_context_header_info_text'
-  FILE_COPY = 'list_explorer_context_copy'
-  FILE_DOWNLOAD = 'list_explorer_context_download'
-  FILE_SHARE_REMOVE = 'list_explorer_context_share_delete'
-  FILE_DELETE = 'list_explorer_context_delete'
-  SHARE_MENU = 'list_explorer_context_share'
+  CONTEXT_NAME = 'list_explorer_context_header_title_text'
+  CONTEXT_INFO = 'list_explorer_context_header_info_text'
+  CONTEXT_COPY = 'list_explorer_context_copy'
+  CONTEXT_DOWNLOAD = 'list_explorer_context_download'
+  CONTEXT_SHARE_REMOVE = 'list_explorer_context_share_delete'
+  CONTEXT_DELETE = 'list_explorer_context_delete'
+  CONTEXT_RENAME = 'list_explorer_context_rename'
+  CONTEXT_EDIT = 'list_explorer_context_edit'
+  CONTEXT_SHARE = 'list_explorer_context_share'
+  CONTEXT_EXTERNAL_LINK = 'list_explorer_context_external_link'
+  CONTEXT_MOVE = 'list_explorer_context_move'
 
   # Share menu
   ADD_SHARE_PEOPLE = 'share_settings_add_item'
@@ -91,14 +96,18 @@ module ID
   MAKE_PHOTO = 'list_explorer_action_photo'
   UPLOAD_FILE = 'list_explorer_action_upload'
   CONNECT_STORAGE = 'list_explorer_action_storage'
-  EDIT_NAME_FIELD = 'dialogCommonEditLineValueEdit'
 
   # Dialogs
   DIALOG_ACCEPT = 'dialogCommonAcceptButton'
   DIALOG_CANCEL = 'dialogCommonCancelButton'
   DIALOG_TITLE = 'dialogCommonTopTitleText'
   DIALOG_BODY = 'dialogCommonBottomTitleText'
+  DIALOG_FIELD = 'dialogCommonEditLineValueEdit'
 
   # Storage
   CONNECT_SAVE = 'storage_connect_save'
+
+  # Camera
+  CAMERA_RETRY = 'retry'
+  CAMERA_SAVE = 'okay'
 end
