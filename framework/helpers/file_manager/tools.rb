@@ -9,7 +9,7 @@ module FileManager
 
     def self.extension(string)
       list = string.split('.')
-      list[-1] if list[-1] != string
+      list.last if list.last != string
     end
 
     def self.extension_to_type(string)
