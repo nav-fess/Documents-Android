@@ -48,7 +48,7 @@ describe 'Check the absence of a plus FAB in sections', :roles, :guest do
   end
 
   it 'check in Projects Documents' do
-    OpenSection.projects_documents if OpenSection.sections_displayed? 10
+    OpenSection.project_documents if OpenSection.sections_displayed? 10
     plus_fab = elements id: ID::PLUS_FAB
     expect(plus_fab.count.zero?).to be_truthy
   end

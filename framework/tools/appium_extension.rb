@@ -55,4 +55,29 @@ module AppiumExtension
     sleep args[:pause] || DEFAULT_PAUSE
     press_keycode 4
   end
+
+  def close_keyboard
+    hide_keyboard if is_keyboard_shown
+  end
+
+  def swipe_down(target, coeff_top = 1, coeff_bottom = 1, duration = 5000)
+    location = target.location
+    size = target.size
+    x = location.x + size.width / 2
+    y = location.y + size.height
+    Appium::TouchAction.new.swipe(start_x: x, start_y: y * coeff_bottom,
+                                  offset_x: x, offset_y: y * coeff_top,
+                                  duration: duration).perform
+  end
+
+  def find_inside(args = {})
+    target = args.keys[0]
+    args[target].find_element id: args[:id]
+  end
+
+  def find_inside_safe(args = {})
+    target = args.keys[0]
+    list = args[target].find_elements id: args[:id]
+    list.first if list.count.positive?
+  end
 end

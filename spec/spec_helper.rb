@@ -16,6 +16,7 @@ require_relative '../framework/helpers/registration'
 require_relative '../framework/helpers/helpers'
 require_relative '../framework/helpers/plus_fab'
 require_relative '../framework/helpers/open_section'
+require_relative '../framework/helpers/file_manager'
 
 # Tools
 require_relative '../framework/tools/appium_extension'
