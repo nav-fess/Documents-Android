@@ -14,7 +14,7 @@ class OpenSection
     click xpath: Xpath::COMMON_SECTION
   end
 
-  def self.projects_documents
+  def self.project_documents
     click xpath: Xpath::PROJECTS_SECTION
   end
 
