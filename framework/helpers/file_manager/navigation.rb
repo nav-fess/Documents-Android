@@ -3,13 +3,6 @@
 module FileManager
   # Class for navigation management
   class Navigation
-    MY_DOCUMENTS = ['my documents', 'mydocuments'].freeze
-    SHARED_WITH_ME = ['shared with me', 'sharedwithme'].freeze
-    COMMON_DOCUMENTS = ['common documents', 'commondocuments'].freeze
-    PROJECT_DOCUMENTS = ['project documents', 'projectdocuments',\
-                         'projects documents', 'projectsdocuments'].freeze
-    TRASH = ['trash'].freeze
-
     def self.go(to:)
       path = Tools.parse_path to
       open_section path[:section]&.downcase
@@ -22,14 +15,13 @@ module FileManager
 
     def self.open_section(section)
       OpenSection.sections_displayed? 10
-      if MY_DOCUMENTS.include? section
-        OpenSection.my_documents
-      elsif SHARED_WITH_ME.include? section
-        OpenSection.shared_with_me
-      elsif COMMON_DOCUMENTS.include? section
-        OpenSection.common_documents
-      elsif TRASH.include? section
-        OpenSection.trash
+      case section
+      when Consts::MyDocuments::TITLE then OpenSection.my_documents
+      when Consts::SharedWithMe::TITLE then OpenSection.shared_with_me
+      when Consts::CommonDocuments::TITLE then OpenSection.common_documents
+      when Consts::ProjectDocuments::TITLE then OpenSection.project_documents
+      when Consts::Trash::TITLE then OpenSection.trash
+      else raise "Unknown section name: #{section}!"
       end
     end
 
