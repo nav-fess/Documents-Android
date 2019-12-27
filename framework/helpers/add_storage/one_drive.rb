@@ -7,14 +7,14 @@ module AddStorage
     def initialize(login, pass)
       tap_on_storage
       fill_email(login)
-      tap_button_next_one
+      tap_next_one
       fill_pass(pass)
       tap_button_next_two
       put_back
       tap_on_button_save
     end
 
-    def self.tap_on_onedrive_storage
+    def self.tap_on_storage
       click text: IndexUI::ONEDRIVE_STORAGE, pause: 6
     end
 

@@ -4,13 +4,21 @@
 module AddStorage
   # Class contain methods for adding storage with frame
   class FrameBaseStorage
-    def self.create(email, pass); end
+    def self.create
+      raise NotImplementedError
+    end
 
-    def self.tap_on_storage; end
+    def self.tap_on_storage
+      raise NotImplementedError
+    end
 
-    def self.fill_email(email); end
+    def self.fill_email
+      raise NotImplementedError
+    end
 
-    def self.fill_pass(pass); end
+    def self.fill_pass
+      raise NotImplementedError
+    end
 
     def self.tap_on_button_save
       click id: ID::CONNECT_SAVE, pause: 4

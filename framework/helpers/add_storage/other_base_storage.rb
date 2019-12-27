@@ -12,7 +12,9 @@ module AddStorage
       save
     end
 
-    def self.tap_on_storage; end
+    def self.tap_on_storage
+      raise NotImplementedError
+    end
 
     def self.fill_url(url)
       fill_form id: ID::CLOUD_NAME, data: url

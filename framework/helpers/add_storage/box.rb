@@ -7,7 +7,7 @@ module AddStorage
     def initialize(login, pass)
       tap_on_storage
       fill_email(login)
-      tap_button_next_one
+      tap_next_one
       fill_pass(pass)
       tap_authorize
       tap_access

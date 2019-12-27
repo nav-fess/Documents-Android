@@ -5,7 +5,7 @@ require 'spec_helper'
 include AddStorage
 
 add_data_storage = AuthDataTools.parse_json('StorageAddData.json')
-time = Time.now
+timestamp = Time.now
 add_data_storage.each do |portal_name, data_portals|
   data_portals['storage_data'].each do |data|
     describe 'Add Storage', storage: true do
@@ -42,7 +42,8 @@ add_data_storage.each do |portal_name, data_portals|
 
           hardback pause: 12
           element_exist = Login.find_accounts
-          Helpers.screen('Add storage', data['name'], {pause: 4, time:time})
+          Helpers.screen folder: 'Add storage', screen_name: data['name'], pause: 4,
+                         timestamp: timestamp
           expect(element_exist).to be_truthy
         end
       end

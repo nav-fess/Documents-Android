@@ -31,7 +31,16 @@ RSpec.configure do |config|
   capabilities = Appium.load_settings file: appium_config
   capabilities[:caps][:app] = File.join(File.dirname(__FILE__), '..', 'apk', 'Documents.apk')
 
-  Selenium::WebDriver.logger.level = :error
+  config.after(:each) do |example|
+    if example.exception
+      meta = example.metadata
+      filename = File.basename(meta[:file_path])
+      fail_spec_info = "#{meta[:line_number]}|#{meta[:full_description]}"
+      screenshot_name = "#{Time.now.strftime '%Y-%m-%d-%H-%M-%S'}|#{filename}|#{fail_spec_info}.png"
+      screenshot_path = "screenshots/errors/#{screenshot_name}"
+      screenshot(screenshot_path)
+    end
+  end
 
   config.before(:all) do
     Appium::Driver.new(capabilities, true)
