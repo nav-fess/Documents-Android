@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 login_data_portals = AuthDataTools.parse_json('PortalLoginData.json')
-
+timestamp = Time.now
 login_data_portals.each do |type_login, data_portal|
   data_portal.each do |data|
     describe 'Portal login portals Without 2FA', login: 'portals' do
@@ -12,6 +12,9 @@ login_data_portals.each do |type_login, data_portal|
       end
 
       context "domain : #{data['portal']}" do
+        screenshot_data = { folder: 'Login Portals', screen_name: type_login, pause: 4,
+                            timestamp: timestamp }
+
         it 'click on button portal' do
           Login.open_onlyoffice_connect
         end
@@ -33,11 +36,13 @@ login_data_portals.each do |type_login, data_portal|
             Login.fill_enterprise_password password
             Login.click_enterprise_sign_in
             element_exist = Login.find_accounts
+            Helpers.screen screenshot_data
             expect(element_exist).to be_truthy
           end
         when 'google'
           it 'tap on google button' do
             element_exist = Login.login_google
+            Helpers.screen screenshot_data
             expect(element_exist).to be_truthy
           end
         when 'facebook'
@@ -45,6 +50,7 @@ login_data_portals.each do |type_login, data_portal|
             fb_login = data['login']
             fbp = data['pass']
             element_exist = Login.login_facebook(fb_login, fbp)
+            Helpers.screen screenshot_data
             expect(element_exist).to be_truthy
           end
         end

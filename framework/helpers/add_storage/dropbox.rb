@@ -8,7 +8,7 @@ module AddStorage
       tap_on_storage
       tap_on_sign_in_with_google
       fill_email(login)
-      tap_button_next_one
+      tap_next_one
       fill_pass(pass)
       tap_next_two
       put_back

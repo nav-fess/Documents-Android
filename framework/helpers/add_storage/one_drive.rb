@@ -5,16 +5,16 @@ module AddStorage
   # Class contain methods for adding storage OneDrive
   class OneDrive < FrameBaseStorage
     def initialize(login, pass)
-      tap_on_onedrive_storage
-      fill_form_google_email(login)
-      tap_button_next_one
-      fill_pass_onedrive(pass)
+      tap_on_storage
+      fill_email(login)
+      tap_next_one
+      fill_pass(pass)
       tap_button_next_two
       put_back
-      tapon_button_save
+      tap_on_button_save
     end
 
-    def self.tap_on_onedrive_storage
+    def self.tap_on_storage
       click text: IndexUI::ONEDRIVE_STORAGE, pause: 6
     end
 

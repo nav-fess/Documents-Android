@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 registration_data = AuthDataTools.parse_json('PortalRegistrationData.json')
-
+timestamp = Time.now
 describe 'Registration in portal', registration: true do
   registration_data.each do |domain, data_portal|
     data_portal.each do |data|
@@ -47,7 +47,6 @@ describe 'Registration in portal', registration: true do
           Registration.fill_first_name first_name
           Registration.fill_last_name last_name
           click_on_sign_in_button = Registration.sign_in
-
           expect(click_on_sign_in_button).to be_truthy
           expect(domain_field).to eq(domain)
         end
@@ -59,6 +58,8 @@ describe 'Registration in portal', registration: true do
           Registration.sign_in
           sleep 5
           click_on_account = Login.find_accounts
+          Helpers.screen folder: 'Registration', screen_name: data['portal'], pause: 4,
+                         timestamp: timestamp
           expect(click_on_account).to be_truthy
         end
       end

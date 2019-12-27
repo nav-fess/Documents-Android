@@ -9,7 +9,7 @@ module AddStorage
     def self.create(email, pass)
       tap_on_storage
       fill_email(email)
-      tap_button_next_one
+      tap_next_one
       fill_pass(pass)
       tap_next_two
       tap_next_three
@@ -25,7 +25,7 @@ module AddStorage
       fill_form textfield: IndexUI::GOOGLE_EMAIL, data: email
     end
 
-    def self.tap_button_next_one
+    def self.tap_next_one
       click button: IndexUI::GOOGLE_NEXT_ONE
     end
 

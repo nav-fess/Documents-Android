@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 login_data_clouds = AuthDataTools.parse_json('CloudLoginData.json')
-
+timestamp = Time.now
 login_data_clouds.each do |domain, data_clouds|
   data_clouds.each do |data|
     describe 'Cloud login', login: 'cloud' do
@@ -26,6 +26,7 @@ login_data_clouds.each do |domain, data_clouds|
           login  = data['login']
           pass   = data['pass']
           Login.login_cloud(portal, login, pass)
+          Helpers.screen folder: 'Cloud login', screen_name: domain, pause: 4, timestamp: timestamp
           element_exist = Login.find_accounts
           expect(element_exist).to be_truthy
         end
