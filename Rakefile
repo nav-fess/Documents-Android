@@ -8,7 +8,7 @@ DATA_FOLDER = 'data'
 desc 'prepare folder for screenshots'
 task :update_folder_for_screenshots do
   FileUtils.rm_rf SCREEN_FOLDER
-  FileUtils.mkdir_p SCREEN_FOLDER + '/' + ERRORS_FOLDER
+  FileUtils.mkdir_p File.join SCREEN_FOLDER, ERRORS_FOLDER
 end
 
 desc 'create folder for application'
