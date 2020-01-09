@@ -15,12 +15,12 @@ module FileManager
 
     def self.open_section(section)
       OpenSection.sections_displayed? 10
-      case section
-      when Consts::MyDocuments::TITLE then OpenSection.my_documents
-      when Consts::SharedWithMe::TITLE then OpenSection.shared_with_me
-      when Consts::CommonDocuments::TITLE then OpenSection.common_documents
-      when Consts::ProjectDocuments::TITLE then OpenSection.project_documents
-      when Consts::Trash::TITLE then OpenSection.trash
+      case section&.downcase
+      when Consts::MyDocuments::TITLE.downcase then OpenSection.my_documents
+      when Consts::SharedWithMe::TITLE.downcase then OpenSection.shared_with_me
+      when Consts::CommonDocuments::TITLE.downcase then OpenSection.common_documents
+      when Consts::ProjectDocuments::TITLE.downcase then OpenSection.project_documents
+      when Consts::Trash::TITLE.downcase then OpenSection.trash
       else raise "Unknown section name: #{section}!"
       end
     end
