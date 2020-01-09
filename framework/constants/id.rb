@@ -110,4 +110,17 @@ module ID
   # Camera
   CAMERA_RETRY = 'retry'
   CAMERA_SAVE = 'okay'
+
+  # Move / Copy operations
+  OPERATIONS_MY = 'operation_sections_my'
+  OPERATIONS_SHARED = 'operation_sections_share'
+  OPERATIONS_COMMON = 'operation_sections_common'
+  OPERATIONS_PROJECTS = 'operation_sections_projects'
+  OPERATIONS_CANCEL = 'operation_cancel_button'
+  OPERATIONS_CONFIRM = 'operation_action_button'
+  OPERATIONS_DUPLICATE_OVERWRITE = 'overwrite_radio_button'
+  OPERATIONS_DUPLICATE_COPY = 'copy_radio_button'
+  OPERATIONS_DUPLICATE_SKIP = 'skip_radio_button'
+  OPERATIONS_DUPLICATE_CANCEL = 'cancel_button'
+  OPERATIONS_DUPLICATE_CONFIRM = 'continue_button'
 end
