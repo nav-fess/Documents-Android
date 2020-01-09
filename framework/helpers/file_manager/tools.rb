@@ -23,7 +23,7 @@ module FileManager
       list = string.split '/'
       result = {}
       result[:string] = string
-      result[:name] = list.pop unless string[-1] == '/'
+      result[:name] = list.pop unless string.chars.last == '/'
       result[:section] = list.shift
       result[:folders] = list
       result
