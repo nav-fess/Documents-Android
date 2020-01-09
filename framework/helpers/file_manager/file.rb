@@ -43,12 +43,36 @@ module FileManager
       # TODO
     end
 
-    def copy
-      # TODO
+    def copy(to:)
+      open_context unless @context
+      click id: ID::CONTEXT_COPY
+      Navigation.operations_frame_go to: to
+      click id: ID::OPERATIONS_CONFIRM
+      sleep 2
+      if elements(id: ID::OPERATIONS_DUPLICATE_COPY).count.positive?
+        click id: ID::OPERATIONS_DUPLICATE_COPY
+        click id: ID::OPERATIONS_DUPLICATE_CONFIRM
+      end
+      @context = false
+
+      @root_element = Search.find_file_on_page @name
     end
 
-    def move
-      # TODO
+    def move(to:)
+      open_context unless @context
+      click id: ID::CONTEXT_MOVE
+      Navigation.operations_frame_go to: to
+      click id: ID::OPERATIONS_CONFIRM
+      sleep 2
+      if elements(id: ID::OPERATIONS_DUPLICATE_COPY).count.positive?
+        click id: ID::OPERATIONS_DUPLICATE_COPY
+        click id: ID::OPERATIONS_DUPLICATE_CONFIRM
+      end
+      @context = false
+
+      @path = Tools.parse_path to
+      @path[:name] = @name
+      @root_element = nil
     end
 
     def delete

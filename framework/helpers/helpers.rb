@@ -5,7 +5,7 @@ require_relative '../../spec/spec_helper.rb'
 # Class for wrapper appium
 class Helpers
   DEFAULT_PAUSE = 0
-  
+
   def self.capabilities_set(capabilities)
     capabilities.each do |key, value|
       caps[key] = value
