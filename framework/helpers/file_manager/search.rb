@@ -25,7 +25,8 @@ module FileManager
       loop do
         break_trigger = find_break_trigger items
 
-        find_on_visible_page items, ID::FILE_NAME, string
+        target = find_on_visible_page items, ID::FILE_NAME, string
+        return target unless target.nil?
 
         swipe_down page, 0.2, 0.8, 5000
         counter += 1
