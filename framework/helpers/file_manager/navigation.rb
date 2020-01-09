@@ -5,7 +5,7 @@ module FileManager
   class Navigation
     def self.go(to:)
       path = Tools.parse_path to
-      open_section path[:section]&.downcase
+      open_section path[:section]
       path[:folders]&.each do |folder_name|
         Create.folder(folder_name) unless Search.folder_exist? folder_name
         sleep 3
