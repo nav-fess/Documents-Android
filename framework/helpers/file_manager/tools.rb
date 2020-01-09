@@ -21,7 +21,12 @@ module FileManager
 
     def self.parse_path(string)
       list = string.split '/'
-      { string: string, name: list.pop, section: list.shift, folders: list }
+      result = {}
+      result[:string] = string
+      result[:name] = list.pop unless string[-1] == '/'
+      result[:section] = list.shift
+      result[:folders] = list
+      result
     end
   end
 end
