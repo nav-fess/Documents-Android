@@ -25,9 +25,28 @@ module FileManager
       end
     end
 
+    def self.operations_frame_open_section(section)
+      case section
+      when Consts::MyDocuments::TITLE then click id: ID::OPERATIONS_MY
+      when Consts::SharedWithMe::TITLE then click id: ID::OPERATIONS_SHARED
+      when Consts::CommonDocuments::TITLE then click id: ID::OPERATIONS_COMMON
+      when Consts::ProjectDocuments::TITLE then click id: ID::OPERATIONS_PROJECTS
+      else raise "Unknown section name: #{section}!"
+      end
+    end
+
     def self.open_folder(folder)
       searched_folder = Search.find_folder_on_page(folder)
       searched_folder.click
+    end
+
+    def self.operations_frame_go(to:)
+      path = Tools.parse_path to
+      operations_frame_open_section path[:section]
+      path[:folders]&.each do |folder_name|
+        sleep 3
+        open_folder folder_name
+      end
     end
 
     def self.cloud_root
