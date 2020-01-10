@@ -18,13 +18,13 @@ module FileManager
       end
 
       close_editor
-      @root_element = Search.find_file_on_page @name
+      update_element_link
     end
 
     def init
       Navigation.go to: @path[:string]
       @extension = Tools.extension @name
-      @root_element = Search.find_file_on_page @name
+      update_element_link
     end
 
     def rename(name)
@@ -36,58 +36,7 @@ module FileManager
       @path[:name] = name
       @context = false
 
-      @root_element = Search.find_file_on_page @name
-    end
-
-    def share
-      # TODO
-    end
-
-    def copy(to:)
-      open_context unless @context
-      click id: ID::CONTEXT_COPY
-      Navigation.operations_frame_go to: to
-      click id: ID::OPERATIONS_CONFIRM
-      sleep 2
-      if elements(id: ID::OPERATIONS_DUPLICATE_COPY).count.positive?
-        click id: ID::OPERATIONS_DUPLICATE_COPY
-        click id: ID::OPERATIONS_DUPLICATE_CONFIRM
-      end
-      @context = false
-
-      @root_element = Search.find_file_on_page @name
-    end
-
-    def move(to:)
-      open_context unless @context
-      click id: ID::CONTEXT_MOVE
-      Navigation.operations_frame_go to: to
-      click id: ID::OPERATIONS_CONFIRM
-      sleep 2
-      if elements(id: ID::OPERATIONS_DUPLICATE_COPY).count.positive?
-        click id: ID::OPERATIONS_DUPLICATE_COPY
-        click id: ID::OPERATIONS_DUPLICATE_CONFIRM
-      end
-      @context = false
-
-      @path = Tools.parse_path to
-      @path[:name] = @name
-      @root_element = nil
-    end
-
-    def delete
-      open_context unless @context
-      click id: ID::CONTEXT_DELETE
-      click id: ID::DIALOG_ACCEPT
-      @context = false
-      @root_element = nil
-    end
-
-    def info
-      open_context unless @context
-      file_info = element(id: ID::CONTEXT_INFO).text
-      close_context if @context
-      file_info
+      update_element_link
     end
 
     def open_context
@@ -119,6 +68,14 @@ module FileManager
 
     def close_editor
       hardback pause: 2
+    end
+
+    def update_element_link
+      @root_element = Search.find_file_on_page @name
+    end
+
+    def remove_element_link
+      @root_element = nil
     end
   end
 end
