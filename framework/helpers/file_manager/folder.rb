@@ -7,12 +7,12 @@ module FileManager
       Navigation.go to: @path[:string]
       Create.folder @name
 
-      @root_element = Search.find_folder_on_page @name
+      update_element_link
     end
 
     def init
       Navigation.go to: @path[:string]
-      @root_element = Search.find_folder_on_page @name
+      update_element_link
     end
 
     def rename(name)
@@ -24,58 +24,27 @@ module FileManager
       @path[:name] = name
       @context = false
 
-      @root_element = Search.find_folder_on_page @name
-    end
-
-    def share
-      # TODO
+      update_element_link
     end
 
     def copy(to:)
       open_context unless @context
       click id: ID::CONTEXT_COPY
-      Navigation.operations_frame_go to: to
-      click id: ID::OPERATIONS_CONFIRM
-      sleep 2
-      if elements(id: ID::OPERATIONS_DUPLICATE_COPY).count.positive?
-        click id: ID::OPERATIONS_DUPLICATE_COPY
-        click id: ID::OPERATIONS_DUPLICATE_CONFIRM
-      end
+      CopyMove path: to
       @context = false
 
-      @root_element = Search.find_folder_on_page @name
+      update_element_link
     end
 
     def move(to:)
       open_context unless @context
       click id: ID::CONTEXT_MOVE
-      Navigation.operations_frame_go to: to
-      click id: ID::OPERATIONS_CONFIRM
-      sleep 2
-      if elements(id: ID::OPERATIONS_DUPLICATE_COPY).count.positive?
-        click id: ID::OPERATIONS_DUPLICATE_COPY
-        click id: ID::OPERATIONS_DUPLICATE_CONFIRM
-      end
+      CopyMove path: to
       @context = false
 
       @path = Tools.parse_path to
       @path[:name] = @name
-      @root_element = nil
-    end
-
-    def delete
-      open_context unless @context
-      click id: ID::CONTEXT_DELETE
-      click id: ID::DIALOG_ACCEPT
-      @context = false
-      @root_element = nil
-    end
-
-    def info
-      open_context unless @context
-      info = element(id: ID::CONTEXT_INFO).text
-      close_context if @context
-      info
+      remove_element_link
     end
 
     def open_context
@@ -87,6 +56,10 @@ module FileManager
     def close_context
       hardback
       @context = false
+    end
+
+    def update_element_link
+      @root_element = Search.find_folder_on_page @name
     end
   end
 end

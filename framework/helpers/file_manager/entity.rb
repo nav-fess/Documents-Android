@@ -20,23 +20,42 @@ module FileManager
     end
 
     def share
-      raise NotImplementedError
+      # TODO
     end
 
-    def copy
-      raise NotImplementedError
+    def copy(to:)
+      open_context unless @context
+      click id: ID::CONTEXT_COPY
+      CopyMove path: to
+      @context = false
+
+      update_element_link
     end
 
-    def move
-      raise NotImplementedError
+    def move(to:)
+      open_context unless @context
+      click id: ID::CONTEXT_MOVE
+      CopyMove path: to
+      @context = false
+
+      @path = Tools.parse_path to
+      @path[:name] = @name
+      remove_element_link
     end
 
     def delete
-      raise NotImplementedError
+      open_context unless @context
+      click id: ID::CONTEXT_DELETE
+      click id: ID::DIALOG_ACCEPT
+      @context = false
+      remove_element_link
     end
 
     def info
-      raise NotImplementedError
+      open_context unless @context
+      file_info = element(id: ID::CONTEXT_INFO).text
+      close_context if @context
+      file_info
     end
 
     def open_context
@@ -45,6 +64,14 @@ module FileManager
 
     def close_context
       raise NotImplementedError
+    end
+
+    def update_element_link
+      raise NotImplementedError
+    end
+
+    def remove_element_link
+      @root_element = nil
     end
   end
 end
