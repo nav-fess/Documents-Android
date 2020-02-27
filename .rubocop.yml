@@ -1,13 +1,1 @@
 inherit_from: .rubocop_todo.yml
-
-Style/MixinUsage:
-  Enabled: false
-
-Metrics/BlockLength:
-  Max: 120
-
-Metrics/MethodLength:
-  Max: 20
-
-Metrics/LineLength:
-  Max: 100
