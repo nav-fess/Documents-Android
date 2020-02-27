@@ -32,7 +32,7 @@ module PageObject
     end
 
     def define_click(name, type, selector)
-      define_singleton_method("#{name}_#{type}") do
+      define_singleton_method("#{name}_#{type}_click") do
         selector_type = selector.keys.first
         click selector_type => selector[selector_type]
       end
