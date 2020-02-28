@@ -16,7 +16,6 @@ class ConfigReader
         file_path = File.join path, name
         next if !File.file?(file_path) || name == 'appium.txt'
 
-
         config = JSON.parse File.read(file_path)
         ENV[name.split('.').first] = config.to_yaml
       end
