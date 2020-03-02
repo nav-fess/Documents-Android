@@ -153,4 +153,22 @@ module AppiumDriver
     end
     false
   end
+
+  # Usage example:
+  # Swipe the entire page from start to end for 3 seconds
+  # swipe_down page_element, 1, 1, 3000
+  #
+  # @param [Element] target
+  # @param [Integer] coeff_top
+  # @param [Integer] coeff_bottom
+  # @param [Integer] duration
+  def swipe_down(target, coeff_top = 1, coeff_bottom = 1, duration = 5000)
+    location = target.location
+    size = target.size
+    x = location.x + size.width / 2
+    y = location.y + size.height
+    Appium::TouchAction.new.swipe(start_x: x, start_y: y * coeff_bottom,
+                                  offset_x: x, offset_y: y * coeff_top,
+                                  duration: duration).perform
+  end
 end
