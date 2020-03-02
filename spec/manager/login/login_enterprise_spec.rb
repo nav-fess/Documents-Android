@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-login_data = ConfigReader.get('portal_login_data')
+login_data = ConfigReader.get('enterprise_login_data')
 
 login_data[:enterprise].each do |portal|
   describe "Login to #{portal[:portal]}", :login, :enterprise, :smoke do
@@ -19,9 +19,7 @@ login_data[:enterprise].each do |portal|
       OnlyofficeEnterpriseLogin.password_textfield_fill portal[:pass]
     end
 
-    it 'Sign In' do
-      OnlyofficeEnterpriseLogin.sign_in_button_click
-    end
+    it('Sign In') { OnlyofficeEnterpriseLogin.sign_in_button_click }
 
     it 'Check the portal address after login ' do
       expected_portal = CloudTopToolBar.account_sub_title_text_value
