@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # PageObject for CloudFileList
-class CloudFileList < FileList
+class CloudFileList < CommonFileList
   layout 'folder', id: 'list_explorer_folder_layout'
   text 'folder_name', id: 'list_explorer_folder_name'
   text 'folder_info', id: 'list_explorer_folder_info'

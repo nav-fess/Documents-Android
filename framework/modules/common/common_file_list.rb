@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# PageObject for FileList
-class FileList < BasePageObject
+# PageObject for CommonFileList
+class CommonFileList < BasePageObject
   layout 'main', id: 'list_of_items'
 
   layout 'file', id: 'list_explorer_file_layout'
