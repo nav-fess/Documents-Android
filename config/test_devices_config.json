@@ -1,0 +1,44 @@
+{
+  "devices": [
+    {
+      "udid": "5200953246b0a509",
+      "name": "Samsung Galaxy A8",
+      "system_port": 8501,
+      "appium_port": 9501,
+      "specified_capabilities": {},
+      "tag_list": []
+    },
+    {
+      "udid": "ce04171441ad90760c",
+      "name": "Samsung Galaxy S8",
+      "system_port": 8502,
+      "appium_port": 9502,
+      "specified_capabilities": {},
+      "tag_list": []
+    },
+    {
+      "udid": "DUM7N19315000382",
+      "name": "Huawei P30 Pro",
+      "system_port": 8503,
+      "appium_port": 9503,
+      "specified_capabilities": {},
+      "tag_list": []
+    },
+    {
+      "udid": "29e0a4640904",
+      "name": "Xiaomi Redmi 5 Plus",
+      "system_port": 8504,
+      "appium_port": 9504,
+      "specified_capabilities": {},
+      "tag_list": []
+    },
+    {
+      "udid": "RF8MB1W754F",
+      "name": "Samsung Galaxy S10",
+      "system_port": 8505,
+      "appium_port": 9505,
+      "specified_capabilities": {},
+      "tag_list": []
+    }
+  ]
+}
