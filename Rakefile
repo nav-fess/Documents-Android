@@ -7,7 +7,8 @@ require_relative 'spec/spec_helper'
 def format_opts(device, tag_list, date, separator = '_')
   device_format = device.split(' ').join(separator).downcase
   date_format = date.strftime "%d-%m-%y#{separator}%H-%M-%S"
-  tag_format = "-t #{tag_list.join(',')}"
+  tag_format = ''
+  tag_list.each { |tag| tag_format += "-t #{tag} " }
   report_path = "reports/#{device_format}#{separator}#{date_format}.html"
   "#{tag_format} -f html -o #{report_path}"
 end
@@ -27,8 +28,11 @@ namespace :run do
       t.rspec_opts = format_opts config[:name], config[:tag_list], Time.now
     end
 
-    Rake::Task['spec'].execute
-    Rake::Task['service:freeze_terminal_window'].execute
+    begin
+      Rake::Task['spec'].execute
+    ensure
+      Rake::Task['service:freeze_terminal_window'].execute
+    end
   end
 end
 
