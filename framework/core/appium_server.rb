@@ -16,8 +16,11 @@ class AppiumServer
 
   # @return [NilClass]
   def run
+    return if ENV["APPIUM_SERVER_STATE_#{@udid}"] != '1'
+
     system "x-terminal-emulator -e appium -p #{@appium_port} -dc "\
             "\"{\\\"udid\\\":\\\"#{@udid}\\\",\\\"systemPort\\\":#{@port}}\""
     sleep 3
+    ENV["APPIUM_SERVER_STATE_#{@udid}"] = '1'
   end
 end
