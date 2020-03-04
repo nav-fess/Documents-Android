@@ -125,6 +125,7 @@ module AppiumDriver
   # @return [Element] matched element
   def find_nested_element(args = {})
     sleep args[:delay] || DELAY_BEFORE_ACTION
+    time = args[:time] || TIME_TO_SEARCH
     parent = args[:parent] || raise(ArgumentError, 'Unspecified parent!')
     selector_type = args.keys[1]
     wait_true(time) do
