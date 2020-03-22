@@ -6,26 +6,40 @@ require 'yaml'
 # Class contains methods for getting private data
 class ConfigReader
   PRIVATE_DATA_PATH = File.join __dir__, '..', '..', 'data'
-  CONFIG_PATH = File.join __dir__, '..', '..', 'config'
+  CONFIG_PATH = File.join __dir__, '..', '..', 'config', 'test_devices_config.json'
+  APPIUM_CONFIG_PATH = File.join __dir__, '..', '..', 'config', 'appium.txt'
+
+  # Method for loading data to ENV
+  # @return [Array<String>]
+  def self.load
+    load_config
+    load_private_data
+  end
 
   # Method for loading config data to ENV
   # @return [Array<String>]
-  def self.load
-    [CONFIG_PATH, PRIVATE_DATA_PATH].each do |path|
-      Dir.entries(path).each do |name|
-        file_path = File.join path, name
-        next if !File.file?(file_path) || name == 'appium.txt'
+  def self.load_config
+    parsed_config = JSON.parse File.read CONFIG_PATH
+    name = CONFIG_PATH.split('/').last
+    ENV[name.split('.').first] = parsed_config.to_yaml
+  end
 
-        config = JSON.parse File.read(file_path)
-        ENV[name.split('.').first] = config.to_yaml
-      end
+  # Method for loading private data to ENV
+  # @return [Array<String>]
+  def self.load_private_data
+    Dir.entries(PRIVATE_DATA_PATH).each do |name|
+      file_path = File.join PRIVATE_DATA_PATH, name
+      next unless File.file?(file_path)
+
+      parsed_data = JSON.parse File.read(file_path)
+      ENV[name.split('.').first] = parsed_data.to_yaml
     end
   end
 
   # Method for loading Appium capabilities
   # @return [Hash]
   def self.load_capabilities
-    Appium.load_settings file: File.join(CONFIG_PATH, 'appium.txt')
+    Appium.load_settings file: APPIUM_CONFIG_PATH
   end
 
   # Method for solving security problem when using eval(ENV['some_value'])
