@@ -4,6 +4,9 @@
 class TestInstance
   attr_accessor :udid, :server, :capabilities
 
+  SERVER_RUN_DELAY = 3
+  DRIVER_RUN_DELAY = 3
+
   # @param [String] udid
   # @return [TestInstance]
   def initialize(udid)
@@ -25,11 +28,11 @@ class TestInstance
   def run
     @server.run
     # Waiting for server to start
-    sleep 3
+    sleep SERVER_RUN_DELAY
 
     @driver.start_driver
     # Waiting for multithreading run
-    sleep 3
+    sleep DRIVER_RUN_DELAY
   end
 
   def stop
