@@ -7,8 +7,8 @@
 # RubyMine files
 .idea/
 
-# Config and private data files
-*.json
+# Private data files
+data/
 
 # Script for initialize env in IRB
 spec/script.rb

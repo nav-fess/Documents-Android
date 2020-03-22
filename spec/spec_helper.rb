@@ -1,55 +1,44 @@
 # frozen_string_literal: true
 
 require 'appium_lib'
-require 'json'
+require 'rspec'
 
-# Constants
-require_relative '../framework/constants/consts'
-require_relative '../framework/constants/id'
-require_relative '../framework/constants/index_ui'
-require_relative '../framework/constants/xpath'
+# Core
+require_relative '../framework/core/adb'
+require_relative '../framework/core/appium_driver'
+require_relative '../framework/core/appium_server'
+require_relative '../framework/core/base_page_object'
+require_relative '../framework/core/page_object'
+require_relative '../framework/core/test_instance'
+
+# Data
+require_relative '../framework/data/consts'
 
 # Helpers
-require_relative '../framework/helpers/add_storage/add_storage'
-require_relative '../framework/helpers/login'
-require_relative '../framework/helpers/registration'
-require_relative '../framework/helpers/helpers'
-require_relative '../framework/helpers/plus_fab'
-require_relative '../framework/helpers/open_section'
-require_relative '../framework/helpers/file_manager'
+require_relative '../framework/helpers/config_reader'
 
-# Tools
-require_relative '../framework/tools/appium_extension'
-require_relative '../framework/tools/auth_data_tools'
-
-include AppiumExtension
+# Modules
+require_relative '../framework/modules/modules'
 
 RSpec.configure do |config|
-  config.filter_run_including foo: :bar
-  config.silence_filter_announcements = true
+  ConfigReader.load
+  Selenium::WebDriver.logger.level = :error
+  config_file = 'test_devices_config'
 
-  appium_config = File.join File.dirname(__FILE__), '..', 'config', 'appium.txt'
-  capabilities = Appium.load_settings file: appium_config
-  capabilities[:caps][:app] = File.join(File.dirname(__FILE__), '..', 'apk', 'Documents.apk')
+  config.before :all do
+    device_config = ConfigReader.find_config_by_udid config_file, ENV['udid']
+    capabilities = ConfigReader.load_capabilities[:caps]
+    capabilities.merge device_config[:specified_capabilities]
+    capabilities[:deviceName] = device_config[:name]
+    capabilities[:udid] = device_config[:udid]
 
-  config.after(:each) do |example|
-    if example.exception
-      meta = example.metadata
-      filename = File.basename(meta[:file_path])
-      fail_spec_info = "#{meta[:line_number]}|#{meta[:full_description]}"
-      screenshot_name = "#{Time.now.strftime '%Y-%m-%d-%H-%M-%S'}|#{filename}|#{fail_spec_info}.png"
-      screenshot_path = "screenshots/errors/#{screenshot_name}"
-      screenshot(screenshot_path)
-    end
+    @test_instance = TestInstance.new device_config[:udid]
+    @test_instance.init capabilities, device_config[:appium_port],
+                        device_config[:system_port]
+    @test_instance.run
   end
 
-  config.before(:all) do
-    Appium::Driver.new(capabilities, true)
-    Appium.promote_appium_methods Object
-    @driver.start_driver
-  end
-
-  config.after(:all) do
-    @driver.driver_quit
+  config.after :all do
+    @test_instance.stop
   end
 end
