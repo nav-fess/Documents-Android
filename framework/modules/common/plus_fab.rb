@@ -13,12 +13,12 @@ class PlusFAB < BasePageObject
   def self.create_file(name, type)
     CommonFileList.plus_fab_button_click
     method("#{type}_button_click").call
-    Dialog.create name
+    Dialog.confirm_create name
   end
 
   def self.create_folder(name)
     CommonFileList.plus_fab_button_click
     folder_button_click
-    Dialog.create name
+    Dialog.confirm_create name
   end
 end

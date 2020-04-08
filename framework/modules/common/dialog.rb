@@ -10,7 +10,7 @@ class Dialog < BasePageObject
   textfield 'name', id: 'dialogCommonEditLineValueEdit'
   text 'hint', id: 'dialogCommonEditLineHintEdit'
 
-  def self.create(name)
+  def self.confirm_create(name)
     name_textfield_fill name
     accept_button_click
   end
