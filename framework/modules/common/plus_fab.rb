@@ -9,4 +9,16 @@ class PlusFAB < BasePageObject
   button 'take_photo', id: 'list_explorer_action_photo'
   button 'upload', id: 'list_explorer_action_upload'
   button 'add_storage', id: 'list_explorer_action_storage'
+
+  def self.create_file(name, type)
+    CommonFileList.plus_fab_button_click
+    method("#{type}_button_click").call
+    Dialog.create name
+  end
+
+  def self.create_folder(name)
+    CommonFileList.plus_fab_button_click
+    folder_button_click
+    Dialog.create name
+  end
 end
