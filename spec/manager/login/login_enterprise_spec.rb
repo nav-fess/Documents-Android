@@ -6,8 +6,10 @@ login_data = ConfigReader.get('enterprise_login_data')
 
 login_data[:enterprise].each do |portal|
   describe "Login to #{portal[:portal]}", :login, :enterprise, :smoke do
-    it('Skip onboarding') { Onboarding.skip_button_click }
-    it('Choice Onlyoffice login') { CloudList.onlyoffice_button_click }
+    before :all do
+      Onboarding.skip_button_click
+      CloudList.get_started_button_click
+    end
 
     it 'Input portal address' do
       OnlyofficeEnterpriseLogin.portal_address_textfield_fill portal[:portal]
