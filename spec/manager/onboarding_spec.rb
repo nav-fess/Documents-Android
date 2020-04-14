@@ -5,7 +5,7 @@ require 'spec_helper'
 pages_count = 5
 
 describe Onboarding, :onboarding, :smoke do
-  pages_count.times do |page_number|
+  1.upto(pages_count) do |page_number|
     it "Check page ##{page_number} title" do
       expect(described_class.title_text_value != '').to be_truthy
     end
