@@ -50,6 +50,13 @@ module Consts
     TITLE = 'Trash'
   end
 
+  module Registration
+    FIRST_NAME = 'NCT'
+    LAST_NAME = 'TEST'
+    REGION_HINT = { com: '.onlyoffice.com', eu: '.onlyoffice.eu',
+                    sg: '.onlyoffice.sg', info: '.teamlab.info' }.freeze
+  end
+
   SECTIONS = [MyDocuments::TITLE, SharedWithMe::TITLE, CommonDocuments::TITLE,
               ProjectDocuments::TITLE, Trash::TITLE].freeze
 end
