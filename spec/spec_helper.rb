@@ -32,13 +32,14 @@ RSpec.configure do |config|
     capabilities[:deviceName] = device_config[:name]
     capabilities[:udid] = device_config[:udid]
 
-    @test_instance = TestInstance.new device_config[:udid]
-    @test_instance.init capabilities, device_config[:appium_port],
-                        device_config[:system_port]
+    @test_instance = TestInstance.new device_config[:udid], capabilities,
+                                      device_config[:appium_port],
+                                      device_config[:system_port]
+    @test_instance.init
     @test_instance.run
   end
 
   config.after :all do
-    @test_instance.stop
+    @test_instance.stop_driver
   end
 end
