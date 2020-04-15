@@ -59,4 +59,10 @@ module Consts
 
   SECTIONS = [MyDocuments::TITLE, SharedWithMe::TITLE, CommonDocuments::TITLE,
               ProjectDocuments::TITLE, Trash::TITLE].freeze
+
+  LOCALES = { BG: { locale: 'BG', language: 'bg' }, DE: { locale: 'DE', language: 'de' },
+              ES: { locale: 'ES', language: 'es' }, FR: { locale: 'FR', language: 'fr' },
+              IT: { locale: 'IT', language: 'it' }, PL: { locale: 'PL', language: 'pl' },
+              BR: { locale: 'PT', language: 'BR' }, RU: { locale: 'RU', language: 'ru' },
+              EN: { locale: 'EN', language: 'us' }, US: { locale: 'EN', language: 'gb' } }.freeze
 end
