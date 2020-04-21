@@ -4,5 +4,7 @@ appPackage = "com.onlyoffice.documents"
 autoGrantPermissions = true
 automationName = "UiAutomator2"
 deviceName = "Device"
+language = "gb"
+locale = "EN"
 newCommandTimeout = "3600"
 platformName = "Android"
