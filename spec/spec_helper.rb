@@ -37,6 +37,7 @@ RSpec.configure do |config|
                                       device_config[:system_port]
     @test_instance.init
     @test_instance.run
+    ENV['server_state'] = '1'
   end
 
   config.after :all do
