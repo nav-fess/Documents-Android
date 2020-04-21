@@ -40,6 +40,12 @@ class TestInstance
     sleep DRIVER_RUN_DELAY
   end
 
+  def restart_driver
+    stop_driver
+    init_driver
+    run_driver
+  end
+
   def run_server
     @server.run
     # Waiting for server to start
