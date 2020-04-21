@@ -53,6 +53,8 @@ module Consts
   module Registration
     FIRST_NAME = 'NCT'
     LAST_NAME = 'TEST'
+    INFO_PORTAL_KEY = 'getinfoportal00000'
+    LOCALES = { eu: 'EU', com: 'US', sg: 'CN' }.freeze
     REGION_HINT = { com: '.onlyoffice.com', eu: '.onlyoffice.eu',
                     sg: '.onlyoffice.sg', info: '.teamlab.info' }.freeze
   end
@@ -64,5 +66,6 @@ module Consts
               ES: { locale: 'ES', language: 'es' }, FR: { locale: 'FR', language: 'fr' },
               IT: { locale: 'IT', language: 'it' }, PL: { locale: 'PL', language: 'pl' },
               BR: { locale: 'PT', language: 'BR' }, RU: { locale: 'RU', language: 'ru' },
-              EN: { locale: 'EN', language: 'us' }, US: { locale: 'EN', language: 'gb' } }.freeze
+              EN: { locale: 'EN', language: 'gb' }, US: { locale: 'US', language: 'en' },
+              CN: { locale: 'CN', language: 'zh' } }.freeze
 end
