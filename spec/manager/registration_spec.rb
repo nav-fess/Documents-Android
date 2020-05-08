@@ -38,6 +38,7 @@ registration_data.each_key do |region|
         OnlyofficeEnterpriseRegistration.email_textfield_fill portal[:email]
         OnlyofficeEnterpriseRegistration.first_name_textfield_fill Consts::Registration::FIRST_NAME
         OnlyofficeEnterpriseRegistration.last_name_textfield_fill Consts::Registration::LAST_NAME
+        OnlyofficeEnterpriseRegistration.hide_keyboard
         OnlyofficeEnterpriseRegistration.next_button_click
       end
 
