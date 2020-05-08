@@ -50,6 +50,22 @@ module Consts
     TITLE = 'Trash'
   end
 
+  module Registration
+    FIRST_NAME = 'NCT'
+    LAST_NAME = 'TEST'
+    INFO_PORTAL_KEY = 'getinfoportal00000'
+    LOCALES = { eu: 'EU', com: 'US', sg: 'CN' }.freeze
+    REGION_HINT = { com: '.onlyoffice.com', eu: '.onlyoffice.eu',
+                    sg: '.onlyoffice.sg', info: '.teamlab.info' }.freeze
+  end
+
   SECTIONS = [MyDocuments::TITLE, SharedWithMe::TITLE, CommonDocuments::TITLE,
               ProjectDocuments::TITLE, Trash::TITLE].freeze
+
+  LOCALES = { BG: { locale: 'BG', language: 'bg' }, DE: { locale: 'DE', language: 'de' },
+              ES: { locale: 'ES', language: 'es' }, FR: { locale: 'FR', language: 'fr' },
+              IT: { locale: 'IT', language: 'it' }, PL: { locale: 'PL', language: 'pl' },
+              BR: { locale: 'PT', language: 'BR' }, RU: { locale: 'RU', language: 'ru' },
+              EN: { locale: 'EN', language: 'gb' }, US: { locale: 'US', language: 'en' },
+              CN: { locale: 'CN', language: 'zh' } }.freeze
 end

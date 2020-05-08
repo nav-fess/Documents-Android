@@ -15,8 +15,9 @@ end
 
 namespace :run do
   task :parallel do
-    ADB.devices.each do |udid|
-      `x-terminal-emulator -e rake run:single udid=#{udid}`
+    adb = ADB.new
+    adb.devices.each do |udid|
+      `gnome-terminal -- rake run:single udid=#{udid}`
     end
   end
 

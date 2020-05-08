@@ -5,10 +5,15 @@ require 'spec_helper'
 login_data = ConfigReader.get('personal_login_data')
 
 login_data[:personal].each do |portal|
-  describe "Login to personal with #{portal[:login]}", :login, :personal, :smoke do
-    it('Skip onboarding') { Onboarding.skip_button_click }
-    it('Choice Onlyoffice login') { CloudList.onlyoffice_button_click }
-    it('Choice Personal portal type') { PortalTypeSwitcher.personal_button_click }
+  describe "Login to personal #{portal[:login]}", :login, :personal, :smoke do
+    before :all do
+      Onboarding.skip_button_click
+      CloudList.get_started_button_click
+    end
+
+    it('Choice Personal portal type') do
+      PortalTypeSwitcher.personal_button_click
+    end
 
     it 'Input user data' do
       OnlyofficePersonalLogin.email_textfield_fill portal[:login]

@@ -2,9 +2,26 @@
 
 # Class for extending adb functional
 class ADB
+  def initialize(adb_path = File.join(ENV['ANDROID_HOME'], 'platform-tools', 'adb'))
+    @path = adb_path
+  end
+
+  # Method for emulators
+  # # @return [Array] list of connected devices udids
+  def devices
+    ADB.parse_devices `#{@path} devices`
+  end
+
+  # Method for real devices
   # @return [Array] list of connected devices udids
   def self.devices
-    split_n = `adb devices`.split("\n")
-    split_n[1, split_n.count].map { |line| line.split("\t")[0] }
+    ADB.parse_devices `adb devices`
+  end
+
+  # Method for parsing adb string
+  def self.parse_devices(string)
+    string.split("\n")[1..-1].map do |line|
+      line.split("\t").first
+    end
   end
 end
