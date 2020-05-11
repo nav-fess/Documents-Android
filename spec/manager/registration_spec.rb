@@ -41,7 +41,7 @@ registration_data.each_key do |region|
       end
 
       it 'Press by Next button' do
-        hide_keyboard unless @test_instance.capabilities[:deviceName].include? 'Emulator'
+        hide_keyboard unless @test_instance.capabilities[:deviceName].downcase.include? 'emulator'
         OnlyofficeEnterpriseRegistration.next_button_click
       end
 
