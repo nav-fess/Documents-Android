@@ -61,4 +61,10 @@ class TestInstance
     @driver&.driver_quit
     @driver = nil
   end
+
+  def update_capabilities(capabilities = {})
+    capabilities.each do |key, value|
+      @capabilities[key] = value
+    end
+  end
 end
