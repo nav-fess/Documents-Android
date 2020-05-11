@@ -54,7 +54,7 @@ module Consts
     FIRST_NAME = 'NCT'
     LAST_NAME = 'TEST'
     INFO_PORTAL_KEY = 'getinfoportal00000'
-    LOCALES = { eu: 'EU', com: 'US', sg: 'CN' }.freeze
+    LOCALES = { eu: 'EN', com: 'US', sg: 'CN' }.freeze
     REGION_HINT = { com: '.onlyoffice.com', eu: '.onlyoffice.eu',
                     sg: '.onlyoffice.sg', info: '.teamlab.info' }.freeze
   end
