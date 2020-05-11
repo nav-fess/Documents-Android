@@ -14,6 +14,7 @@ def format_opts(device, tag_list, date, separator = '_')
 end
 
 namespace :run do
+  desc 'Run tests on all connected physical devices and emulators'
   task :parallel do
     adb = ADB.new
     adb.devices.each do |udid|
@@ -21,6 +22,7 @@ namespace :run do
     end
   end
 
+  desc 'Run tests on specified connected device or emulator, need udid arg for working'
   task :single do
     config_name = 'test_devices_config'
     RSpec::Core::RakeTask.new(:spec) do |t|
@@ -32,14 +34,8 @@ namespace :run do
     begin
       Rake::Task['spec'].execute
     ensure
-      Rake::Task['service:freeze_terminal_window'].execute
+      puts 'Press any key for exit...'
+      STDIN.gets
     end
-  end
-end
-
-namespace :service do
-  task :freeze_terminal_window do
-    puts 'Press any key for exit...'
-    STDIN.gets
   end
 end
