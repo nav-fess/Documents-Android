@@ -4,7 +4,7 @@ require 'json'
 require 'yaml'
 
 # Class contains methods for getting private data
-class ConfigReader
+class ConfigHelper
   PRIVATE_DATA_PATH = File.join __dir__, '..', '..', 'data'
   CONFIG_PATH = File.join __dir__, '..', '..', 'config', 'test_devices_config.json'
   APPIUM_CONFIG_PATH = File.join __dir__, '..', '..', 'config', 'appium.txt'

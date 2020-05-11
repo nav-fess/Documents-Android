@@ -2,7 +2,8 @@
 
 require 'spec_helper'
 
-registration_data = ConfigReader.get 'enterprise_registration_data'
+registration_data = ConfigHelper.get 'enterprise_registration_data'
+puts ENV.keys
 
 registration_data.each_key do |region|
   registration_data[region].each do |portal|

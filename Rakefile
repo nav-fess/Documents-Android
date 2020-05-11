@@ -25,8 +25,8 @@ namespace :run do
   task :single do
     config_name = 'test_devices_config'
     RSpec::Core::RakeTask.new(:spec) do |t|
-      ConfigReader.load
-      config = ConfigReader.find_config_by_udid config_name, ENV['udid']
+      ConfigHelper.load
+      config = ConfigHelper.find_config_by_udid config_name, ENV['udid']
       t.rspec_opts = format_opts config[:name], config[:tag_list]
     end
 
