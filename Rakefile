@@ -4,16 +4,16 @@ require 'rake'
 require 'rspec/core/rake_task'
 require_relative 'spec/spec_helper'
 
-def format_opts(device, tag_list, date, separator = '_')
-  device_format = device.split(' ').join(separator).downcase
-  date_format = date.strftime "%d-%m-%y#{separator}%H-%M-%S"
+def format_opts(device, tag_list)
+  device.gsub!(' ', '_').downcase!
   tag_format = ''
   tag_list.each { |tag| tag_format += "-t #{tag} " }
-  report_path = "reports/#{device_format}#{separator}#{date_format}.html"
+  report_path = "reports/#{device}_#{Time.now.strftime '%d-%m-%y_%H-%M-%S'}.html"
   "#{tag_format} -f html -o #{report_path}"
 end
 
 namespace :run do
+  desc 'Run tests on all connected physical devices and emulators'
   task :parallel do
     adb = ADB.new
     adb.devices.each do |udid|
@@ -21,25 +21,20 @@ namespace :run do
     end
   end
 
+  desc 'Run tests on specified connected device or emulator, need udid arg for working'
   task :single do
     config_name = 'test_devices_config'
     RSpec::Core::RakeTask.new(:spec) do |t|
-      ConfigReader.load
-      config = ConfigReader.find_config_by_udid config_name, ENV['udid']
-      t.rspec_opts = format_opts config[:name], config[:tag_list], Time.now
+      ConfigHelper.load
+      config = ConfigHelper.find_config_by_udid config_name, ENV['udid']
+      t.rspec_opts = format_opts config[:name], config[:tag_list]
     end
 
     begin
       Rake::Task['spec'].execute
     ensure
-      Rake::Task['service:freeze_terminal_window'].execute
+      puts 'Press any key for exit...'
+      STDIN.gets
     end
-  end
-end
-
-namespace :service do
-  task :freeze_terminal_window do
-    puts 'Press any key for exit...'
-    STDIN.gets
   end
 end

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-login_data = ConfigReader.get('enterprise_login_data')
+login_data = ConfigHelper.get('enterprise_login_data')
 
 login_data[:enterprise].each do |portal|
   describe "Login to #{portal[:portal]}", :login, :enterprise, :smoke do

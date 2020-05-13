@@ -15,19 +15,19 @@ require_relative '../framework/core/test_instance'
 require_relative '../framework/data/consts'
 
 # Helpers
-require_relative '../framework/helpers/config_reader'
+require_relative '../framework/helpers/config_helper'
 
 # Modules
 require_relative '../framework/modules/modules'
 
 RSpec.configure do |config|
-  ConfigReader.load
+  ConfigHelper.load
   Selenium::WebDriver.logger.level = :error
   config_file = 'test_devices_config'
 
   config.before :all do
-    device_config = ConfigReader.find_config_by_udid config_file, ENV['udid']
-    capabilities = ConfigReader.load_capabilities[:caps]
+    device_config = ConfigHelper.find_config_by_udid config_file, ENV['udid']
+    capabilities = ConfigHelper.load_capabilities[:caps]
     capabilities.merge device_config[:specified_capabilities]
     capabilities[:deviceName] = device_config[:name]
     capabilities[:udid] = device_config[:udid]
