@@ -15,7 +15,7 @@ require_relative '../framework/core/test_instance'
 require_relative '../framework/data/consts'
 
 # Helpers
-require_relative '../framework/helpers/config_reader'
+require_relative '../framework/helpers/config_helper'
 
 # Modules
 require_relative '../framework/modules/modules'
