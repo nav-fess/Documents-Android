@@ -14,7 +14,7 @@ class OnlyofficeEnterpriseLogin < BasePageObject
   button 'facebook', id: 'login_social_facebook_button'
   textfield 'fb_login', xpath: "//android.widget.EditText[@index='0']"
   textfield 'fb_pass', xpath: "//android.widget.EditText[@index='1']"
-  button 'log_in', xpath: "//android.widget.Button[@index='0']" # index = 0 for phone
+  button 'fb_log_in', xpath: '//android.widget.Button'
   button 'continue', xpath: "//android.widget.Button[@index='0']"
 
   button 'google', id: 'login_social_google_button'
