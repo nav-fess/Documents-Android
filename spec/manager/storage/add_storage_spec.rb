@@ -18,7 +18,6 @@ login_data[:enterprise].each do |portal|
     portal[:storages].each do |storage|
       it "Add storages #{storage}" do
         PlusFAB.add_storage
-        puts "storage = #{storage[:storage]}"
         Storage.choice_storage storage
         Search.perform storage[:storage]
         storage_exist = Storage.storage? storage[:storage]

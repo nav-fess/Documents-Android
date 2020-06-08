@@ -26,7 +26,6 @@ class Storage < BasePageObject
 
   def self.name_to_symbol(storage)
     storages = %i[googledrive dropbox onedrive yandexdisk boxcloud owncloud nextcloud webdav]
-    puts "storage = #{storage.downcase}"
     storages.each { |cloud| return cloud if storage.downcase.include? cloud.to_s }
   end
 

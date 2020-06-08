@@ -49,7 +49,6 @@ module PageObject
 
     def define_wait(name, type, selector)
       define_singleton_method("#{name}_#{type}_wait") do
-        puts "wait selector = #{selector}"
         wait_until selector
       end
     end
