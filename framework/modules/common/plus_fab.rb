@@ -21,4 +21,9 @@ class PlusFAB < BasePageObject
     folder_button_click
     Dialog.confirm_create name
   end
+
+  def self.add_storage
+    CommonFileList.plus_fab_button_click if CommonFileList.plus_fab_button_wait
+    add_storage_button_click             if add_storage_button_wait
+  end
 end

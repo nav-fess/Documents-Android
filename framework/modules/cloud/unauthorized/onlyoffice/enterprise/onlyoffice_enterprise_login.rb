@@ -5,17 +5,17 @@ class OnlyofficeEnterpriseLogin < BasePageObject
   textfield 'portal_address', id: 'login_enterprise_portal_edit'
   button 'next', id: 'login_enterprise_next_button'
   text 'description', id: 'login_enterprise_forgot_pwd_button'
-  button 'create_portal', id: 'login_enterprise_create_button'
+  button 'create_portal', id: 'login_enterprise_create_button', delay: 2
 
   textfield 'email', id: 'login_enterprise_portal_email_edit'
   textfield 'password', id: 'login_enterprise_portal_password_edit'
   button 'toggle_password', id: 'text_input_password_toggle'
   button 'sign_in', id: 'login_enterprise_signin_button'
   button 'facebook', id: 'login_social_facebook_button'
-  textfield 'fb_login', xpath: "//android.widget.EditText[@index='0']"
+  textfield 'fb_login', xpath: "//android.widget.EditText[@index='0']", delay: 2
   textfield 'fb_pass', xpath: "//android.widget.EditText[@index='1']"
   button 'fb_log_in', xpath: '//android.widget.Button'
-  button 'continue', xpath: "//android.widget.Button[@index='0']"
+  button 'continue', xpath: "//android.widget.Button[@text='Continue']", delay: 2
 
   button 'google', id: 'login_social_google_button'
   button 'google_account', xpath: "//android.widget.LinearLayout[@index='0']"

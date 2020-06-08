@@ -69,11 +69,9 @@ login_data[:facebook].each do |portal|
 
     it 'Tap Facebook account' do
       OnlyofficeEnterpriseLogin.facebook_button_click
-      sleep 2
       OnlyofficeEnterpriseLogin.fb_login_textfield_fill portal[:login]
       OnlyofficeEnterpriseLogin.fb_pass_textfield_fill portal[:pass]
       OnlyofficeEnterpriseLogin.fb_log_in_button_click
-      sleep 2
       OnlyofficeEnterpriseLogin.continue_button_click
     end
 

@@ -8,7 +8,7 @@ class Search < BasePageObject
   button 'close', id: 'search_close_btn'
 
   def self.perform(search_query)
-    TopToolBar.search_button_click
+    TopToolBar.search_button_click if TopToolBar.search_button_wait
     query_textfield_fill search_query
     sleep TIME_TO_SEARCH
   end

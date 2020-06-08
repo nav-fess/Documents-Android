@@ -69,7 +69,6 @@ login_data[:facebook].each do |portal|
       OnlyofficePersonalLogin.fb_login_textfield_fill portal[:login]
       OnlyofficePersonalLogin.fb_pass_textfield_fill  portal[:pass]
       OnlyofficePersonalLogin.fb_log_in_button_click
-      sleep 2
       OnlyofficePersonalLogin.continue_button_click
     end
 
