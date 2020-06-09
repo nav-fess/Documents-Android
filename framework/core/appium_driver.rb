@@ -144,6 +144,7 @@ module AppiumDriver
   #
   # @param [Hash] args
   def wait_until(args = {})
+    sleep args[:delay] || DELAY_BEFORE_ACTION
     time = args[:time] || TIME_TO_SEARCH
     selector_type = args.keys.first
     time.times do

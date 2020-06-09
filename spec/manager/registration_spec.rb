@@ -22,7 +22,7 @@ registration_data.each_key do |region|
       end
 
       it 'Open portal registration form' do
-        OnlyofficeEnterpriseLogin.create_portal_button_click
+        OnlyofficeEnterpriseLogin.create_portal_button_click delay: 2
       end
 
       it 'Fill portal name' do
