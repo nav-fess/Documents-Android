@@ -11,10 +11,10 @@ class OwnCloud < BasePageObject
 
   def self.add_account(account)
     item_owncloud_button_click                        if item_owncloud_button_wait
-    url_owncloud_textfield_fill account[:portal_st]   if url_owncloud_textfield_wait
-    login_owncloud_textfield_fill account[:login_st]  if login_owncloud_textfield_wait
-    pass_owncloud_textfield_fill account[:pass_st]    if pass_owncloud_textfield_wait
-    name_owncloud_textfield_fill account[:storage]    if name_owncloud_textfield_wait
+    url_owncloud_textfield_fill   account[:url]       if url_owncloud_textfield_wait
+    login_owncloud_textfield_fill account[:login]     if login_owncloud_textfield_wait
+    pass_owncloud_textfield_fill  account[:pass]      if pass_owncloud_textfield_wait
+    name_owncloud_textfield_fill  account[:name]      if name_owncloud_textfield_wait
     authorize_owncloud_button_click                   if authorize_owncloud_button_wait
   end
 end

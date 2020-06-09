@@ -8,7 +8,7 @@ require 'appium_lib'
 # class for storage
 class Storage < BasePageObject
   def self.choice_storage(storage)
-    symbol_storage = name_to_symbol storage[:storage]
+    symbol_storage = name_to_symbol storage[:name]
 
     case symbol_storage
     when :googledrive then Google.add_account     storage
@@ -21,7 +21,7 @@ class Storage < BasePageObject
     when :webdav      then WebDAV.add_account     storage
     else puts 'Onother cloud'
     end
-    BottomNavigationBar.clouds_button_click if BottomNavigationBar.clouds_button_wait
+    BottomNavigationBar.clouds_button_click delay: 4 if BottomNavigationBar.clouds_button_wait
   end
 
   def self.name_to_symbol(storage)

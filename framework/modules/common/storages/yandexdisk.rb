@@ -10,9 +10,9 @@ class YandexDisk < BasePageObject
 
   def self.add_account(account)
     item_yandex_disk_button_click                         if item_yandex_disk_button_wait
-    login_yandex_disk_textfield_fill account[:login_st]   if login_yandex_disk_textfield_wait
-    pass_yandex_disk_textfield_fill account[:pass_st]     if pass_yandex_disk_textfield_wait
-    name_yandex_disk_textfield_fill account[:storage]     if name_yandex_disk_textfield_wait
+    login_yandex_disk_textfield_fill  account[:login]     if login_yandex_disk_textfield_wait
+    pass_yandex_disk_textfield_fill   account[:pass]      if pass_yandex_disk_textfield_wait
+    name_yandex_disk_textfield_fill   account[:name]      if name_yandex_disk_textfield_wait
     connect_yandex_disk_button_click                      if connect_yandex_disk_button_wait
   end
 end

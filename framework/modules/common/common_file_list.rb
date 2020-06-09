@@ -14,5 +14,5 @@ class CommonFileList < BasePageObject
   text 'folder_info', id: 'list_explorer_file_info'
   button 'folder_context', id: 'list_explorer_file_context'
 
-  button 'plus_fab', id: 'app_floating_action_button', delay: 2
+  button 'plus_fab', id: 'app_floating_action_button'
 end

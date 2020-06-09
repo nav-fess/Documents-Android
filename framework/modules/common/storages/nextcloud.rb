@@ -11,10 +11,10 @@ class NextCloud < BasePageObject
 
   def self.add_account(account)
     item_nextcloud_button_click                       if item_nextcloud_button_wait
-    url_nextcloud_textfield_fill account[:portal_st]  if url_nextcloud_textfield_wait
-    login_nextcloud_textfield_fill account[:login_st] if login_nextcloud_textfield_wait
-    pass_nextcloud_textfield_fill account[:pass_st]   if pass_nextcloud_textfield_wait
-    name_nextcloud_textfield_fill account[:storage]   if name_nextcloud_textfield_wait
+    url_nextcloud_textfield_fill   account[:url]      if url_nextcloud_textfield_wait
+    login_nextcloud_textfield_fill account[:login]    if login_nextcloud_textfield_wait
+    pass_nextcloud_textfield_fill  account[:pass]     if pass_nextcloud_textfield_wait
+    name_nextcloud_textfield_fill  account[:name]     if name_nextcloud_textfield_wait
     authorize_nextcloud_button_click                  if authorize_nextcloud_button_wait
   end
 end

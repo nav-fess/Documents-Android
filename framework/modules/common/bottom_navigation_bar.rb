@@ -5,7 +5,7 @@ class BottomNavigationBar < BasePageObject
   layout 'main', id: 'bottom_navigation'
 
   button 'recent', id: 'menu_item_recent'
-  button 'clouds', id: 'menu_item_cloud', delay: 4
+  button 'clouds', id: 'menu_item_cloud'
   button 'on_device', id: 'menu_item_on_device'
   button 'profile', id: 'menu_item_setting'
 

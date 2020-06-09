@@ -11,19 +11,19 @@ class PlusFAB < BasePageObject
   button 'add_storage', id: 'list_explorer_action_storage'
 
   def self.create_file(name, type)
-    CommonFileList.plus_fab_button_click
+    CommonFileList.plus_fab_button_click delay: 2
     method("#{type}_button_click").call
     Dialog.confirm_create name
   end
 
   def self.create_folder(name)
-    CommonFileList.plus_fab_button_click
+    CommonFileList.plus_fab_button_click delay: 2
     folder_button_click
     Dialog.confirm_create name
   end
 
   def self.add_storage
-    CommonFileList.plus_fab_button_click if CommonFileList.plus_fab_button_wait
-    add_storage_button_click             if add_storage_button_wait
+    CommonFileList.plus_fab_button_click delay: 2 if CommonFileList.plus_fab_button_wait
+    add_storage_button_click                      if add_storage_button_wait
   end
 end

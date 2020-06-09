@@ -9,7 +9,7 @@ class OnlyofficePersonalLogin < BasePageObject
   textfield 'fb_login', xpath: "//android.widget.EditText[@index='0']"
   textfield 'fb_pass', xpath: "//android.widget.EditText[@index='1']"
   button 'fb_log_in', xpath: '//android.widget.Button'
-  button 'continue', xpath: "//android.widget.Button[@text='Continue']", delay: 2
+  button 'continue', xpath: "//android.widget.Button[@text='Continue']"
 
   button 'google', id: 'login_social_google_button'
   button 'google_account', xpath: "//android.widget.LinearLayout[@index='0']"

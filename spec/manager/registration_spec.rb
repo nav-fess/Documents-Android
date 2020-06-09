@@ -22,7 +22,7 @@ registration_data.each_key do |region|
       end
 
       it 'Open portal registration form' do
-        OnlyofficeEnterpriseLogin.create_portal_button_click
+        OnlyofficeEnterpriseLogin.create_portal_button_click delay: 2
       end
 
       it 'Fill portal name' do
@@ -30,7 +30,7 @@ registration_data.each_key do |region|
           OnlyofficeEnterpriseRegistration.portal_name_textfield_fill Consts::Registration::INFO_PORTAL_KEY
         end
 
-        OnlyofficeEnterpriseRegistration.portal_name_textfield_fill portal[:portal] + @reg_time
+        OnlyofficeEnterpriseRegistration.portal_name_textfield_fill portal[:name] + @reg_time
       end
 
       it 'Fill email, first name and last name' do
@@ -57,7 +57,7 @@ registration_data.each_key do |region|
 
       it 'Check portal address after login' do
         portal_address = CloudTopToolBar.account_sub_title_text_value
-        expect(portal_address).to eq(portal[:portal] + @reg_time + @reg_hint)
+        expect(portal_address).to eq(portal[:name] + @reg_time + @reg_hint)
       end
     end
   end

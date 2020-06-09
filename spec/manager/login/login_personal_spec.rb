@@ -69,7 +69,7 @@ login_data[:facebook].each do |portal|
       OnlyofficePersonalLogin.fb_login_textfield_fill portal[:login]
       OnlyofficePersonalLogin.fb_pass_textfield_fill  portal[:pass]
       OnlyofficePersonalLogin.fb_log_in_button_click
-      OnlyofficePersonalLogin.continue_button_click
+      OnlyofficePersonalLogin.continue_button_click delay: 2
     end
 
     it 'Check the portal address after login ' do

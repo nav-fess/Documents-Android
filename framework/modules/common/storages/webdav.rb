@@ -10,11 +10,11 @@ class WebDAV < BasePageObject
   button 'authorize_webdav', id: 'storage_web_dav_save_button'
 
   def self.add_account(account)
-    item_webdav_button_click                        if item_webdav_button_wait
-    url_webdav_textfield_fill account[:portal_st]   if url_webdav_textfield_wait
-    login_webdav_textfield_fill account[:login_st]  if login_webdav_textfield_wait
-    pass_webdav_textfield_fill account[:pass_st]    if pass_webdav_textfield_wait
-    name_webdav_textfield_fill account[:storage]    if name_webdav_textfield_wait
-    authorize_webdav_button_click                   if authorize_webdav_button_wait
+    item_webdav_button_click                       if item_webdav_button_wait
+    url_webdav_textfield_fill     account[:url]    if url_webdav_textfield_wait
+    login_webdav_textfield_fill   account[:login]  if login_webdav_textfield_wait
+    pass_webdav_textfield_fill    account[:pass]   if pass_webdav_textfield_wait
+    name_webdav_textfield_fill    account[:name]   if name_webdav_textfield_wait
+    authorize_webdav_button_click                  if authorize_webdav_button_wait
   end
 end
