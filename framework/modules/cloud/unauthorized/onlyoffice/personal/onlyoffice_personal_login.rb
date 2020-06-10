@@ -18,6 +18,7 @@ class OnlyofficePersonalLogin < BasePageObject
   button 'create_portal', id: 'login_personal_signup_button'
 
   def self.perform(email, password)
+    PortalTypeSwitcher.personal_button_click
     email_textfield_fill email
     password_textfield_fill password
     sign_in_button_click
