@@ -24,8 +24,10 @@ login_data[:enterprise].each do |portal|
     it('Sign In') { OnlyofficeEnterpriseLogin.sign_in_button_click }
 
     it 'Check the portal address after login ' do
-      expected_portal = CloudTopToolBar.account_sub_title_text_value
-      expect(expected_portal).to eq(portal[:name])
+      wait_account_name = CloudTopToolBar.account_sub_title_text delay: 10
+      portal_name = CloudTopToolBar.account_sub_title_text_value
+      expected_portal = wait_account_name ? portal_name : ''
+      expect(portal[:name].to_s).to include(expected_portal.to_s)
     end
   end
 end
@@ -49,8 +51,10 @@ login_data[:google].each do |portal|
     end
 
     it 'Check the portal address after login ' do
-      expected_portal = CloudTopToolBar.account_sub_title_text_value
-      expect(expected_portal).to eq(portal[:name])
+      wait_account_name = CloudTopToolBar.account_sub_title_text_wait delay: 15
+      portal_name = CloudTopToolBar.account_sub_title_text_value
+      expected_portal = wait_account_name ? portal_name : ''
+      expect(portal[:name].to_s).to include(expected_portal.to_s)
     end
   end
 end
@@ -76,8 +80,10 @@ login_data[:facebook].each do |portal|
     end
 
     it 'Check the portal address after login ' do
-      expected_portal = CloudTopToolBar.account_sub_title_text_value
-      expect(expected_portal).to eq(portal[:name])
+      wait_account_name = CloudTopToolBar.account_sub_title_text_wait delay: 10
+      portal_name = CloudTopToolBar.account_sub_title_text_value
+      expected_portal = wait_account_name ? portal_name : ''
+      expect(portal[:name].to_s).to include(expected_portal.to_s)
     end
   end
 end

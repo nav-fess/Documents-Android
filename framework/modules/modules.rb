@@ -27,4 +27,8 @@ require_relative 'cloud/unauthorized/onlyoffice/enterprise/onlyoffice_enterprise
 require_relative 'cloud/unauthorized/onlyoffice/portal_type_switcher'
 require_relative 'cloud/unauthorized/onlyoffice/personal/onlyoffice_personal_login'
 
+require_relative 'cloud/authorized/account/account'
+require_relative 'cloud/authorized/account/context_account'
+require_relative 'cloud/authorized/account/do_delete_account'
+
 require_relative 'onboarding/onboarding'

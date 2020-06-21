@@ -16,7 +16,7 @@ login_data[:enterprise].each do |portal|
     end
 
     portal[:storages].each do |storage|
-      it "Add storages #{storage}" do
+      it "Add storages #{storage[:name]}" do
         PlusFAB.add_storage
         Storage.choice_storage storage
         Search.perform storage[:name]
@@ -39,7 +39,7 @@ login_data[:enterprise].each do |portal|
 end
 
 login_data[:personal].each do |portal|
-  describe "Add storage to Personal", :add_storage do
+  describe 'Add storage to Personal', :add_storage do
     before :all do
       Onboarding.skip_button_click
       CloudList.get_started_button_click
@@ -50,7 +50,7 @@ login_data[:personal].each do |portal|
     end
 
     portal[:storages].each do |storage|
-      it "Add storages #{storage}" do
+      it "Add storages #{storage[:name]}" do
         PlusFAB.add_storage
         Storage.choice_storage storage
         Search.perform storage[:name]
@@ -65,9 +65,9 @@ login_data[:personal].each do |portal|
         CloudFileList.folder_context_button_click
         ContextMenu.remove_button_click
         Dialog.accept_button_click
-        2.back
+        2.times back
       end
-      2.back
+      2.times back
     end
   end
 end

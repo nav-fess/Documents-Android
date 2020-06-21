@@ -4,9 +4,9 @@
 class Google < BasePageObject
   view 'item_google', id: 'storage_item_layout'
   textfield 'login_google', xpath: "//android.widget.EditText[@index='0']"
-  button 'next_google_login', xpath: "//android.widget.Button[@text='Далее']"
+  button 'next_google_login', xpath: "//android.widget.Button[@text='Next']"
   textfield 'pass_google', xpath: "//android.widget.EditText[@index='0']"
-  button 'next_google_pass', xpath: "//android.widget.Button[@text='Далее']"
+  button 'next_google_pass', xpath: "//android.widget.Button[@text='Next']"
   button 'label', xpath: "//android.view.View[@text='nct.devices@gmail.com']"
   button 'allow_google', xpath: "//android.widget.Button[@text='Разрешить']"
   textfield 'name_google', id: 'storage_connect_title_edit'

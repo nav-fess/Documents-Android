@@ -66,7 +66,7 @@ login_data[:facebook].each do |portal|
 
     it 'Tap Facebook account' do
       OnlyofficePersonalLogin.facebook_button_click
-      OnlyofficePersonalLogin.fb_login_textfield_fill portal[:login]
+      OnlyofficePersonalLogin.fb_login_textfield_fill portal[:login], delay: 5
       OnlyofficePersonalLogin.fb_pass_textfield_fill  portal[:pass]
       OnlyofficePersonalLogin.fb_log_in_button_click
       OnlyofficePersonalLogin.continue_button_click delay: 2

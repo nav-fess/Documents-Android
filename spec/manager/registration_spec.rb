@@ -34,7 +34,7 @@ registration_data.each_key do |region|
       end
 
       it 'Fill email, first name and last name' do
-        OnlyofficeEnterpriseRegistration.email_textfield_fill portal[:email]
+        OnlyofficeEnterpriseRegistration.email_textfield_fill portal[:login]
         OnlyofficeEnterpriseRegistration.first_name_textfield_fill Consts::Registration::FIRST_NAME
         OnlyofficeEnterpriseRegistration.last_name_textfield_fill Consts::Registration::LAST_NAME
       end
