@@ -5,9 +5,9 @@ class Dropbox < BasePageObject
   button 'item_dropbox', xpath: "//android.view.ViewGroup[@index='1']"
   button 'sing_in_with_google', xpath: "//android.widget.Button[@index='0']"
   textfield 'login_google', xpath: "//android.widget.EditText[@index='0']"
-  button 'next_google_login', xpath: "//android.widget.Button[@text='Далее']"
+  button 'next_google_login', xpath: "//android.widget.Button[@text='Next']"
   textfield 'pass_google', xpath: "//android.widget.EditText[@index='0']"
-  button 'next_google', xpath: "//android.widget.Button[@text='Далее']"
+  button 'next_google', xpath: "//android.widget.Button[@text='Next']"
   textfield 'name_dropbox', id: 'storage_connect_title_edit'
   button 'save_dropbox', id: 'storage_connect_save'
 

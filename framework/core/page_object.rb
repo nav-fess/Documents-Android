@@ -8,6 +8,12 @@ module PageObject
 
   # Module for definition page elements
   module Elements
+    # Seconds before action if not specified any
+    DELAY_DEFAULT = AppiumDriver::DELAY_BEFORE_ACTION
+
+    # Seconds for matching element if not specified any
+    TIME_DEFAULT =  AppiumDriver::TIME_TO_SEARCH
+
     def define_common_methods(name, type, selector)
       define_element name, type, selector
       define_elements name, type, selector
@@ -18,43 +24,49 @@ module PageObject
     end
 
     def define_element(name, type, selector)
-      define_singleton_method("#{name}_#{type}") do |delay: 0|
+      define_singleton_method("#{name}_#{type}") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
         selector[:delay] = delay
+        selector[:time] = time
         element selector
       end
     end
 
     def define_elements(name, type, selector)
-      define_singleton_method("#{name}_#{type}s") do |delay: 0|
+      define_singleton_method("#{name}_#{type}s") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
         selector[:delay] = delay
+        selector[:time] =  time
         elements selector
       end
     end
 
     def define_click(name, type, selector)
-      define_singleton_method("#{name}_#{type}_click") do |delay: 0|
+      define_singleton_method("#{name}_#{type}_click") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
         selector[:delay] = delay
+        selector[:time] = time
         click selector
       end
     end
 
     def define_displays(name, type, selector)
-      define_singleton_method("#{name}_#{type}?") do |delay: 0|
+      define_singleton_method("#{name}_#{type}?") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
         selector[:delay] = delay
+        selector[:time] = time
         !elements(selector).empty?
       end
     end
 
     def define_selector(name, type, selector)
-      define_singleton_method("#{name}_#{type}_selector") do |delay: 0|
+      define_singleton_method("#{name}_#{type}_selector") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
         selector[:delay] = delay
+        selector[:time] = time
         selector
       end
     end
 
     def define_wait(name, type, selector)
-      define_singleton_method("#{name}_#{type}_wait") do |delay: 0|
+      define_singleton_method("#{name}_#{type}_wait") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
         selector[:delay] = delay
+        selector[:time] = time
         wait_until selector
       end
     end
@@ -70,8 +82,9 @@ module PageObject
 
       define_common_methods name, type, selector
 
-      define_singleton_method("#{name}_#{type}_fill") do |data = '', delay: 0|
+      define_singleton_method("#{name}_#{type}_fill") do |data = '', delay: DELAY_DEFAULT, time: TIME_DEFAULT|
         selector[:delay] = delay
+        selector[:time] = time
         element(selector).send_keys data
       end
     end
@@ -81,8 +94,9 @@ module PageObject
 
       define_common_methods name, type, selector
 
-      define_singleton_method("#{name}_#{type}_value") do |delay: 0|
+      define_singleton_method("#{name}_#{type}_value") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
         selector[:delay] = delay
+        selector[:time] = time
         element(selector).text
       end
     end
@@ -101,6 +115,7 @@ module PageObject
 
     def layout(name, selector = { id: nil })
       type = 'layout'
+
       define_common_methods name, type, selector
     end
   end
