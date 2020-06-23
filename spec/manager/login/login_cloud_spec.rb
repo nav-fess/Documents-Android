@@ -28,7 +28,7 @@ login_data[:owncloud].each do |portal|
       BottomNavigationBar.profile_button_click
       Account.context_button_click
       ContextAccount.remove_button_click
-      DeleteAccount.delete_button_click
+      Dialog.accept_button_click
     end
   end
 end
@@ -60,7 +60,7 @@ login_data[:nextcloud].each do |portal|
       BottomNavigationBar.profile_button_click
       Account.context_button_click
       ContextAccount.remove_button_click
-      DeleteAccount.delete_button_click
+      Dialog.accept_button_click
     end
   end
 end
@@ -89,9 +89,7 @@ login_data[:webdav].each do |portal|
       BottomNavigationBar.profile_button_click
       Account.context_button_click
       ContextAccount.remove_button_click
-      DeleteAccount.delete_button_click
+      Dialog.accept_button_click
     end
   end
 end
-
-
