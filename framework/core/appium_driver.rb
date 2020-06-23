@@ -111,7 +111,7 @@ module AppiumDriver
   # hide_keyboard delay: 5
   #
   # @param [Hash] args
-  def hide_keyboard(args = {})
+  def hide_keyboard(args  = {})
     sleep args[:delay] || DELAY_BEFORE_ACTION
     hide_keyboard if is_keyboard_shown
   end
@@ -172,5 +172,21 @@ module AppiumDriver
     Appium::TouchAction.new.swipe(start_x: x, start_y: y * coeff_bottom,
                                   offset_x: x, offset_y: y * coeff_top,
                                   duration: duration).perform
+  end
+
+  # Usage example:
+  # Wait before an element with ID "abc" is not exist
+  # with 5 seconds after calling the method for 60 second
+  # press id: 'someID', delay: 5, time: 60
+  #
+  # @param [Hash] args
+  def press(args = {})
+    sleep args[:delay] || DELAY_BEFORE_ACTION
+    time = args[:time] || TIME_TO_SEARCH
+    selector_type = args.keys.first
+    element = find(selector_type, args[selector_type])
+    wait_true(time) do
+      Appium::TouchAction.new.long_press(element: element).perform
+    end
   end
 end

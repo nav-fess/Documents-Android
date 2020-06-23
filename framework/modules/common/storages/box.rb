@@ -11,7 +11,7 @@ class Box < BasePageObject
   textfield 'name_box', id: 'storage_connect_title_edit'
   button 'save_box', id: 'storage_connect_save'
 
-  def self.add_account(account)
+  def self.add_storage(account)
     item_box_button_click                                if item_box_button_wait
     login_box_textfields[0].send_keys account[:login]    if login_box_textfield_wait
     pass_box_textfields[1].send_keys account[:pass]      if pass_box_textfield_wait
