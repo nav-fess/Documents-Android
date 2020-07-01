@@ -11,14 +11,14 @@ class Storage < BasePageObject
     symbol_storage = name_to_symbol storage[:name]
 
     case symbol_storage
-    when :googledrive then Google.add_account     storage
-    when :dropbox     then Dropbox.add_account    storage
-    when :onedrive    then OneDrive.add_account   storage
-    when :yandexdisk  then YandexDisk.add_account storage
-    when :boxcloud    then Box.add_account        storage
-    when :owncloud    then OwnCloud.add_account   storage
-    when :nextcloud   then NextCloud.add_account  storage
-    when :webdav      then WebDAV.add_account     storage
+    when :googledrive then Google.add_storage     storage
+    when :dropbox     then Dropbox.add_storage    storage
+    when :onedrive    then OneDrive.add_storage   storage
+    when :yandexdisk  then YandexDisk.add_storage storage
+    when :boxcloud    then Box.add_storage        storage
+    when :owncloud    then OwnCloud.add_storage   storage
+    when :nextcloud   then NextCloud.add_storage  storage
+    when :webdav      then WebDAV.add_storage     storage
     else puts 'Onother cloud'
     end
     BottomNavigationBar.clouds_button_click delay: 4 if BottomNavigationBar.clouds_button_wait

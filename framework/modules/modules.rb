@@ -29,5 +29,5 @@ require_relative 'cloud/unauthorized/onlyoffice/personal/onlyoffice_personal_log
 
 require_relative 'cloud/authorized/account/account'
 require_relative 'cloud/authorized/account/context_account'
-
+require_relative 'cloud/authorized/account/account_bar'
 require_relative 'onboarding/onboarding'

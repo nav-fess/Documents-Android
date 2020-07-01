@@ -7,5 +7,6 @@ class ContextAccount < BasePageObject
   text 'email', id: 'accountItemEmail'
   button 'profile', id: 'profileItem'
   button 'logout', id: 'logoutItem'
+  button 'login', id: 'signInItem'
   button 'remove', id: 'removeItem'
 end

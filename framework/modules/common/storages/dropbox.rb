@@ -11,7 +11,7 @@ class Dropbox < BasePageObject
   textfield 'name_dropbox', id: 'storage_connect_title_edit'
   button 'save_dropbox', id: 'storage_connect_save'
 
-  def self.add_account(account)
+  def self.add_storage(account)
     item_dropbox_button_click                                if item_dropbox_button_wait
     sing_in_with_google_button_click                         if sing_in_with_google_button
     login_google_textfield_fill account[:login], delay: 3    if login_google_textfield_wait

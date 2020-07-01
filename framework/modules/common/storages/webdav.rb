@@ -9,12 +9,19 @@ class WebDAV < BasePageObject
   textfield 'name_webdav', id: 'storage_web_dav_title_edit'
   button 'authorize_webdav', id: 'storage_web_dav_save_button'
 
-  def self.add_account(account)
+  def self.add_storage(storage)
     item_webdav_button_click                       if item_webdav_button_wait
-    url_webdav_textfield_fill     account[:url]    if url_webdav_textfield_wait
-    login_webdav_textfield_fill   account[:login]  if login_webdav_textfield_wait
-    pass_webdav_textfield_fill    account[:pass]   if pass_webdav_textfield_wait
-    name_webdav_textfield_fill    account[:name]   if name_webdav_textfield_wait
+    url_webdav_textfield_fill     storage[:url]    if url_webdav_textfield_wait
+    login_webdav_textfield_fill   storage[:login]  if login_webdav_textfield_wait
+    pass_webdav_textfield_fill    storage[:pass]   if pass_webdav_textfield_wait
+    name_webdav_textfield_fill    storage[:name]   if name_webdav_textfield_wait
     authorize_webdav_button_click                  if authorize_webdav_button_wait
+  end
+
+  def self.add_cloud(cloud)
+    WebDAV.url_webdav_textfield_fill     cloud[:name]
+    WebDAV.login_webdav_textfield_fill   cloud[:login]
+    WebDAV.pass_webdav_textfield_fill    cloud[:pass]
+    WebDAV.authorize_webdav_button_click
   end
 end
