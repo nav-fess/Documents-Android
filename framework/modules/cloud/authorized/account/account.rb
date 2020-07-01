@@ -59,6 +59,10 @@ class Account < BasePageObject
     back_clouds
   end
 
+  def self.cloud_type
+    @@cloud_type
+  end
+
   def self.back_clouds
     @@count_login += 1
     BottomNavigationBar.profile_button_click
