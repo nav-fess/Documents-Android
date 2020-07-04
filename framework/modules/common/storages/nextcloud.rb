@@ -12,7 +12,7 @@ class NextCloud < BasePageObject
   # frame Nextcloud
   button 'login_fmame_nc', xpath: "//android.widget.Button[@index='0']"
   textfield 'user_frame_nc', xpath: "//android.widget.EditText[@index='0']"
-  textfield 'pass_frame_nc', xpath: "//android.widget.EditText[@text='Password']"
+  textfield 'pass_frame_nc', xpath: "//android.widget.EditText[@index='0']"
   button 'login_frame_next_nc', xpath: "//android.widget.Button[@index='0']"
   button 'access_frame_nc', xpath: "//android.widget.Button[@index='0']"
 
@@ -29,8 +29,8 @@ class NextCloud < BasePageObject
     url_nextcloud_textfield_fill cloud[:name]
     authorize_nextcloud_button_click
     login_fmame_nc_button_click time: 60
-    user_frame_nc_textfield_fill cloud[:login]
-    pass_frame_nc_textfield_fill cloud[:pass]
+    user_frame_nc_textfields[0].send_keys cloud[:login]
+    pass_frame_nc_textfields[1].send_keys cloud[:pass]
     login_frame_next_nc_button_click time: 5
     access_frame_nc_button_click delay: 30, time: 5
   end

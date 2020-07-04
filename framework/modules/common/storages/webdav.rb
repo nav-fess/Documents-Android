@@ -19,9 +19,14 @@ class WebDAV < BasePageObject
   end
 
   def self.add_cloud(cloud)
-    WebDAV.url_webdav_textfield_fill     cloud[:name]
-    WebDAV.login_webdav_textfield_fill   cloud[:login]
-    WebDAV.pass_webdav_textfield_fill    cloud[:pass]
-    WebDAV.authorize_webdav_button_click
+    url_webdav_textfield_fill     cloud[:name]
+    login_webdav_textfield_fill   cloud[:login]
+    pass_webdav_textfield_fill    cloud[:pass]
+    authorize_webdav_button_click
+  end
+
+  def self.login_after_logout(cloud)
+    pass_webdav_textfield_fill cloud[:pass]
+    authorize_webdav_button_click
   end
 end

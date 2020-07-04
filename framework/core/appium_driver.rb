@@ -180,7 +180,7 @@ module AppiumDriver
   # press id: 'someID', delay: 5, time: 60
   #
   # @param [Hash] args
-  def press(args = {} )
+  def press(args = {})
     sleep args[:delay] || DELAY_BEFORE_ACTION
     time = args[:time] || TIME_TO_SEARCH
     selector_type = args.keys.first

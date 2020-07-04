@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-# PageObject for CloudFileList
+# BasePageObject for Account
 class Account < BasePageObject
-
-  @@count_login = 0
-  @@count_logout = 0
-  @@cloud_type = %i[personal enterprise owncloud webdav] #nextcloud
+  @@count_item = 0
+  @@cloud_type = %i[personal enterprise nextcloud owncloud webdav]
 
   button 'context', id: 'accountItemContext'
   text 'account_name', id: 'accountItemName'
@@ -15,7 +13,17 @@ class Account < BasePageObject
   button 'settings', id: 'settingsItem'
   button 'item_account', id: 'accountItemLayout'
 
-  def self.add( clouds, type_cloud = @@cloud_type )
+  def self.login_again(type_cloud, account)
+    case type_cloud
+    when :personal   then OnlyofficeEnterpriseLogin.login_after_logout account
+    when :enterprise then OnlyofficeEnterpriseLogin.login_after_logout account
+    when :owncloud   then OwnCloud.add_cloud                           account
+    when :nextcloud  then NextCloud.add_cloud                          account
+    when :webdav     then WebDAV.login_after_logout                    account
+    end
+  end
+
+  def self.add(clouds, type_cloud = @@cloud_type)
     type_cloud.each do |type|
       accounts = clouds[type]
       case type
@@ -26,18 +34,18 @@ class Account < BasePageObject
       when :webdav     then accounts.each  { |account| login_webdav     account }
       end
     end
-   hardback delay:5
+    hardback delay: 5
   end
 
   def self.login_enterprise(account)
     CloudList.onlyoffice_button_click
-    OnlyofficeEnterpriseLogin.perform account[:name], account[:login], account[:pass]
+    OnlyofficeEnterpriseLogin.add_cloud account
     back_clouds
   end
 
   def self.login_personal(account)
     CloudList.onlyoffice_button_click
-    OnlyofficePersonalLogin.perform account[:login], account[:pass]
+    OnlyofficePersonalLogin.add_cloud account
     back_clouds
   end
 
@@ -59,33 +67,24 @@ class Account < BasePageObject
     back_clouds
   end
 
-  def self.cloud_type
-    @@cloud_type
-  end
-
   def self.back_clouds
-    @@count_login += 1
     BottomNavigationBar.profile_button_click
     add_account_button_click
   end
 
-  def self.number_login
-    @@count_login
+  def self.cloud_type
+    @@cloud_type
   end
 
-  def self.count_login_zero
-    @@count_login = 0
+  def self.counter
+    @@count_item
   end
 
-  def self.count_logout
-    @@count_logout += 1
+  def self.reset_counter
+    @@count_item = 0
   end
 
-  def self.number_logout
-    @@count_logout
-  end
-
-  def self.count_logout_zero
-    @@count_logout = 0
+  def self.count_item
+    @@count_item += 1
   end
 end

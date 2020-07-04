@@ -7,4 +7,3 @@ class AccountBar < BasePageObject
   button 'select_all', xpath: '//android.widget.LinearLayout[@index="0"]'
   button 'deselect', xpath: '//android.widget.LinearLayout[@index="1"]'
 end
-

@@ -49,7 +49,7 @@ module PageObject
     end
 
     def define_press(name, type, selector)
-      define_singleton_method("#{name}_#{type}_press") do | delay: DELAY_DEFAULT, time: TIME_DEFAULT|
+      define_singleton_method("#{name}_#{type}_press") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] = time
         press selector

@@ -19,7 +19,7 @@ class Storage < BasePageObject
     when :owncloud    then OwnCloud.add_storage   storage
     when :nextcloud   then NextCloud.add_storage  storage
     when :webdav      then WebDAV.add_storage     storage
-    else puts 'Onother cloud'
+    else puts 'Other cloud'
     end
     BottomNavigationBar.clouds_button_click delay: 4 if BottomNavigationBar.clouds_button_wait
   end

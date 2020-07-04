@@ -17,10 +17,15 @@ class OnlyofficePersonalLogin < BasePageObject
   text 'description', id: 'login_personal_info_text'
   button 'create_portal', id: 'login_personal_signup_button'
 
-  def self.perform(email, password)
+  def self.add_cloud(cloud)
     PortalTypeSwitcher.personal_button_click
-    email_textfield_fill email
-    password_textfield_fill password
+    email_textfield_fill cloud[:login]
+    password_textfield_fill cloud[:pass]
+    sign_in_button_click
+  end
+
+  def self.login_after_logout(cloud)
+    password_textfield_fill cloud[:pass]
     sign_in_button_click
   end
 end

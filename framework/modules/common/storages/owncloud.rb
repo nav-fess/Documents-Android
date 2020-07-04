@@ -24,5 +24,4 @@ class OwnCloud < BasePageObject
     pass_owncloud_textfield_fill  cloud[:pass]
     authorize_owncloud_button_click time: 10
   end
-
 end

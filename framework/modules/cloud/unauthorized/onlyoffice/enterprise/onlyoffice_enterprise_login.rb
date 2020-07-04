@@ -21,11 +21,16 @@ class OnlyofficeEnterpriseLogin < BasePageObject
   button 'google_account', xpath: "//android.widget.LinearLayout[@index='0']"
   button 'forgot_password', id: 'login_enterprise_forgot_pwd_button'
 
-  def self.perform(portal_address, login, password)
-    portal_address_textfield_fill portal_address
+  def self.add_cloud(cloud)
+    portal_address_textfield_fill cloud[:name]
     next_button_click
-    email_textfield_fill login, delay: 5
-    password_textfield_fill password
+    email_textfield_fill cloud[:login], delay: 5
+    password_textfield_fill cloud[:pass]
+    sign_in_button_click
+  end
+
+  def self.login_after_logout(cloud)
+    password_textfield_fill cloud[:pass]
     sign_in_button_click
   end
 end
