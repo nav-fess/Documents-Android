@@ -111,7 +111,7 @@ module AppiumDriver
   # hide_keyboard delay: 5
   #
   # @param [Hash] args
-  def hide_keyboard(args = {})
+  def hide_keyboard(args  = {})
     sleep args[:delay] || DELAY_BEFORE_ACTION
     hide_keyboard if is_keyboard_shown
   end
