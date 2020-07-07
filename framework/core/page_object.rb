@@ -21,6 +21,7 @@ module PageObject
       define_displays name, type, selector
       define_selector name, type, selector
       define_wait name, type, selector
+      define_press name, type, selector
     end
 
     def define_element(name, type, selector)
@@ -44,6 +45,14 @@ module PageObject
         selector[:delay] = delay
         selector[:time] = time
         click selector
+      end
+    end
+
+    def define_press(name, type, selector)
+      define_singleton_method("#{name}_#{type}_press") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
+        selector[:delay] = delay
+        selector[:time] = time
+        press selector
       end
     end
 
