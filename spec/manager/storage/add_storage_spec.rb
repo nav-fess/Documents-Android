@@ -19,7 +19,7 @@ login_data[:enterprise].each do |portal|
         CloudFileList.folder_context_button_click
         ContextMenu.remove_button_click
         Dialog.accept_button_click
-        2.back
+        back
       end
     end
 
@@ -52,7 +52,7 @@ login_data[:personal].each do |portal|
         CloudFileList.folder_context_button_click
         ContextMenu.remove_button_click
         Dialog.accept_button_click
-        2.back
+        back
       end
     end
 

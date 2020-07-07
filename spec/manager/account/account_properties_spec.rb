@@ -11,15 +11,12 @@ describe 'Accounts properties math through context menu', :account do
     Account.add login_data
   end
 
-  after :all do
-    Account.reset_counter
-  end
-
-  Account.cloud_type.each do |type|
+  account_counter = 0
+  Account::CLOUD_TYPE.each do |type|
     login_data[type].each do |account|
       it "#{type.capitalize} : Open properties" do
-        Account.context_buttons[Account.counter].click
-        Account.count_item
+        Account.context_buttons[account_counter].click
+        account_counter += 1
       end
 
       it "#{type.capitalize} : Check properties math " do

@@ -111,7 +111,7 @@ module AppiumDriver
   # hide_keyboard delay: 5
   #
   # @param [Hash] args
-  def hide_keyboard(args  = {})
+  def hide_keyboard(args = {})
     sleep args[:delay] || DELAY_BEFORE_ACTION
     hide_keyboard if is_keyboard_shown
   end
@@ -175,8 +175,7 @@ module AppiumDriver
   end
 
   # Usage example:
-  # Wait before an element with ID "abc" is not exist
-  # with 5 seconds after calling the method for 60 second
+  # Long press an element with ID "abc"
   # press id: 'someID', delay: 5, time: 60
   #
   # @param [Hash] args

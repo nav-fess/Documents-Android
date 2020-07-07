@@ -11,29 +11,26 @@ describe 'Logout all accounts through context menu', :account do
     Account.add login_data
   end
 
-  after :all do
-    Account.reset_counter
-  end
-
-  Account.cloud_type.each do |type|
+  account_counter = 0
+  Account::CLOUD_TYPE.each do |type|
     login_data[type].size.times do
       it "#{type.capitalize} : Logout" do
-        Account.context_buttons[Account.counter].click
-        ContextAccount.logout_button_click time: 5
+        Account.context_buttons[account_counter].click
+        ContextAccount.logout_button_click delay: 3
       end
 
       it "#{type.capitalize} : Check logout" do
-        Account.context_buttons[Account.counter].click
+        Account.context_buttons[account_counter].click
+        account_counter += 1
         element_exist = ContextAccount.login_button
         back
-        Account.count_item
         expect(element_exist).to be_truthy
       end
     end
   end
 end
 
-describe 'Logout accounts personal and enterprise', :account_1 do
+describe 'Logout accounts personal and enterprise', :account do
   before :all do
     type_cloud = %i[personal enterprise]
     Onboarding.skip_button_click
@@ -41,23 +38,20 @@ describe 'Logout accounts personal and enterprise', :account_1 do
     Account.add login_data, type_cloud
   end
 
-  after :all do
-    Account.reset_counter
-  end
-
+  account_counter = 0
   %i[personal enterprise].each do |type|
     login_data[type].size.times do
       it "#{type.capitalize} : Logout" do
-        Account.context_buttons[Account.counter].click
+        Account.context_buttons[account_counter].click
         ContextAccount.profile_button_click
         ContextAccount.logout_button_click
         Dialog.accept_button_click
       end
 
       it "#{type.capitalize} : Check logout" do
-        Account.context_buttons[Account.counter].click
+        Account.context_buttons[account_counter].click
+        account_counter += 1
         element_exist = ContextAccount.login_button
-        Account.count_item
         back
         expect(element_exist).to be_truthy
       end

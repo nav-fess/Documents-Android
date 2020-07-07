@@ -23,11 +23,13 @@ login_data[:owncloud].each do |portal|
       OwnCloud.url_owncloud_textfield_fill   portal[:name]
       OwnCloud.login_owncloud_textfield_fill portal[:login]
       OwnCloud.pass_owncloud_textfield_fill  portal[:pass]
-      OwnCloud.authorize_owncloud_button_click time: 10
+      hide_keyboard delay: 1
+      OwnCloud.authorize_owncloud_button_click delay: 2
     end
 
     it 'OwnCloud : Check the cloud address after login' do
       expected_portal = CloudTopToolBar.account_sub_title_text_value time: 30
+      expected_portal = expected_portal.split('/')[0]
       expect(portal[:name].to_s).to include(expected_portal.to_s)
     end
   end
@@ -88,6 +90,7 @@ login_data[:webdav].each do |portal|
       WebDAV.url_webdav_textfield_fill     portal[:name]
       WebDAV.login_webdav_textfield_fill   portal[:login]
       WebDAV.pass_webdav_textfield_fill    portal[:pass]
+      hide_keyboard delay: 1
       WebDAV.authorize_webdav_button_click
     end
 

@@ -31,7 +31,7 @@ describe 'Delete accounts through context menu', :account do
     Account.add login_data
   end
 
-  Account.cloud_type.each do |type|
+  Account::CLOUD_TYPE.each do |type|
     login_data[type].each do |account|
       it "#{type.capitalize}: Delete" do
         Account.context_button_click

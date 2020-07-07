@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-# BasePageObject for Account
+# PageObject for Account
 class Account < BasePageObject
-  @@count_item = 0
-  @@cloud_type = %i[personal enterprise nextcloud owncloud webdav]
+  CLOUD_TYPE = %i[personal enterprise nextcloud owncloud webdav].freeze
 
   button 'context', id: 'accountItemContext'
   text 'account_name', id: 'accountItemName'
@@ -23,7 +22,7 @@ class Account < BasePageObject
     end
   end
 
-  def self.add(clouds, type_cloud = @@cloud_type)
+  def self.add(clouds, type_cloud = CLOUD_TYPE)
     type_cloud.each do |type|
       accounts = clouds[type]
       case type
@@ -70,21 +69,5 @@ class Account < BasePageObject
   def self.back_clouds
     BottomNavigationBar.profile_button_click
     add_account_button_click
-  end
-
-  def self.cloud_type
-    @@cloud_type
-  end
-
-  def self.counter
-    @@count_item
-  end
-
-  def self.reset_counter
-    @@count_item = 0
-  end
-
-  def self.count_item
-    @@count_item += 1
   end
 end
