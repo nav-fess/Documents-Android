@@ -4,7 +4,7 @@ require 'spec_helper'
 
 login_data = ConfigHelper.get('account_data')
 
-describe 'Logout all accounts through context menu', :account_1 do
+describe 'Logout all accounts through context menu', :account do
   before :all do
     Onboarding.skip_button_click
     CloudList.other_storage_button_click
