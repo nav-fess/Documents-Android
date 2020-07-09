@@ -9,7 +9,7 @@ class Account < BasePageObject
   text 'portal_name', id: 'accountItemPortal'
   text 'email', id: 'accountItemEmail'
   button 'add_account', id: 'fragment_accounts_add_account'
-  button 'settings', id: 'settingsItem'
+  button 'setting', id: 'settingsItem'
   button 'item_account', id: 'accountItemLayout'
 
   def self.login_again(type_cloud, account)

@@ -30,7 +30,6 @@ describe 'Logout all accounts through context menu', :account do
   end
 end
 
-
 describe 'Logout accounts personal and enterprise', :account do
   before :all do
     type_cloud = %i[personal enterprise]
@@ -38,7 +37,6 @@ describe 'Logout accounts personal and enterprise', :account do
     CloudList.other_storage_button_click
     Account.add login_data, type_cloud
   end
-
 
   account_counter = 0
   %i[personal enterprise].each do |type|

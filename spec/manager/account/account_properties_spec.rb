@@ -27,6 +27,7 @@ describe 'Accounts properties math through context menu', :account do
         data_math = (account[:name].include?  portal) &&
                     (account[:login].include? login)
         expect(data_math).to be_truthy
+        Appium
       end
     end
   end
