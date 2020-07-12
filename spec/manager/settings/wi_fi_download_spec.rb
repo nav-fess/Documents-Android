@@ -18,7 +18,7 @@ describe 'Switch wi-fi download', :sim do
 
   it 'Wi-Fi: Tap on te switch' do
     BottomNavigationBar.profile_button_click delay: 3
-    Account.setting_button_click delay: 3
+    Account.settings_button_click delay: 3
     Settings.switch_button_click delay: 2
     back
   end
@@ -38,7 +38,7 @@ describe 'Switch wi-fi download', :sim do
   end
 
   it 'Wi-Fi: Check snackbar' do
-    search_results = Alert.snackbar_text_value delay: 2
-    expect(search_results).to eq Alert::DONT_UPLOAD
+    text_snackbar = Alert.snackbar_text_value delay: 2
+    expect(text_snackbar).to eq Alert::DONT_UPLOAD
   end
 end
