@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'Help and Feedbac', :settings_1 do
+describe 'Help and Feedbac', :settings do
   before :all do
     Onboarding.skip_button_click
   end
