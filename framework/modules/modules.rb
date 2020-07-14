@@ -20,16 +20,18 @@ require_relative 'common/search'
 
 require_relative 'cloud/authorized/cloud_file_list'
 require_relative 'cloud/authorized/cloud_top_tool_bar'
-
 require_relative 'cloud/unauthorized/cloud_list'
 require_relative 'cloud/unauthorized/onlyoffice/enterprise/onlyoffice_enterprise_login'
 require_relative 'cloud/unauthorized/onlyoffice/enterprise/onlyoffice_enterprise_registration'
 require_relative 'cloud/unauthorized/onlyoffice/portal_type_switcher'
 require_relative 'cloud/unauthorized/onlyoffice/personal/onlyoffice_personal_login'
-
 require_relative 'cloud/authorized/account/account'
 require_relative 'cloud/authorized/account/context_account'
 require_relative 'cloud/authorized/account/account_bar'
+
 require_relative 'setting/settings'
+require_relative 'setting/about'
+
 require_relative 'onboarding/onboarding'
+
 require_relative 'alert/alert'
