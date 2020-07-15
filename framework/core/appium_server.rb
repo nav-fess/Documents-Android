@@ -18,7 +18,7 @@ class AppiumServer
   def run
     return if ENV['server_state'] == '1'
 
-    system "gnome-terminal -- appium -p #{@appium_port} -dc "\
+    system "gnome-terminal -- appium --relaxed-security -p #{@appium_port} -dc "\
             "\"{\\\"udid\\\":\\\"#{@udid}\\\",\\\"systemPort\\\":#{@port}}\""
     sleep 3
   end

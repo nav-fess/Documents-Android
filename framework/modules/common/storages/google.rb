@@ -17,6 +17,7 @@ class Google < BasePageObject
     login_google_textfield_fill account[:login]     if login_google_textfield_wait
     next_google_login_button_click                  if next_google_login_button_wait
     pass_google_textfield_fill account[:pass]       if pass_google_textfield_wait
+    back
     next_google_pass_button_click                   if next_google_pass_button_wait
     sleep 5
     swipe_down(label_button, 3, 1, 300) if label_button_wait
