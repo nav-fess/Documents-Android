@@ -39,6 +39,6 @@ describe 'Switch wi-fi download', :sim do
 
   it 'Wi-Fi: Check snackbar' do
     text_snackbar = Alert.snackbar_text_value delay: 2
-    expect(text_snackbar).to eq Alert::DONT_UPLOAD
+    expect(text_snackbar).to eq Consts::Alert::DONT_UPLOAD
   end
 end

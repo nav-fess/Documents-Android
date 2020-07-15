@@ -59,6 +59,28 @@ module Consts
                     sg: '.onlyoffice.sg', info: '.teamlab.info' }.freeze
   end
 
+  module About
+    TERMS_OF_USE = 'help.onlyoffice.com/products/files/doceditor.aspx?fileid=' \
+                 '5048471&doc=bXJ6UmJacDVnVDMxV01oMHhrUlpwaGFBcXJUUUE3VHRuTGZrRUF5a1NKVT0_IjUwNDg0NzEi0'
+    PRIVACY_POLICY = 'help.onlyoffice.com/products/files/doceditor.aspx?fileid=5048502&doc=SXhWMEVzSEYxNl'\
+                  'VVaXJJeUVtS0kyYk14YWdXTEFUQmRWL250NllHNUFGbz0_IjUwNDg1MDIi0&_ga=2.88767003.1895363220'\
+                  '.1524051386-398072085.1517577558'
+    LICENSE = 'www.apache.org/licenses/LICENSE-2.0'
+    WEBSITE = 'www.onlyoffice.com/'
+  end
+
+  module Settings
+    CLEAR_SIZE_CACHE = '0.00 Bytes'
+    PATH_TO_FILE = 'sdcard/OnlyOffice/'
+    NAME_FILE = 'big_size.pptx'
+    HELP_URL = 'https://helpcenter.onlyoffice.com/mobile-applications/documents/android/'
+    CHOOSE_EMAIL = 'Choose email client...'
+  end
+
+  module Alert
+    DONT_UPLOAD = 'You can upload only when Wi-Fi is enabled'
+  end
+
   SECTIONS = [MyDocuments::TITLE, SharedWithMe::TITLE, CommonDocuments::TITLE,
               ProjectDocuments::TITLE, Trash::TITLE].freeze
 

@@ -2,12 +2,6 @@
 
 # PageObject for Settings
 class Settings < BasePageObject
-  CLEAR_SIZE_CACHE = '0.00 Bytes'
-  PATH_TO_FILE = 'sdcard/OnlyOffice/'
-  NAME_FILE = 'big_size.pptx'
-  HELP_URL = 'https://helpcenter.onlyoffice.com/mobile-applications/documents/android/'
-  CHOOSE_EMAIL = 'Choose email client...'
-
   button 'switch', id: 'wifiSwitch'
   layout 'clear_cache', id: 'clearCacheLayout'
   text 'size_cache', id: 'cacheSizeTextView'

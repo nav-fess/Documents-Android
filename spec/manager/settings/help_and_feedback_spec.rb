@@ -15,7 +15,8 @@ describe 'Help and Feedbac', :settings do
 
   it 'Help : Check text link' do
     help_url = Settings.help_url_texts[0].text
-    expect(help_url).to eq Settings::HELP_URL
+    expect(help_url).to eq Consts::Settings::HELP_URL
+
     back
   end
 
@@ -27,6 +28,6 @@ describe 'Help and Feedbac', :settings do
 
   it 'Feedbac : Check a mail client' do
     choose_email = Settings.tab_emails_text_value delay: 5
-    expect(choose_email).to eq Settings::CHOOSE_EMAIL
+    expect(choose_email).to eq Consts::Settings::CHOOSE_EMAIL
   end
 end

@@ -2,23 +2,23 @@
 
 require 'spec_helper'
 
-describe 'Clear cache', :settings do
+describe 'Clear cache', :settings_1 do
   before :all do
-    push_file("#{Settings::PATH_TO_FILE}#{Settings::NAME_FILE}",
-              File.read("./data/files/#{Settings::NAME_FILE}"))
+    push_file("#{Consts::Settings::PATH_TO_FILE}#{Consts::Settings::NAME_FILE}",
+              File.read("./data/files/#{Consts::Settings::NAME_FILE}"))
     Onboarding.skip_button_click
   end
 
   after :all do
     BottomNavigationBar.on_device_button_click
-    Search.perform Settings::NAME_FILE
+    Search.perform Consts::Settings::NAME_FILE
     CommonFileList.file_context_button_click
     ContextMenu.remove_button_click
   end
 
   it 'Clear cache : Search file' do
     BottomNavigationBar.on_device_button_click
-    Search.perform Settings::NAME_FILE
+    Search.perform Consts::Settings::NAME_FILE
   end
 
   it 'Clear cache : open and close file' do
@@ -36,7 +36,7 @@ describe 'Clear cache', :settings do
 
   it 'Clear cache : Check size cache' do
     size_cache =  Settings.size_cache_text_value
-    expect(size_cache).to eq Settings::CLEAR_SIZE_CACHE
+    expect(size_cache).to eq Consts::Settings::CLEAR_SIZE_CACHE
     back
   end
 end

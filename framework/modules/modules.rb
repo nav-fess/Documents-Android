@@ -29,9 +29,9 @@ require_relative 'cloud/authorized/account/account'
 require_relative 'cloud/authorized/account/context_account'
 require_relative 'cloud/authorized/account/account_bar'
 
-require_relative 'setting/settings'
-require_relative 'setting/about'
+require_relative 'settings/settings'
+require_relative 'settings/about'
 
 require_relative 'onboarding/onboarding'
 
-require_relative 'alert/alert'
+require_relative 'common/alert/alert'
