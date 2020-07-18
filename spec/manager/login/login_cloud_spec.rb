@@ -5,7 +5,7 @@ require 'spec_helper'
 login_data = ConfigHelper.get('cloud_login_data')
 
 login_data[:owncloud].each do |portal|
-  describe 'Login to clouds OwnCloud', :cloud do
+  describe "Login to cloud #{OwnCloud.name}", :cloud do
     before :all do
       Onboarding.skip_button_click
       CloudList.other_storage_button_click
@@ -23,6 +23,9 @@ login_data[:owncloud].each do |portal|
       OwnCloud.url_owncloud_textfield_fill   portal[:name]
       OwnCloud.login_owncloud_textfield_fill portal[:login]
       OwnCloud.pass_owncloud_textfield_fill  portal[:pass]
+    end
+
+    it 'OwnCloud : Tap authorize_button' do
       hide_keyboard delay: 1
       OwnCloud.authorize_owncloud_button_click delay: 2
     end
@@ -36,7 +39,7 @@ login_data[:owncloud].each do |portal|
 end
 
 login_data[:nextcloud].each do |portal|
-  describe 'Login to clouds Nextcloud', :cloud do
+  describe "Login to cloud #{NextCloud.name}", :cloud do
     before :all do
       Onboarding.skip_button_click
       CloudList.other_storage_button_click
@@ -72,7 +75,7 @@ login_data[:nextcloud].each do |portal|
 end
 
 login_data[:webdav].each do |portal|
-  describe 'Login to  clouds Webdav ', :cloud do
+  describe "Login to cloud #{WebDAV.name}", :cloud do
     before :all do
       Onboarding.skip_button_click
       CloudList.other_storage_button_click
@@ -90,6 +93,9 @@ login_data[:webdav].each do |portal|
       WebDAV.url_webdav_textfield_fill     portal[:name]
       WebDAV.login_webdav_textfield_fill   portal[:login]
       WebDAV.pass_webdav_textfield_fill    portal[:pass]
+    end
+
+    it 'Webdav : Tap authorize_button' do
       hide_keyboard delay: 1
       WebDAV.authorize_webdav_button_click
     end

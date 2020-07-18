@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'Clear cache', :settings_1 do
+describe 'Clear cache', :settings do
   before :all do
     push_file("#{Consts::Settings::PATH_TO_FILE}#{Consts::Settings::NAME_FILE}",
               File.read("./data/files/#{Consts::Settings::NAME_FILE}"))

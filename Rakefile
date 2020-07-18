@@ -8,7 +8,7 @@ def format_opts(device, tag_list)
   device.gsub!(' ', '_').downcase!
   tag_format = ''
   tag_list.each { |tag| tag_format += "-t #{tag} " }
-  report_path = "reports/#{device}_#{Time.now.strftime '%d-%m-%y_%H-%M-%S'}.html"
+  report_path = "reports/#{device}_#{Time.now.strftime '%d-%m_%H-%M-%S'}.html"
   "#{tag_format} -f html -o #{report_path}"
 end
 
@@ -21,7 +21,7 @@ namespace :run do
     end
   end
 
-  desc 'Run tests on specified connected device or emulator, need udid arg for working'
+  desc 'Run tests on device/emulator. Need udid arg for working'
   task :single do
     config_name = 'test_devices_config'
     RSpec::Core::RakeTask.new(:spec) do |t|

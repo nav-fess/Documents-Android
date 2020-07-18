@@ -10,23 +10,23 @@ class WebDAV < BasePageObject
   button 'authorize_webdav', id: 'storage_web_dav_save_button'
 
   def self.add_storage(storage)
-    item_webdav_button_click                       if item_webdav_button_wait
-    url_webdav_textfield_fill     storage[:url]    if url_webdav_textfield_wait
-    login_webdav_textfield_fill   storage[:login]  if login_webdav_textfield_wait
-    pass_webdav_textfield_fill    storage[:pass]   if pass_webdav_textfield_wait
-    name_webdav_textfield_fill    storage[:name]   if name_webdav_textfield_wait
-    authorize_webdav_button_click                  if authorize_webdav_button_wait
+    item_webdav_button_click                       delay: 2, time: 2
+    url_webdav_textfield_fill     storage[:url],   delay: 2, time: 2
+    login_webdav_textfield_fill   storage[:login], delay: 2, time: 2
+    pass_webdav_textfield_fill    storage[:pass],  delay: 2, time: 2
+    name_webdav_textfield_fill    storage[:name],  delay: 2, time: 2
+    authorize_webdav_button_click                  delay: 2, time: 2
   end
 
   def self.add_cloud(cloud)
-    url_webdav_textfield_fill     cloud[:name]
-    login_webdav_textfield_fill   cloud[:login]
-    pass_webdav_textfield_fill    cloud[:pass]
+    url_webdav_textfield_fill     cloud[:name],  delay: 2, time: 2
+    login_webdav_textfield_fill   cloud[:login], delay: 2, time: 2
+    pass_webdav_textfield_fill    cloud[:pass],  delay: 2, time: 2
     authorize_webdav_button_click
   end
 
   def self.login_after_logout(cloud)
-    pass_webdav_textfield_fill cloud[:pass]
-    authorize_webdav_button_click
+    pass_webdav_textfield_fill cloud[:pass], delay: 2, time: 2
+    authorize_webdav_button_click            delay: 2, time: 2
   end
 end

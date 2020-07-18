@@ -9,7 +9,11 @@ require 'appium_lib'
 class Storage < BasePageObject
   def self.choice_storage(storage)
     symbol_storage = name_to_symbol storage[:name]
+    case_symbol_storage symbol_storage, storage
+    BottomNavigationBar.clouds_button_click delay: 4, time: 2
+  end
 
+  def self.case_symbol_storage(symbol_storage, storage)
     case symbol_storage
     when :googledrive then Google.add_storage     storage
     when :dropbox     then Dropbox.add_storage    storage
@@ -21,12 +25,14 @@ class Storage < BasePageObject
     when :webdav      then WebDAV.add_storage     storage
     else raise TypeError, 'Other cloud!'
     end
-    BottomNavigationBar.clouds_button_click delay: 4 if BottomNavigationBar.clouds_button_wait
   end
 
   def self.name_to_symbol(storage)
-    storages = %i[googledrive dropbox onedrive yandexdisk boxcloud owncloud nextcloud webdav]
-    storages.each { |cloud| return cloud if storage.downcase.include? cloud.to_s }
+    storages = %i[googledrive dropbox onedrive yandexdisk boxcloud
+                  owncloud nextcloud webdav]
+    storages.each do |cloud|
+      return cloud if storage.downcase.include? cloud.to_s
+    end
   end
 
   def self.storage?(storage_name)

@@ -12,14 +12,14 @@ class Dropbox < BasePageObject
   button 'save_dropbox', id: 'storage_connect_save'
 
   def self.add_storage(account)
-    item_dropbox_button_click                                if item_dropbox_button_wait
-    sing_in_with_google_button_click                         if sing_in_with_google_button
-    login_google_textfield_fill account[:login], delay: 3    if login_google_textfield_wait
-    next_google_login_button_click                           if next_google_login_button_wait
-    pass_google_textfield_fill account[:pass]                if pass_google_textfield_wait
-    hardback delay: 3
-    next_google_button_click                                 if next_google_button_wait
-    name_dropbox_textfield_fill account[:name]               if name_dropbox_textfield_wait
-    save_dropbox_button_click                                if save_dropbox_button_wait
+    item_dropbox_button_click        delay: 3, time: 2
+    sing_in_with_google_button_click delay: 3, time: 2
+    login_google_textfield_fill      account[:login], delay: 3
+    next_google_login_button_click   delay: 3, time: 2
+    pass_google_textfield_fill       account[:pass], delay: 3, time: 2
+    hardback                         delay: 3
+    next_google_button_click         delay: 3, time: 2
+    name_dropbox_textfield_fill      account[:name], delay: 4, time: 2
+    save_dropbox_button_click        delay: 3, time: 2
   end
 end

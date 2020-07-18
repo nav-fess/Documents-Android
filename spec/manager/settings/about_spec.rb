@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'About', :settings do
+describe About, :settings do
   before :all do
     Onboarding.skip_button_click
   end

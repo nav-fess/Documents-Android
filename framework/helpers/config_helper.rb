@@ -6,7 +6,8 @@ require 'yaml'
 # Class contains methods for getting private data
 class ConfigHelper
   PRIVATE_DATA_PATH = File.join __dir__, '..', '..', 'data'
-  CONFIG_PATH = File.join __dir__, '..', '..', 'config', 'test_devices_config.json'
+  CONFIG_PATH = File.join __dir__, '..', '..', 'config',
+                          'test_devices_config.json'
   APPIUM_CONFIG_PATH = File.join __dir__, '..', '..', 'config', 'appium.txt'
 
   # Method for loading data to ENV

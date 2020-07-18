@@ -25,7 +25,8 @@ module PageObject
     end
 
     def define_element(name, type, selector)
-      define_singleton_method("#{name}_#{type}") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
+      define_singleton_method("#{name}_#{type}") do |delay: DELAY_DEFAULT,
+                                                     time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] = time
         element selector
@@ -33,7 +34,8 @@ module PageObject
     end
 
     def define_elements(name, type, selector)
-      define_singleton_method("#{name}_#{type}s") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
+      define_singleton_method("#{name}_#{type}s") do |delay: DELAY_DEFAULT,
+                                                      time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] =  time
         elements selector
@@ -41,7 +43,8 @@ module PageObject
     end
 
     def define_click(name, type, selector)
-      define_singleton_method("#{name}_#{type}_click") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
+      define_singleton_method("#{name}_#{type}_click") do |delay: DELAY_DEFAULT,
+                                                           time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] = time
         click selector
@@ -49,7 +52,8 @@ module PageObject
     end
 
     def define_press(name, type, selector)
-      define_singleton_method("#{name}_#{type}_press") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
+      define_singleton_method("#{name}_#{type}_press") do |delay: DELAY_DEFAULT,
+                                                           time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] = time
         press selector
@@ -57,7 +61,8 @@ module PageObject
     end
 
     def define_displays(name, type, selector)
-      define_singleton_method("#{name}_#{type}?") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
+      define_singleton_method("#{name}_#{type}?") do |delay: DELAY_DEFAULT,
+                                                      time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] = time
         !elements(selector).empty?
@@ -65,7 +70,8 @@ module PageObject
     end
 
     def define_selector(name, type, selector)
-      define_singleton_method("#{name}_#{type}_selector") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
+      define_singleton_method("#{name}_#{type}_selector") do |delay: DELAY_DEFAULT,
+                                                              time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] = time
         selector
@@ -73,7 +79,8 @@ module PageObject
     end
 
     def define_wait(name, type, selector)
-      define_singleton_method("#{name}_#{type}_wait") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
+      define_singleton_method("#{name}_#{type}_wait") do |delay: DELAY_DEFAULT,
+                                                          time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] = time
         wait_until selector
@@ -91,7 +98,8 @@ module PageObject
 
       define_common_methods name, type, selector
 
-      define_singleton_method("#{name}_#{type}_fill") do |data = '', delay: DELAY_DEFAULT, time: TIME_DEFAULT|
+      define_singleton_method("#{name}_#{type}_fill") do |data = '', delay: DELAY_DEFAULT,
+                                                          time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] = time
         element(selector).send_keys data
@@ -103,7 +111,8 @@ module PageObject
 
       define_common_methods name, type, selector
 
-      define_singleton_method("#{name}_#{type}_value") do |delay: DELAY_DEFAULT, time: TIME_DEFAULT|
+      define_singleton_method("#{name}_#{type}_value") do |delay: DELAY_DEFAULT,
+                                                           time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] = time
         element(selector).text
