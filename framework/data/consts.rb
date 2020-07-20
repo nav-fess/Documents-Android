@@ -60,11 +60,13 @@ module Consts
   end
 
   module About
-    TERMS_OF_USE = 'help.onlyoffice.com/products/files/doceditor.aspx?fileid=' \
-                 '5048471&doc=bXJ6UmJacDVnVDMxV01oMHhrUlpwaGFBcXJUUUE3VHRuTGZrRUF5a1NKVT0_IjUwNDg0NzEi0'
-    PRIVACY_POLICY = 'help.onlyoffice.com/products/files/doceditor.aspx?fileid=5048502&doc=SXhWMEVzSEYxNl'\
-                  'VVaXJJeUVtS0kyYk14YWdXTEFUQmRWL250NllHNUFGbz0_IjUwNDg1MDIi0&_ga=2.88767003.1895363220'\
-                  '.1524051386-398072085.1517577558'
+    TERMS_OF_USE = 'help.onlyoffice.com/products/files/doceditor.aspx?fileid='\
+                   '5048471&doc=bXJ6UmJacDVnVDMxV01oMHhrUlpwaGFBcXJUUUE3VHRuTGZrRU'\
+                   'F5a1NKVT0_IjUwNDg0NzEi0'
+    PRIVACY_POLICY = 'help.onlyoffice.com/products/files/doceditor.aspx?fileid='\
+                     '5048502&doc=SXhWMEVzSEYxNlVVaXJJeUVtS0kyYk14YWdXTEFUQmRWL25'\
+                     '0NllHNUFGbz0_IjUwNDg1MDIi0&_ga=2.88767003.1895363220'\
+                     '.1524051386-398072085.1517577558'
     LICENSE = 'www.apache.org/licenses/LICENSE-2.0'
     WEBSITE = 'www.onlyoffice.com/'
   end

@@ -15,7 +15,7 @@ registration_data.each_key do |region|
         if region != :info
           locale = Consts::Registration::LOCALES[region]
           instance.update_capabilities locale: locale,
-                                       language: Consts::LOCALES[locale.to_sym][:language]
+                   language: Consts::LOCALES[locale.to_sym][:language]
           instance.restart_driver
         end
       end
@@ -55,7 +55,7 @@ registration_data.each_key do |region|
         OnlyofficeEnterpriseRegistration.next_button_click
       end
 
-      it "#{region} : Fill password, repeat password and press by Sign in button" do
+      it "#{region} : Fill password, repeat password, press by Sign in button" do
         OnlyofficeEnterpriseRegistration.password_textfield_fill portal[:pass]
         OnlyofficeEnterpriseRegistration
           .password_repeat_textfield_fill portal[:pass]
@@ -64,7 +64,8 @@ registration_data.each_key do |region|
 
       it "#{region} : Check account name after login" do
         account_name = CloudTopToolBar.account_title_text_value
-        expected_name = Consts::Registration::FIRST_NAME + ' ' + Consts::Registration::LAST_NAME
+        expected_name = Consts::Registration::FIRST_NAME + ' ' +
+                        Consts::Registration::LAST_NAME
         expect(account_name).to eq(expected_name)
       end
 

@@ -71,7 +71,7 @@ module PageObject
 
     def define_selector(name, type, selector)
       define_singleton_method("#{name}_#{type}_selector") do |delay: DELAY_DEFAULT,
-                                                              time: TIME_DEFAULT|
+                                                             time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] = time
         selector
@@ -98,8 +98,8 @@ module PageObject
 
       define_common_methods name, type, selector
 
-      define_singleton_method("#{name}_#{type}_fill") do |data = '', delay: DELAY_DEFAULT,
-                                                          time: TIME_DEFAULT|
+      define_singleton_method("#{name}_#{type}_fill") do |data = '',
+                              delay: DELAY_DEFAULT, time: TIME_DEFAULT|
         selector[:delay] = delay
         selector[:time] = time
         element(selector).send_keys data

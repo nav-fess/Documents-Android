@@ -33,7 +33,7 @@ login_data[:enterprise].each do |portal|
 end
 
 login_data[:google].each do |portal|
-  describe "Login through Google to #{portal[:name].split('.')[-1]}", :enterprise do
+  describe "Login via Google to #{portal[:name].split('.')[-1]}", :enterprise do
     domain = portal[:name].split('.')[-1]
 
     before :all do
@@ -59,7 +59,7 @@ login_data[:google].each do |portal|
 end
 
 login_data[:facebook].each do |portal|
-  describe "Login through Facebook to #{portal[:name].split('.')[-1]}", :enterprise do
+  describe "Login via Facebook to #{portal[:name].split('.')[-1]}", :enterprise do
     domain = portal[:name].split('.')[-1]
 
     before :all do

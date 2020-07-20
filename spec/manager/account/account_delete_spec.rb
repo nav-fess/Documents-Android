@@ -40,8 +40,10 @@ describe "Delete #{Account.name}s through context menu", :account do
       end
 
       it "#{type.capitalize} : Check delete" do
-        portal = ContextAccount.portal_name_text? ? ContextAccount.portal_name_text_value : ' '
-        login  = ContextAccount.email_text?       ? ContextAccount.email_text_value       : ' '
+        portal = ContextAccount.portal_name_text? ? ContextAccount
+                                                    .portal_name_text_value : ' '
+        login  = ContextAccount.email_text? ? ContextAccount
+                                              .email_text_value : ' '
         data_math = (account[:name].include? portal) &&
                     (account[:login].include? login)
         expect(data_math).to be_falsey
@@ -50,7 +52,7 @@ describe "Delete #{Account.name}s through context menu", :account do
   end
 end
 
-describe "Delete #{Account.name}s personal and enterprise from profile", :account do
+describe "Delete #{Account.name}s personal&enterprise from profile", :account do
   before :all do
     type_cloud = %i[personal enterprise]
     Onboarding.skip_button_click
@@ -68,8 +70,10 @@ describe "Delete #{Account.name}s personal and enterprise from profile", :accoun
       end
 
       it "#{type.capitalize} : Check delete" do
-        portal = ContextAccount.portal_name_text? ? ContextAccount.portal_name_text_value : ' '
-        login  = ContextAccount.email_text?       ? ContextAccount.email_text_value       : ' '
+        portal = ContextAccount.portal_name_text? ? ContextAccount
+                                                    .portal_name_text_value : ' '
+        login  = ContextAccount.email_text? ? ContextAccount
+                                              .email_text_value : ' '
         data_math = (account[:name].include?  portal) &&
                     (account[:login].include? login)
         expect(data_math).to be_falsey
