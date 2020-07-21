@@ -4,7 +4,7 @@ require 'spec_helper'
 
 login_data = ConfigHelper.get('account_data')
 
-describe 'login again through context menu', :account do
+describe "login #{Account.name} through context menu", :account do
   before :all do
     Onboarding.skip_button_click
     CloudList.other_storage_button_click
@@ -26,7 +26,8 @@ describe 'login again through context menu', :account do
       end
 
       it "#{type.capitalize} : Check login" do
-        account_tool_bar = CloudTopToolBar.account_sub_title_text_value.split('/')[0]
+        account_tool_bar = CloudTopToolBar.account_sub_title_text_value
+                                          .split('/')[0]
         BottomNavigationBar.profile_button_click
         expect(account[:name]).to include(account_tool_bar)
       end

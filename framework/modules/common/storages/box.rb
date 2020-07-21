@@ -12,12 +12,12 @@ class Box < BasePageObject
   button 'save_box', id: 'storage_connect_save'
 
   def self.add_storage(account)
-    item_box_button_click                                if item_box_button_wait
-    login_box_textfields[0].send_keys account[:login]    if login_box_textfield_wait
-    pass_box_textfields[1].send_keys account[:pass]      if pass_box_textfield_wait
-    authorize_box_button_click                           if authorize_box_button_wait
-    allow_access_box_button_click delay: 4               if allow_access_box_button_wait
-    name_box_textfield_fill account[:name]               if name_box_textfield_wait
-    save_box_button_click                                if save_box_button_wait
+    item_box_button_click             delay: 3, time: 2
+    login_box_textfields[0].send_keys account[:login]
+    pass_box_textfields[1].send_keys  account[:pass]
+    authorize_box_button_click        delay: 3, time: 2
+    allow_access_box_button_click     delay: 4, time: 2
+    name_box_textfield_fill           account[:name], delay: 3, time: 2
+    save_box_button_click             delay: 3, time: 2
   end
 end

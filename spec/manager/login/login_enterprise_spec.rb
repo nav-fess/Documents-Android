@@ -5,7 +5,7 @@ require 'spec_helper'
 login_data = ConfigHelper.get('enterprise_login_data')
 
 login_data[:enterprise].each do |portal|
-  describe "Login to #{portal[:name].split('.')[-1]}", :login, :enterprise, :smoke do
+  describe "Login to #{portal[:name].split('.')[-1]}", :enterprise do
     domain = portal[:name].split('.')[-1]
 
     before :all do
@@ -33,7 +33,7 @@ login_data[:enterprise].each do |portal|
 end
 
 login_data[:google].each do |portal|
-  describe "Login through Google to #{portal[:name].split('.')[-1]}", :login, :enterprise, :smoke do
+  describe "Login via Google to #{portal[:name].split('.')[-1]}", :enterprise do
     domain = portal[:name].split('.')[-1]
 
     before :all do
@@ -52,14 +52,14 @@ login_data[:google].each do |portal|
     end
 
     it "#{domain} : Check the portal address after login" do
-      expected_portal = CloudTopToolBar.account_sub_title_text_value time: 15
+      expected_portal = CloudTopToolBar.account_sub_title_text_value time: 18
       expect(portal[:name].to_s).to include(expected_portal.to_s)
     end
   end
 end
 
 login_data[:facebook].each do |portal|
-  describe "Login through Facebook to #{portal[:name].split('.')[-1]}", :login, :enterprise, :smoke do
+  describe "Login via Facebook to #{portal[:name].split('.')[-1]}", :enterprise do
     domain = portal[:name].split('.')[-1]
 
     before :all do

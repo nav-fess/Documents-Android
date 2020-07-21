@@ -13,16 +13,16 @@ class Google < BasePageObject
   button 'save_google', id: 'storage_connect_save'
 
   def self.add_storage(account)
-    item_google_views[0].click                      if item_google_view_wait
-    login_google_textfield_fill account[:login]     if login_google_textfield_wait
-    next_google_login_button_click                  if next_google_login_button_wait
-    pass_google_textfield_fill account[:pass]       if pass_google_textfield_wait
+    item_google_views[0].click
+    login_google_textfield_fill    account[:login], delay: 3, time: 2
+    next_google_login_button_click delay: 3, time: 2
+    pass_google_textfield_fill     account[:pass], delay: 3, time: 2
     back
-    next_google_pass_button_click                   if next_google_pass_button_wait
+    next_google_pass_button_click delay: 3, time: 2
     sleep 5
-    swipe_down(label_button, 3, 1, 300) if label_button_wait
-    allow_google_button_click                       if allow_google_button_wait
-    name_google_textfield_fill account[:name]       if name_google_textfield_wait
-    save_google_button_click                        if save_google_button_wait
+    swipe_down(label_button, 3, 1, 300)
+    allow_google_button_click     delay: 3, time: 2
+    name_google_textfield_fill    account[:name], delay: 3, time: 2
+    save_google_button_click      delay: 3, time: 2
   end
 end

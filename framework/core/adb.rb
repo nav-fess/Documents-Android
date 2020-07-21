@@ -2,7 +2,8 @@
 
 # Class for extending adb functional
 class ADB
-  def initialize(adb_path = File.join(ENV['ANDROID_HOME'], 'platform-tools', 'adb'))
+  def initialize(adb_path = File.join(ENV['ANDROID_HOME'],
+                                      'platform-tools', 'adb'))
     @path = adb_path
   end
 

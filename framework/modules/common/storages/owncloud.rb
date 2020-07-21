@@ -10,18 +10,18 @@ class OwnCloud < BasePageObject
   button 'authorize_owncloud', id: 'storage_web_dav_save_button'
 
   def self.add_storage(account)
-    item_owncloud_button_click                        if item_owncloud_button_wait
-    url_owncloud_textfield_fill   account[:url]       if url_owncloud_textfield_wait
-    login_owncloud_textfield_fill account[:login]     if login_owncloud_textfield_wait
-    pass_owncloud_textfield_fill  account[:pass]      if pass_owncloud_textfield_wait
-    name_owncloud_textfield_fill  account[:name]      if name_owncloud_textfield_wait
-    authorize_owncloud_button_click                   if authorize_owncloud_button_wait
+    item_owncloud_button_click                     delay: 3, time: 2
+    url_owncloud_textfield_fill   account[:url],   delay: 3, time: 2
+    login_owncloud_textfield_fill account[:login], delay: 3, time: 2
+    pass_owncloud_textfield_fill  account[:pass],  delay: 3, time: 2
+    name_owncloud_textfield_fill  account[:name],  delay: 3, time: 2
+    authorize_owncloud_button_click                delay: 3, time: 2
   end
 
   def self.add_cloud(cloud)
-    url_owncloud_textfield_fill   cloud[:name]
-    login_owncloud_textfield_fill cloud[:login]
-    pass_owncloud_textfield_fill  cloud[:pass]
+    url_owncloud_textfield_fill     cloud[:name]
+    login_owncloud_textfield_fill   cloud[:login]
+    pass_owncloud_textfield_fill    cloud[:pass]
     authorize_owncloud_button_click time: 10
   end
 end

@@ -128,12 +128,16 @@ module AppiumDriver
     time = args[:time] || TIME_TO_SEARCH
     parent = args[:parent] || raise(ArgumentError, 'Unspecified parent!')
     selector_type = args.keys[1]
-    wait_true(time) do
-      case selector_type
-      when :id then parent.find_element id: args[:id]
-      when :xpath then parent.find_element xpath: args[:xpath]
-      else raise ArgumentError, "Unknown selector type: #{selector_type}"
-      end
+    wait_true(time) { selector_nested_type selector_type, parent, args }
+  end
+
+  # helper function for function find_nested_element
+  def selector_nested_type(selector_type, parent, args)
+
+    case selector_type
+    when :id then parent.find_element id: args[:id]
+    when :xpath then parent.find_element xpath: args[:xpath]
+    else raise ArgumentError, "Unknown selector type: #{selector_type}"
     end
   end
 

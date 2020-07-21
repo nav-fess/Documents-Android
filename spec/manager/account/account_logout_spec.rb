@@ -4,7 +4,7 @@ require 'spec_helper'
 
 login_data = ConfigHelper.get('account_data')
 
-describe 'Logout all accounts through context menu', :account do
+describe "Logout all #{Account.name}s through context menu", :account do
   before :all do
     Onboarding.skip_button_click
     CloudList.other_storage_button_click
@@ -30,7 +30,7 @@ describe 'Logout all accounts through context menu', :account do
   end
 end
 
-describe 'Logout accounts personal and enterprise', :account do
+describe "Logout #{Account.name}s personal and enterprise", :account do
   before :all do
     type_cloud = %i[personal enterprise]
     Onboarding.skip_button_click
@@ -45,7 +45,7 @@ describe 'Logout accounts personal and enterprise', :account do
         Account.context_buttons[account_counter].click
         ContextAccount.profile_button_click
         ContextAccount.logout_button_click
-        Dialog.accept_button_click
+        Dialog.accept_button_click delay: 3
       end
 
       it "#{type.capitalize} : Check logout" do

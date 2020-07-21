@@ -60,11 +60,13 @@ module Consts
   end
 
   module About
-    TERMS_OF_USE = 'help.onlyoffice.com/products/files/doceditor.aspx?fileid=' \
-                 '5048471&doc=bXJ6UmJacDVnVDMxV01oMHhrUlpwaGFBcXJUUUE3VHRuTGZrRUF5a1NKVT0_IjUwNDg0NzEi0'
-    PRIVACY_POLICY = 'help.onlyoffice.com/products/files/doceditor.aspx?fileid=5048502&doc=SXhWMEVzSEYxNl'\
-                  'VVaXJJeUVtS0kyYk14YWdXTEFUQmRWL250NllHNUFGbz0_IjUwNDg1MDIi0&_ga=2.88767003.1895363220'\
-                  '.1524051386-398072085.1517577558'
+    TERMS_OF_USE = 'help.onlyoffice.com/products/files/doceditor.aspx?fileid='\
+                   '5048471&doc=bXJ6UmJacDVnVDMxV01oMHhrUlpwaGFBcXJUUUE3VHRuTGZrRU'\
+                   'F5a1NKVT0_IjUwNDg0NzEi0'
+    PRIVACY_POLICY = 'help.onlyoffice.com/products/files/doceditor.aspx?fileid='\
+                     '5048502&doc=SXhWMEVzSEYxNlVVaXJJeUVtS0kyYk14YWdXTEFUQmRWL25'\
+                     '0NllHNUFGbz0_IjUwNDg1MDIi0&_ga=2.88767003.1895363220'\
+                     '.1524051386-398072085.1517577558'
     LICENSE = 'www.apache.org/licenses/LICENSE-2.0'
     WEBSITE = 'www.onlyoffice.com/'
   end
@@ -84,10 +86,15 @@ module Consts
   SECTIONS = [MyDocuments::TITLE, SharedWithMe::TITLE, CommonDocuments::TITLE,
               ProjectDocuments::TITLE, Trash::TITLE].freeze
 
-  LOCALES = { BG: { locale: 'BG', language: 'bg' }, DE: { locale: 'DE', language: 'de' },
-              ES: { locale: 'ES', language: 'es' }, FR: { locale: 'FR', language: 'fr' },
-              IT: { locale: 'IT', language: 'it' }, PL: { locale: 'PL', language: 'pl' },
-              BR: { locale: 'PT', language: 'BR' }, RU: { locale: 'RU', language: 'ru' },
-              EN: { locale: 'EN', language: 'gb' }, US: { locale: 'US', language: 'en' },
+  LOCALES = { BG: { locale: 'BG', language: 'bg' },
+              DE: { locale: 'DE', language: 'de' },
+              ES: { locale: 'ES', language: 'es' },
+              FR: { locale: 'FR', language: 'fr' },
+              IT: { locale: 'IT', language: 'it' },
+              PL: { locale: 'PL', language: 'pl' },
+              BR: { locale: 'PT', language: 'BR' },
+              RU: { locale: 'RU', language: 'ru' },
+              EN: { locale: 'EN', language: 'gb' },
+              US: { locale: 'US', language: 'en' },
               CN: { locale: 'CN', language: 'zh' } }.freeze
 end

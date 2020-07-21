@@ -23,7 +23,7 @@ class PlusFAB < BasePageObject
   end
 
   def self.add_storage
-    CommonFileList.plus_fab_button_click delay: 2 if CommonFileList.plus_fab_button_wait
-    add_storage_button_click                      if add_storage_button_wait
+    CommonFileList.plus_fab_button_click delay: 5, time: 2
+    add_storage_button_click time: 2
   end
 end

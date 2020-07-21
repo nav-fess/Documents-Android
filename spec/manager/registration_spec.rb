@@ -7,57 +7,72 @@ registration_data = ConfigHelper.get 'enterprise_registration_data'
 registration_data.each_key do |region|
   registration_data[region].each do |portal|
     describe "Registration portal at #{region}", :registration, :smoke do
-      before :all do
+      let(:instance) { @test_instance }
+      let(:hint) { Consts::Registration::REGION_HINT[region.to_sym] }
+      let(:time) { Time.now.strftime '%m%y%H' }
+
+      it "#{region} : Update capabilities if .info" do
         if region != :info
           locale = Consts::Registration::LOCALES[region]
-          @test_instance.update_capabilities locale: locale,
-                                             language: Consts::LOCALES[locale.to_sym][:language]
-          @test_instance.restart_driver
+          instance.update_capabilities locale: locale,
+                   language: Consts::LOCALES[locale.to_sym][:language]
+          instance.restart_driver
         end
+      end
 
+      it "#{region} : Preparatory capabilities" do
         Onboarding.skip_button_click
         CloudList.get_started_button_click
-        @reg_hint = Consts::Registration::REGION_HINT[region.to_sym]
-        @reg_time = Time.now.strftime '%d%m%y%H%M%S'
       end
 
       it "#{region} : Open portal registration form" do
         OnlyofficeEnterpriseLogin.create_portal_button_click delay: 2
       end
 
-      it "#{region} : Fill portal name" do
+      it "#{region} : input key info" do
         if region == :info
-          OnlyofficeEnterpriseRegistration.portal_name_textfield_fill Consts::Registration::INFO_PORTAL_KEY
+          OnlyofficeEnterpriseRegistration
+            .portal_name_textfield_fill Consts::Registration::INFO_PORTAL_KEY
         end
+      end
 
-        OnlyofficeEnterpriseRegistration.portal_name_textfield_fill portal[:name] + @reg_time
+      it "#{region} : input portal name" do
+        OnlyofficeEnterpriseRegistration
+          .portal_name_textfield_fill portal[:name] + time
       end
 
       it "#{region} : Fill email, first name and last name" do
         OnlyofficeEnterpriseRegistration.email_textfield_fill portal[:login]
-        OnlyofficeEnterpriseRegistration.first_name_textfield_fill Consts::Registration::FIRST_NAME
-        OnlyofficeEnterpriseRegistration.last_name_textfield_fill Consts::Registration::LAST_NAME
+        OnlyofficeEnterpriseRegistration
+          .first_name_textfield_fill Consts::Registration::FIRST_NAME
+        OnlyofficeEnterpriseRegistration
+          .last_name_textfield_fill Consts::Registration::LAST_NAME
       end
 
       it "#{region} : Press by Next button" do
-        hide_keyboard unless @test_instance.capabilities[:deviceName].downcase.include? 'emulator'
+        hide_keyboard unless
+          instance.capabilities[:deviceName].downcase.include? 'emulator'
         OnlyofficeEnterpriseRegistration.next_button_click
       end
 
-      it "#{region} : Fill password, repeat password fields and press by Sign in button" do
+      it "#{region} : Fill password, repeat password, press by Sign in button" do
         OnlyofficeEnterpriseRegistration.password_textfield_fill portal[:pass]
-        OnlyofficeEnterpriseRegistration.password_repeat_textfield_fill portal[:pass]
+        OnlyofficeEnterpriseRegistration
+          .password_repeat_textfield_fill portal[:pass]
         OnlyofficeEnterpriseRegistration.sign_in_button_click
       end
 
       it "#{region} : Check account name after login" do
         account_name = CloudTopToolBar.account_title_text_value
-        expect(account_name).to eq(Consts::Registration::FIRST_NAME + ' ' + Consts::Registration::LAST_NAME)
+        expected_name = Consts::Registration::FIRST_NAME + ' ' +
+                        Consts::Registration::LAST_NAME
+        expect(account_name).to eq(expected_name)
       end
 
       it "#{region} : Check portal address after login" do
         portal_address = CloudTopToolBar.account_sub_title_text_value
-        expect(portal_address).to eq(portal[:name] + @reg_time + @reg_hint)
+        expected_address = portal[:name] + time + hint
+        expect(portal_address).to eq(expected_address)
       end
     end
   end

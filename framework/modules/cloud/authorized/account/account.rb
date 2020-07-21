@@ -5,9 +5,6 @@ class Account < BasePageObject
   CLOUD_TYPE = %i[personal enterprise nextcloud owncloud webdav].freeze
 
   button 'context', id: 'accountItemContext'
-  text 'account_name', id: 'accountItemName'
-  text 'portal_name', id: 'accountItemPortal'
-  text 'email', id: 'accountItemEmail'
   button 'add_account', id: 'fragment_accounts_add_account'
   button 'settings', id: 'settingsItem'
   button 'item_account', id: 'accountItemLayout'
@@ -23,17 +20,18 @@ class Account < BasePageObject
   end
 
   def self.add(clouds, type_cloud = CLOUD_TYPE)
-    type_cloud.each do |type|
-      accounts = clouds[type]
-      case type
-      when :personal   then accounts.each  { |account| login_personal   account }
-      when :enterprise then accounts.each  { |account| login_enterprise account }
-      when :owncloud   then accounts.each  { |account| login_owncloud   account }
-      when :nextcloud  then accounts.each  { |account| login_nextcloud  account }
-      when :webdav     then accounts.each  { |account| login_webdav     account }
-      end
-    end
+    type_cloud.each { |type| case_type_cloud type, clouds[type] }
     hardback delay: 5
+  end
+
+  def self.case_type_cloud(type, accounts)
+    case type
+    when :personal   then accounts.each  { |account| login_personal   account }
+    when :enterprise then accounts.each  { |account| login_enterprise account }
+    when :owncloud   then accounts.each  { |account| login_owncloud   account }
+    when :nextcloud  then accounts.each  { |account| login_nextcloud  account }
+    when :webdav     then accounts.each  { |account| login_webdav     account }
+    end
   end
 
   def self.login_enterprise(account)

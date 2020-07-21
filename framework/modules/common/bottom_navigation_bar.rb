@@ -10,6 +10,7 @@ class BottomNavigationBar < BasePageObject
   button 'profile', id: 'menu_item_setting'
 
   def self.active_section
-    find_nested_element parent: main_layout, xpath: '//android.widget.TextView[@selected="true"]'
+    find_nested_element parent: main_layout,
+                        xpath: '//android.widget.TextView[@selected="true"]'
   end
 end

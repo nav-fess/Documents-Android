@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'About', :settings do
+describe About, :settings do
   before :all do
     Onboarding.skip_button_click
   end
@@ -30,7 +30,8 @@ describe 'About', :settings do
 
   it 'About : Check url Apache License ' do
     About.license_button_click delay: 2
-    apache_license_url = About.apache_license_url_texts[1].attribute('content-desc')
+    apache_license_url = About.apache_license_url_texts[1]
+                              .attribute('content-desc')
     expect(apache_license_url).to include Consts::About::LICENSE
     back
   end
