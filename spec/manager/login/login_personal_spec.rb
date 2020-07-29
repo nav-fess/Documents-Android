@@ -42,8 +42,7 @@ login_data[:google].each do
 
     it 'Personal : Tap Google account' do
       OnlyofficePersonalLogin.google_button_click
-      sleep 2
-      OnlyofficePersonalLogin.google_account_button_click
+      OnlyofficePersonalLogin.google_account_button_click delay: 7
     end
 
     it 'Personal : Check the portal address after login ' do

@@ -12,8 +12,8 @@ describe "Delete all #{Account.name}s", :account do
   end
 
   it 'All accounts : Delete through select all' do
-    Account.item_account_button_press delay: 3
-    AccountBar.more_button_click time: 5
+    Account.item_account_button_press delay: 8
+    AccountBar.more_button_click delay: 6, time: 4
     AccountBar.select_all_button_click delay: 2, time: 5
     AccountBar.delete_account_button_click time: 5
   end
@@ -41,9 +41,9 @@ describe "Delete #{Account.name}s through context menu", :account do
 
       it "#{type.capitalize} : Check delete" do
         portal = ContextAccount.portal_name_text? ? ContextAccount
-                                                    .portal_name_text_value : ' '
+          .portal_name_text_value : ' '
         login  = ContextAccount.email_text? ? ContextAccount
-                                              .email_text_value : ' '
+          .email_text_value : ' '
         data_math = (account[:name].include? portal) &&
                     (account[:login].include? login)
         expect(data_math).to be_falsey
@@ -71,9 +71,9 @@ describe "Delete #{Account.name}s personal&enterprise from profile", :account do
 
       it "#{type.capitalize} : Check delete" do
         portal = ContextAccount.portal_name_text? ? ContextAccount
-                                                    .portal_name_text_value : ' '
+          .portal_name_text_value : ' '
         login  = ContextAccount.email_text? ? ContextAccount
-                                              .email_text_value : ' '
+          .email_text_value : ' '
         data_math = (account[:name].include?  portal) &&
                     (account[:login].include? login)
         expect(data_math).to be_falsey

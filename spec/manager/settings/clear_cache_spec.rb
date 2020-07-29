@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'Clear cache', :settings do
+describe 'Clear cache', :settings_NP30PRO do
   before :all do
     push_file("#{Consts::Settings::PATH_TO_FILE}#{Consts::Settings::NAME_FILE}",
               File.read("./data/files/#{Consts::Settings::NAME_FILE}"))
@@ -12,7 +12,7 @@ describe 'Clear cache', :settings do
   after :all do
     BottomNavigationBar.on_device_button_click
     Search.perform Consts::Settings::NAME_FILE
-    CommonFileList.file_context_button_click
+    CommonFileList.file_context_button_click delay: 2
     ContextMenu.remove_button_click
   end
 
@@ -23,8 +23,8 @@ describe 'Clear cache', :settings do
 
   it 'Clear cache : open and close file' do
     CommonFileList.file_layout_click
-    sleep 6
-    back
+    sleep 7
+    2.times { back }
   end
 
   it 'Clear cache :Tap button ' do

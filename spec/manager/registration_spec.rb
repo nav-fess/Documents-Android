@@ -6,7 +6,7 @@ registration_data = ConfigHelper.get 'enterprise_registration_data'
 
 registration_data.each_key do |region|
   registration_data[region].each do |portal|
-    describe "Registration portal at #{region}", :registration, :smoke do
+    describe "Registration portal at #{region}", :registration_NS10, :smoke do
       let(:instance) { @test_instance }
       let(:hint) { Consts::Registration::REGION_HINT[region.to_sym] }
       let(:time) { Time.now.strftime '%m%y%H' }

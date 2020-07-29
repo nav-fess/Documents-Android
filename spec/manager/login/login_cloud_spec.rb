@@ -26,7 +26,7 @@ login_data[:owncloud].each do |portal|
     end
 
     it 'OwnCloud : Tap authorize_button' do
-      hide_keyboard delay: 1
+      back
       OwnCloud.authorize_owncloud_button_click delay: 2
     end
 
@@ -96,7 +96,7 @@ login_data[:webdav].each do |portal|
     end
 
     it 'Webdav : Tap authorize_button' do
-      hide_keyboard delay: 1
+      back
       WebDAV.authorize_webdav_button_click
     end
 
