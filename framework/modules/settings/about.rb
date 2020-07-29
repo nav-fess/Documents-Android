@@ -6,6 +6,7 @@ class About < BasePageObject
   button 'policy', id: 'about_policy'
   button 'license', id: 'about_license'
   button 'website', id: 'about_website'
+  button 'browser', xpath: '//android.widget.TextView'
 
   text 'terms_url', xpath: '//android.widget.EditText'
   text 'privacy_policy_url', xpath: '//android.widget.EditText'

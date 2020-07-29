@@ -68,14 +68,14 @@ module Consts
                      '0NllHNUFGbz0_IjUwNDg1MDIi0&_ga=2.88767003.1895363220'\
                      '.1524051386-398072085.1517577558'
     LICENSE = 'www.apache.org/licenses/LICENSE-2.0'
-    WEBSITE = 'www.onlyoffice.com/'
+    WEBSITE = 'onlyoffice.com'
   end
 
   module Settings
     CLEAR_SIZE_CACHE = '0.00 Bytes'
     PATH_TO_FILE = 'sdcard/OnlyOffice/'
     NAME_FILE = 'big_size.pptx'
-    HELP_URL = 'https://helpcenter.onlyoffice.com/mobile-applications/documents/android/'
+    HELP_URL = 'helpcenter.onlyoffice.com/mobile-applications/documents/android'
     CHOOSE_EMAIL = 'Choose email client...'
   end
 

@@ -5,7 +5,7 @@ require 'spec_helper'
 login_data = ConfigHelper.get('storage_data')
 
 login_data[:enterprise].each do |portal|
-  describe 'Add storage', :add_storage do
+  describe 'Add storage', :add_storage_NM do
     domain = portal[:name].split('.')[-1]
 
     before :all do
@@ -40,7 +40,7 @@ login_data[:enterprise].each do |portal|
 end
 
 login_data[:personal].each do |portal|
-  describe 'Add storage to Personal', :add_storage do
+  describe 'Add storage to Personal', :add_storage_NM do
     before :all do
       Onboarding.skip_button_click
       CloudList.get_started_button_click

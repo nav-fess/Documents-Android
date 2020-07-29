@@ -48,11 +48,11 @@ login_data[:google].each do |portal|
 
     it "#{domain} : Tap Google account" do
       OnlyofficeEnterpriseLogin.google_button_click
-      OnlyofficeEnterpriseLogin.google_account_button_click delay: 2
+      OnlyofficeEnterpriseLogin.google_account_button_click delay: 7
     end
 
     it "#{domain} : Check the portal address after login" do
-      expected_portal = CloudTopToolBar.account_sub_title_text_value time: 18
+      expected_portal = CloudTopToolBar.account_sub_title_text_value delay: 5
       expect(portal[:name].to_s).to include(expected_portal.to_s)
     end
   end
